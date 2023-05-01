@@ -1,0 +1,97 @@
+on:
+  push:
+    tags:
+      - "v*"
+name: "Build & Release"
+jobs:
+  # 1
+  version:
+    name: Create version number
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+      #
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
+        with:
+          versionSpec: "5.x"
+      - name: Use GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.7
+
+      - name: Create version.txt with nuGetVersion
+        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
+
+      - name: Upload version.txt
+        uses: actions/upload-artifact@v3
+        with:
+          name: gitversion
+          path: version.txt
+
+  build-android:
+    name: Build android and release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "12.x"
+          cache: "gradle"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable" # or: 'beta', 'dev' or 'master'
+          cache: true
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Start release build
+        run: flutter build apk --split-per-abi
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: "android-artifact"
+          path: "build/app/outputs/apk/release/*.apk"
+
+  # build-ios:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: "stable"
+  #         architecture: x64
+  #     - run: flutter pub get
+  #     # - run: flutter build ios --release --no-codesign
+  #     - run: flutter build ipa --release
+
+  #     - uses: actions/upload-artifact@v3
+  #       with:
+  #         name: "ios-artifact"
+  #         path: build/ios/ipa/*.ipa"
+
+  release:
+    name: Release collected artifacts
+    needs: [build-android]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          path: artifacts/
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "artifacts/"
+          tag: ${{ steps.get_version.outputs.VERSION }}
+          token: ${{ secrets.TOKEN }}
