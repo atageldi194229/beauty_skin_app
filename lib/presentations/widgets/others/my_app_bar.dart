@@ -27,15 +27,15 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       title: title,
-      leading: IconButton(
-        icon: const Icon(
-          Icons.menu,
-          color: Colors.black,
-        ),
-        onPressed: () {
-          scaffoldKey.currentState?.openDrawer();
-        },
-      ),
+      // leading: IconButton(
+      //   icon: const Icon(
+      //     Icons.menu,
+      //     color: Colors.black,
+      //   ),
+      //   onPressed: () {
+      //     scaffoldKey.currentState?.openDrawer();
+      //   },
+      // ),
       actions: [
         IconButton(
           icon: cartSize != null

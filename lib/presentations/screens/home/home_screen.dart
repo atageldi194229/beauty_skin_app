@@ -1,3 +1,4 @@
+import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:beauty_skin/constants/constants.dart';
@@ -31,16 +32,22 @@ class HomeScreen extends StatelessWidget {
       key: scaffoldKey,
       backgroundColor: COLOR_CONST.backgroundColor,
       resizeToAvoidBottomInset: false,
-      appBar: MyAppBar(
-        scaffoldKey,
-        title: const Text(
-          "Beauty Skin",
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+      // appBar: MyAppBar(
+      //   scaffoldKey,
+      //   title: const Text(
+      //     "Beauty Skin",
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
+      appBar: EasySearchBar(
+        title: const Text('Beauty Skin'),
+        onSearch: (value) => {}, // setState(() => searchValue = value
+        backgroundColor: COLOR_CONST.backgroundColor,
       ),
+
       // drawer: const MyDrawer(),
       body: SmartRefresher(
         controller: refreshController,
