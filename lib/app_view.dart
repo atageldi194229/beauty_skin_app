@@ -58,7 +58,8 @@ class AppViewState extends State<AppView> {
           // onNavigate(AppRouter.SPLASH);
           navigateToMainScreen();
         } else {
-          onNavigate(AppRouter.SPLASH);
+          navigateToMainScreen();
+          // onNavigate(AppRouter.SPLASH);
         }
       },
       builder: (context, applicationState) {

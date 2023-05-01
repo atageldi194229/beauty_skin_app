@@ -91,6 +91,6 @@ jobs:
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "artifacts/"
+          artifacts: "artifacts/android-artifact/*.apk"
           tag: ${{ steps.get_version.outputs.VERSION }}
           token: ${{ secrets.TOKEN }}

@@ -64,7 +64,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 right: kdefaultPadding * 2,
               );
               Color cardColor = COLOR_CONST.primaryColor;
-              Color? cardTextColor = Colors.white;
+              Color? cardTextColor = Colors.black;
 
               if (index == 0) {
                 cardMargin = cardMargin.copyWith(left: kdefaultPadding * 2);
@@ -93,6 +93,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                     child: Text(
                       categories[index],
                       style: TextStyle(
+                        fontWeight: FontWeight.bold,
                         color: cardTextColor,
                       ),
                     ),
