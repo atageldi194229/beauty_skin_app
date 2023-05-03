@@ -55,10 +55,11 @@ class AppViewState extends State<AppView> {
         if (state is ApplicationCompleted) {
           loadData();
           // onNavigate(AppRouter.HOME);
-          // onNavigate(AppRouter.SPLASH);
-          navigateToMainScreen();
+          onNavigate(AppRouter.SPLASH);
+          // navigateToMainScreen();
         } else {
-          navigateToMainScreen();
+          // navigateToMainScreen();
+          // onNavigate(AppRouter.MAIN);
           // onNavigate(AppRouter.SPLASH);
         }
       },

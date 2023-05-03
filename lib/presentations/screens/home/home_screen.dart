@@ -1,3 +1,4 @@
+import 'package:beauty_skin/presentations/screens/home/widgets/product_list_row_view.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -48,7 +49,6 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: COLOR_CONST.backgroundColor,
       ),
 
-      // drawer: const MyDrawer(),
       body: SmartRefresher(
         controller: refreshController,
         onRefresh: _onRefresh,
@@ -60,11 +60,16 @@ class HomeScreen extends StatelessWidget {
         ),
         child: ListView(
           children: const [
-            BannersView(),
+            // BannersView(),
             SizedBox(height: kdefaultPadding * 2),
             CategoriesView(),
             SizedBox(height: kdefaultPadding * 2),
-            ProductsView(products: 20),
+            // ProductsView(products: 20),
+            ProductListRowView(products: 10),
+            SizedBox(height: kdefaultPadding * 2),
+            ProductListRowView(products: 10),
+            SizedBox(height: kdefaultPadding * 2),
+            ProductListRowView(products: 10),
             SizedBox(height: kdefaultPadding * 5),
           ],
         ),

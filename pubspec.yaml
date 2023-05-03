@@ -43,7 +43,6 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   cached_network_image: ^3.2.3
-  persistent_bottom_nav_bar: ^5.0.2
   flutter_iconly: ^1.0.2
   badges: ^3.1.1
   equatable: ^2.0.5
@@ -53,6 +52,7 @@ dependencies:
   optimized_cached_image: ^3.0.1
   pull_to_refresh: ^2.0.0
   easy_search_bar: ^2.5.0
+  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
   flutter_test:

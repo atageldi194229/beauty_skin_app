@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   double _containerOpacity = 0.0;
   late AnimationController _controller;
-  double _textOpacity = 0.0;
+  // double _textOpacity = 0.0;
 
   @override
   void dispose() {
@@ -34,15 +34,15 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(seconds: 2),
     );
 
-    animation1 = Tween(begin: 40, end: 20).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.fastLinearToSlowEaseIn,
-    ))
-      ..addListener(() {
-        setState(() {
-          _textOpacity = 1.0;
-        });
-      });
+    // animation1 = Tween(begin: 40, end: 20).animate(CurvedAnimation(
+    //   parent: _controller,
+    //   curve: Curves.fastLinearToSlowEaseIn,
+    // ))
+    //   ..addListener(() {
+    //     setState(() {
+    //       _textOpacity = 1.0;
+    //     });
+    //   });
 
     _controller.forward();
 
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
       setState(() {
         Navigator.pushNamedAndRemoveUntil(
           context,
-          AppRouter.HOME,
+          AppRouter.MAIN,
           (route) => false,
         );
       });
@@ -77,38 +77,38 @@ class _SplashScreenState extends State<SplashScreen>
                   duration: const Duration(milliseconds: 2000),
                   curve: Curves.fastLinearToSlowEaseIn,
                   opacity: _containerOpacity,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 2000),
-                    curve: Curves.fastLinearToSlowEaseIn,
+                  child: Container(
+                    // duration: const Duration(milliseconds: 2000),
+                    // curve: Curves.fastLinearToSlowEaseIn,
                     height: SizeConfig.screenWidth * 0.5,
                     width: SizeConfig.screenWidth * 0.5,
                     alignment: Alignment.center,
-                    // decoration: BoxDecoration(
-                    //   color: Colors.white,
-                    //   borderRadius: BorderRadius.circular(30),
-                    // ),
-                    // child: Image.asset(appLogo),
-                    child: const Placeholder(),
-                  ),
-                ),
-              ),
-              Center(
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 2000),
-                  opacity: _textOpacity,
-                  child: const Text(
-                    'Beauty Skin',
-                    style: TextStyle(
-                      color: Colors.white,
-                      letterSpacing: 4,
-                      fontFamily: 'Poppins',
-                      // fontSize: animation1!.value,
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
+                    decoration: BoxDecoration(
+                      color: COLOR_CONST.primaryColor,
+                      borderRadius: BorderRadius.circular(30),
                     ),
+                    child: Image.asset(appLogo),
+                    // child: const Placeholder(),
                   ),
                 ),
               ),
+              // Center(
+              //   child: AnimatedOpacity(
+              //     duration: const Duration(milliseconds: 2000),
+              //     opacity: _textOpacity,
+              //     child: const Text(
+              //       'Beauty Skin',
+              //       style: TextStyle(
+              //         color: Colors.white,
+              //         letterSpacing: 4,
+              //         fontFamily: 'Poppins',
+              //         // fontSize: animation1!.value,
+              //         fontSize: 26,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ],

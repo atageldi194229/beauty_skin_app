@@ -9,82 +9,78 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: AspectRatio(
-        aspectRatio: 2 / 3,
-        child: Container(
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: kBorderRadius15,
-            border: Border.all(
-              color: const Color(0xFFE1E1E1),
-              width: 1,
-            ),
+      child: Container(
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: kBorderRadius15,
+          border: Border.all(
+            color: const Color(0xFFE1E1E1),
+            width: 1,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: CachedNetworkImage(
-                  fadeInCurve: Curves.ease,
-                  imageUrl:
-                      "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.contain,
-                      ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CachedNetworkImage(
+                fadeInCurve: Curves.ease,
+                imageUrl:
+                    "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=600",
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.contain,
                     ),
                   ),
-                  // placeholder: (context, url) => Center(child: spinKit()), // TODO: make me spin
-                  errorWidget: (context, url, error) => noImage(),
                 ),
+                // placeholder: (context, url) => Center(child: spinKit()), // TODO: make me spin
+                errorWidget: (context, url, error) => noImage(),
               ),
-              Padding(
-                padding: const EdgeInsets.all(kdefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "1100M",
-                          style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(kdefaultPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "1100M",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(width: kdefaultPadding),
+                      Text(
+                        "1200M",
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              color: Colors.red,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                      ),
+                      const Spacer(),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          padding: const EdgeInsets.all(10),
+                          backgroundColor: COLOR_CONST.primaryColor,
+                          foregroundColor: Colors.white,
                         ),
-                        const SizedBox(width: kdefaultPadding),
-                        Text(
-                          "1200M",
-                          style:
-                              Theme.of(context).textTheme.titleSmall!.copyWith(
-                                    color: Colors.red,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                        ),
-                        const Spacer(),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            padding: const EdgeInsets.all(10),
-                            backgroundColor: COLOR_CONST.primaryColor,
-                            foregroundColor: Colors.white,
-                          ),
-                          onPressed: () {},
-                          child: const Icon(Icons.add_outlined),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: kdefaultPadding),
-                    Text(
-                      "Баннер c чёрной подложкой 2,00x50 глянец",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
-                ),
+                        onPressed: () {},
+                        child: const Icon(Icons.add_outlined),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: kdefaultPadding),
+                  Text(
+                    "Баннер c чёрной подложкой 2,00x50 глянец",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

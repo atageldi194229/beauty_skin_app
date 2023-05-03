@@ -2,9 +2,10 @@ import 'package:beauty_skin/presentations/widgets/cards/product_card2.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/presentations/widgets/cards/product_card.dart';
+import 'package:flutter/rendering.dart';
 
-class ProductsView extends StatelessWidget {
-  const ProductsView({
+class ProductListRowView extends StatelessWidget {
+  const ProductListRowView({
     super.key,
     this.products = 0,
     this.onBottom,
@@ -15,20 +16,24 @@ class ProductsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    Size size = MediaQuery.of(context).size;
+
+    double cardWidth = 150;
+    double cardHeight = cardWidth * 1.3;
+
+    return Container(
+      height: 200,
       padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2),
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          // childAspectRatio: 0.7,
-          crossAxisSpacing: kdefaultPadding * 2,
-          mainAxisSpacing: kdefaultPadding * 2,
-        ),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         itemCount: products,
         itemBuilder: (context, index) {
-          return const ProductCard2();
+          return Container(
+              width: cardWidth,
+              height: cardHeight,
+              padding: EdgeInsets.only(right: kdefaultPadding),
+              child: ProductCard2());
         },
       ),
     );

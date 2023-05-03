@@ -2,6 +2,7 @@
 
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
 import 'package:beauty_skin/presentations/screens/splash/splash_screen.dart';
+import 'package:beauty_skin/presentations/widgets/others/my_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -24,9 +25,14 @@ class AppRouter {
   static const String SETTING = '/setting';
   static const String MESSAGES = '/messages';
   static const String SEARCH = '/search';
+  static const String MAIN = '/main';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case MAIN:
+        return MaterialPageRoute(
+          builder: (_) => const MyBottomNavBar(),
+        );
       case HOME:
         return MaterialPageRoute(
           builder: (_) => HomeScreen(),

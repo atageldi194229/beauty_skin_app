@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class COLOR_CONST {
-  static const primaryColor = Colors.amberAccent;
+  static const primaryColor = Color(0xffde4890);
   static const accentTintColor = Color(0xFF7b60c4);
   static const accentShadeColor = Color(0xFF58458c);
   static const darkShadeColor = Color(0xFF25164d);
