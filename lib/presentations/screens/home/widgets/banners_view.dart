@@ -1,17 +1,13 @@
 import 'dart:async';
 
+import 'package:beauty_skin/data/models/banner_model.dart';
+import 'package:beauty_skin/data/repositories/banner_repo.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/configs/size_config.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/presentations/widgets/cards/banner_card.dart';
 import 'package:beauty_skin/presentations/widgets/loadings/banner_loading.dart';
-
-const List<String> images = [
-  "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=600",
-  "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=600",
-  "https://images.pexels.com/photos/1181275/pexels-photo-1181275.jpeg?auto=compress&cs=tinysrgb&w=600",
-];
 
 class BannersView extends StatefulWidget {
   const BannersView({super.key});
@@ -24,15 +20,12 @@ class _BannersViewState extends State<BannersView> {
   int _currentIndex = 0;
   final _dotUpdater = StreamController<int>();
 
-  Future<List<String>> _fakedFetchBanners() =>
-      Future.delayed(const Duration(seconds: 2), () => images);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding),
-      child: FutureBuilder<List<String>>(
-        future: _fakedFetchBanners(),
+      child: FutureBuilder<List<BannerModel>>(
+        future: BannerRepository().fetchBanners2(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const BannerLoading();
@@ -51,6 +44,7 @@ class _BannersViewState extends State<BannersView> {
             // );
             return const Center(child: Text("No images"));
           }
+
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -58,7 +52,7 @@ class _BannersViewState extends State<BannersView> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index, count) {
                   return BannerCard(
-                    image: snapshot.data![index],
+                    image: snapshot.data![index].imageUrl,
                   );
                 },
                 options: CarouselOptions(

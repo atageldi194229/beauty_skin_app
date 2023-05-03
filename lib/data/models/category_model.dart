@@ -6,23 +6,25 @@ import 'package:equatable/equatable.dart';
 
 import 'package:beauty_skin/constants/constants.dart';
 
-class BannerModel extends Equatable {
+class CategoryModel extends Equatable {
   final int id;
+  final String name;
   final String imagePath;
 
-  get imageUrl => "$kBaseUrl/$imagePath-big.webp";
-
-  const BannerModel({
+  const CategoryModel({
     required this.id,
+    required this.name,
     required this.imagePath,
   });
 
-  BannerModel copyWith({
+  CategoryModel copyWith({
     int? id,
+    String? name,
     String? imagePath,
   }) {
-    return BannerModel(
+    return CategoryModel(
       id: id ?? this.id,
+      name: name ?? this.name,
       imagePath: imagePath ?? this.imagePath,
     );
   }
@@ -30,25 +32,27 @@ class BannerModel extends Equatable {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
+      'name': name,
       'imagePath': imagePath,
     };
   }
 
-  factory BannerModel.fromMap(Map<String, dynamic> map) {
-    return BannerModel(
+  factory CategoryModel.fromMap(Map<String, dynamic> map) {
+    return CategoryModel(
       id: map['id'] as int,
+      name: map['name'] as String,
       imagePath: map['destination'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory BannerModel.fromJson(String source) =>
-      BannerModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory CategoryModel.fromJson(String source) =>
+      CategoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool get stringify => true;
 
   @override
-  List<Object> get props => [id, imagePath];
+  List<Object> get props => [id, name, imagePath];
 }

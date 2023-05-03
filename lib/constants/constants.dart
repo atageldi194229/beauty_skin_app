@@ -9,6 +9,9 @@ export 'icon_constant.dart';
 const double kdefaultPadding = 8.0;
 const Color kGreyColor = Color.fromARGB(255, 234, 234, 234);
 
+// URL
+const String kBaseUrl = "https://sharafyabi.com";
+
 // BorderRadius
 const BorderRadius kBorderRadius5 = BorderRadius.all(Radius.circular(5));
 const BorderRadius kBorderRadius10 = BorderRadius.all(Radius.circular(10));

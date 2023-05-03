@@ -13,15 +13,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  Animation? animation1;
+  // Animation? animation1;
 
-  double _containerOpacity = 0.0;
-  late AnimationController _controller;
+  double _containerOpacity = 1.0;
+  // late AnimationController _controller;
   // double _textOpacity = 0.0;
 
   @override
   void dispose() {
-    _controller.dispose();
+    // _controller.dispose();
     super.dispose();
   }
 
@@ -29,10 +29,10 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
+    // _controller = AnimationController(
+    //   vsync: this,
+    //   duration: const Duration(seconds: 2),
+    // );
 
     // animation1 = Tween(begin: 40, end: 20).animate(CurvedAnimation(
     //   parent: _controller,
@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen>
     //     });
     //   });
 
-    _controller.forward();
+    // _controller.forward();
 
     Timer(const Duration(seconds: 0), () {
       setState(() {
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen>
       });
     });
 
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 2), () {
       setState(() {
         Navigator.pushNamedAndRemoveUntil(
           context,

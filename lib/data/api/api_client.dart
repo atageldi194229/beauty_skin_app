@@ -1,7 +1,8 @@
+import 'package:beauty_skin/constants/constants.dart';
 import 'package:dio/dio.dart';
 
 final localhostOptions = BaseOptions(
-  baseUrl: "https://jsonplaceholder.typicode.com",
+  baseUrl: kBaseUrl,
   // connectTimeout: 5000,
   // receiveTimeout: 3000,
   // sendTimeout: 3000,

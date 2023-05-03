@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 
 class ProductCard2 extends StatelessWidget {
   final String imageUrl;
@@ -12,7 +10,7 @@ class ProductCard2 extends StatelessWidget {
   const ProductCard2({
     Key? key,
     this.imageUrl =
-        "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://sharafyabi.com/uploads/115/16022022-071957_383-big.webp",
     this.description =
         "Баннер c чёрной подложкой 2,00x50 глянецБаннер c чёрной подложкой 2,00x50 глянец",
     this.price = 1500,
@@ -62,20 +60,20 @@ class ProductCard2 extends StatelessWidget {
                   Positioned(
                     top: 8.0,
                     right: 8.0,
-                    child: IconButton(
-                      color: COLOR_CONST.primaryColor,
-                      // splashColor: COLOR_CONST.primaryColor,
-                      highlightColor: COLOR_CONST.primaryColor,
-                      onPressed: () {},
-                      icon: Container(
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: COLOR_CONST.primaryColor,),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: const Icon(IconlyLight.plus,
-                                color: Colors.white),
-                          ),),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: COLOR_CONST.primaryColor,
+                        ),
+                        child: const Icon(
+                          Icons.add_outlined,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                     // child: ElevatedButton(
                     //   style: ElevatedButton.styleFrom(

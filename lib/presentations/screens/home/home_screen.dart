@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
         ),
         child: ListView(
           children: const [
-            // BannersView(),
+            BannersView(),
             SizedBox(height: kdefaultPadding * 2),
             CategoriesView(),
             SizedBox(height: kdefaultPadding * 2),
