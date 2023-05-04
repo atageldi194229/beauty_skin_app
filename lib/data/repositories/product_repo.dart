@@ -3,7 +3,7 @@ import 'package:beauty_skin/data/models/product_model2.dart';
 
 class ProductRepository {
   // Get all Products 2
-  Future<List<ProductModel2>> fetchCategories2() async {
+  Future<List<ProductModel2>> fetchProducts2() async {
     final apiLoader = ProductApi.getAll2();
 
     final response = await apiLoader.load();
