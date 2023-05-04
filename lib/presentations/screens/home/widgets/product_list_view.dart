@@ -3,8 +3,8 @@ import 'package:beauty_skin/presentations/widgets/cards/product_card2.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
 
-class ProductListRowView extends StatelessWidget {
-  const ProductListRowView({
+class ProductListView extends StatelessWidget {
+  const ProductListView({
     super.key,
     required this.products,
     this.onBottom,
@@ -21,7 +21,7 @@ class ProductListRowView extends StatelessWidget {
     return SizedBox(
       height: 200,
       child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding),
+        padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2),
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemCount: products.length,

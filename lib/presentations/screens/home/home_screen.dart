@@ -1,5 +1,5 @@
 import 'package:beauty_skin/configs/application.dart';
-import 'package:beauty_skin/presentations/screens/home/widgets/product_list_row_view.dart';
+import 'package:beauty_skin/presentations/screens/home/widgets/product_list_view.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                       ///
                       /// Popular products
                       ///
-                      ProductListRowView(
+                      ProductListView(
                         products: homeResponse.popularProducts,
                       ),
                       const SizedBox(height: kdefaultPadding * 2),
@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                       ///
                       /// Discount products
                       ///
-                      ProductListRowView(
+                      ProductListView(
                         products: homeResponse.discountProducts,
                       ),
                       const SizedBox(height: kdefaultPadding * 2),
@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                       ///
                       /// Discount products
                       ///
-                      ProductListRowView(
+                      ProductListView(
                         products: homeResponse.discountProducts,
                       ),
                       const SizedBox(height: kdefaultPadding * 5),
