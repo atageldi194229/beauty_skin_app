@@ -4,7 +4,7 @@ import 'package:beauty_skin/constants/constants.dart';
 class ProductCard2 extends StatelessWidget {
   final String imageUrl;
   final String description;
-  final double price;
+  final String price;
   final VoidCallback? onTap;
 
   const ProductCard2({
@@ -13,7 +13,7 @@ class ProductCard2 extends StatelessWidget {
         "https://sharafyabi.com/uploads/115/16022022-071957_383-big.webp",
     this.description =
         "Баннер c чёрной подложкой 2,00x50 глянецБаннер c чёрной подложкой 2,00x50 глянец",
-    this.price = 1500,
+    this.price = "1500",
     this.onTap,
   }) : super(key: key);
 
@@ -107,7 +107,7 @@ class ProductCard2 extends StatelessWidget {
                     ),
                     const SizedBox(height: 8.0),
                     Text(
-                      '\$${price.toStringAsFixed(2)}',
+                      price,
                       style: const TextStyle(fontSize: 13.0),
                     ),
                   ],

@@ -22,64 +22,61 @@ class _BannersViewState extends State<BannersView> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding),
-      child: FutureBuilder<List<BannerModel>>(
-        future: BannerRepository().fetchBanners2(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const BannerLoading();
-            // return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            // return ErrorState(
-            //   onTap: () {
-            //     BannerService().getBanners();
-            //   },
-            // );
-            return const Center(child: Text("Load error"));
-          } else if (snapshot.data!.isEmpty) {
-            // return SizedBox(
-            //   height: SizeConfig.screenHeight / 4,
-            //   child: EmptyStateText(),
-            // );
-            return const Center(child: Text("No images"));
-          }
+    return FutureBuilder<List<BannerModel>>(
+      future: BannerRepository().fetchBanners2(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const BannerLoading();
+          // return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          // return ErrorState(
+          //   onTap: () {
+          //     BannerService().getBanners();
+          //   },
+          // );
+          return const Center(child: Text("Load error"));
+        } else if (snapshot.data!.isEmpty) {
+          // return SizedBox(
+          //   height: SizeConfig.screenHeight / 4,
+          //   child: EmptyStateText(),
+          // );
+          return const Center(child: Text("No images"));
+        }
 
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CarouselSlider.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index, count) {
-                  return BannerCard(
-                    image: snapshot.data![index].imageUrl,
-                  );
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CarouselSlider.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index, count) {
+                return BannerCard(
+                  image: snapshot.data![index].imageUrl,
+                );
+              },
+              options: CarouselOptions(
+                onPageChanged: (index, CarouselPageChangedReason a) {
+                  _currentIndex = index;
+                  _dotUpdater.add(index);
+                  // setState(() {
+                  // });
                 },
-                options: CarouselOptions(
-                  onPageChanged: (index, CarouselPageChangedReason a) {
-                    _currentIndex = index;
-                    _dotUpdater.add(index);
-                    // setState(() {
-                    // });
-                  },
-                  height: SizeConfig.screenHeight / 4,
-                  viewportFraction: 1.0,
-                  autoPlay: true,
-                  scrollPhysics: const BouncingScrollPhysics(),
-                  autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 2000),
-                ),
+                height: SizeConfig.screenHeight / 4,
+                viewportFraction: 1.0,
+                autoPlay: true,
+                scrollPhysics: const BouncingScrollPhysics(),
+                autoPlayCurve: Curves.fastLinearToSlowEaseIn,
+                autoPlayAnimationDuration: const Duration(milliseconds: 2000),
               ),
-              StreamBuilder(
-                stream: _dotUpdater.stream,
-                builder: (context, _) {
-                  return dots(snapshot.data!.length);
-                },
-              ),
-            ],
-          );
-        },
-      ),
+            ),
+            StreamBuilder(
+              stream: _dotUpdater.stream,
+              builder: (context, _) {
+                return dots(snapshot.data!.length);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
