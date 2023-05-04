@@ -30,7 +30,7 @@ jobs:
   #         path: version.txt
 
   build-android:
-    name: Build android and release
+    name: Build android
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
