@@ -17,49 +17,50 @@ class _CategoriesViewState extends State<CategoriesView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<CategoryModel>>(
-        future: CategoryRepository().fetchCategories2(),
-        builder: (context, snapshot) {
-          List<CategoryModel> categories = [
-            const CategoryModel(id: 0, name: "All", imagePath: "null")
-          ];
+      future: CategoryRepository().fetchCategories2(),
+      builder: (context, snapshot) {
+        List<CategoryModel> categories = [
+          const CategoryModel(id: 0, name: "All", imagePath: "null")
+        ];
 
-          if (snapshot.data != null) {
-            categories.addAll(snapshot.data!);
-          }
+        if (snapshot.data != null) {
+          categories.addAll(snapshot.data!);
+        }
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: kdefaultPadding * 2),
-                child: Text(
-                  Translate.of(context).translate("category"),
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: kdefaultPadding * 2),
+              child: Text(
+                Translate.of(context).translate("category"),
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+              ),
+            ),
+            const SizedBox(height: kdefaultPadding * 2),
+            SizedBox(
+              height: 38,
+              child: ListView.builder(
+                physics: const ClampingScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+                itemBuilder: (_, int index) => buildItem(
+                  category: categories[index],
+                  isFirst: index == 0,
+                  isLast: index == categories.length - 1,
+                  isActive: index == currentIndex,
                 ),
               ),
-              const SizedBox(height: kdefaultPadding * 2),
-              SizedBox(
-                height: 38,
-                child: ListView.builder(
-                  physics: const ClampingScrollPhysics(),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  itemBuilder: (_, int index) => buildItem(
-                    category: categories[index],
-                    isFirst: index == 0,
-                    isLast: index == categories.length - 1,
-                    isActive: index == currentIndex,
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Widget buildItem({
