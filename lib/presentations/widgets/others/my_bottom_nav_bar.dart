@@ -90,7 +90,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
       stateManagement: true, // Default is true.
       hideNavigationBarWhenKeyboardShows:
-          false, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+          true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),
         colorBehindNavBar: Colors.white,

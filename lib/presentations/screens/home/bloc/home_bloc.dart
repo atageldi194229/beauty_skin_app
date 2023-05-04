@@ -18,9 +18,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeLoading()) {
     on<LoadHome>(_mapLoadHomeToState);
     on<RefreshHome>(
-      (event, emit) {
+      (event, emit) async {
         emit(HomeLoading());
-        _mapLoadHomeToState(event, emit);
+        await _mapLoadHomeToState(event, emit);
       },
     );
   }
