@@ -1,4 +1,5 @@
 import 'package:beauty_skin/presentations/common_blocs/application/application_bloc.dart';
+import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/common_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/language/language_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/others/my_bottom_nav_bar.dart';
@@ -45,7 +46,7 @@ class AppViewState extends State<AppView> {
   void loadData() {
     // Only load data when authenticated
     // BlocProvider.of<ProfileBloc>(context).add(LoadProfile());
-    // BlocProvider.of<CartBloc>(context).add(LoadCart());
+    BlocProvider.of<CartBloc>(context).add(LoadCart());
   }
 
   @override

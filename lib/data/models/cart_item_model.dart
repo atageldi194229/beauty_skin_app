@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
-import 'product_model.dart';
+import 'product_model2.dart';
 
 part 'cart_item_model.g.dart';
 
@@ -28,8 +28,8 @@ class CartItemModel extends Equatable with HiveObjectMixin {
   final int price;
 
   /// Product info, only use in client side
-  @HiveField(4)
-  final ProductModel? productInfo;
+  @HiveField(5)
+  final ProductModel2? productInfo;
 
   CartItemModel({
     required this.id,
@@ -55,7 +55,7 @@ class CartItemModel extends Equatable with HiveObjectMixin {
     String? productId,
     int? quantity,
     int? price,
-    ProductModel? productInfo,
+    ProductModel2? productInfo,
   }) {
     return CartItemModel(
       id: id ?? this.id,
@@ -83,7 +83,7 @@ class CartItemModel extends Equatable with HiveObjectMixin {
       quantity: map['quantity'] as int,
       price: map['price'] as int,
       productInfo: map['productInfo'] != null
-          ? ProductModel.fromMap(map['productInfo'] as Map<String, dynamic>)
+          ? ProductModel2.fromMap(map['productInfo'] as Map<String, dynamic>)
           : null,
     );
   }

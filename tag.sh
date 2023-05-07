@@ -5,6 +5,9 @@ VERSION="v$(grep version pubspec.yaml | sed "s/version: //")"
 
 echo $VERSION
 
+git add pubspec.yaml
+git commit -m "$VERSION"
+
 # Create a git tag with the version
 git tag $VERSION
 

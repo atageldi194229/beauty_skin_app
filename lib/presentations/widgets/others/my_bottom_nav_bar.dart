@@ -17,6 +17,8 @@ class MyBottomNavBar extends StatefulWidget {
 class _MyBottomNavBarState extends State<MyBottomNavBar> {
   PersistentTabController? _controller;
 
+  final _activeColor = COLOR_CONST.primaryColor;
+
   @override
   void initState() {
     super.initState();
@@ -36,21 +38,21 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       PersistentBottomNavBarItem(
         icon: const Icon(IconlyBold.home),
         title: "Home",
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(IconlyBold.bag2),
         title: "Cart",
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(IconlyBold.heart),
         title: "Favorites",
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
       ),

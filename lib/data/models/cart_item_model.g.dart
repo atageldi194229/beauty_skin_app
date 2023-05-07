@@ -21,7 +21,7 @@ class CartItemModelAdapter extends TypeAdapter<CartItemModel> {
       productId: fields[1] as String,
       quantity: fields[2] as int,
       price: fields[3] as int,
-      productInfo: fields[4] as ProductModel?,
+      productInfo: fields[5] as ProductModel2?,
     );
   }
 
@@ -37,7 +37,7 @@ class CartItemModelAdapter extends TypeAdapter<CartItemModel> {
       ..write(obj.quantity)
       ..writeByte(3)
       ..write(obj.price)
-      ..writeByte(4)
+      ..writeByte(5)
       ..write(obj.productInfo);
   }
 

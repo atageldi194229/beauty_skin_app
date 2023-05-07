@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
 import 'package:beauty_skin/presentations/screens/splash/splash_screen.dart';
 import 'package:beauty_skin/presentations/widgets/others/my_bottom_nav_bar.dart';
@@ -41,6 +42,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const SplashScreen(),
         );
+      case CART: // case CART:
+        return MaterialPageRoute(
+          builder: (_) => const CartScreen(),
+        );
       // case LOGIN:
       //   return MaterialPageRoute(
       //     builder: (_) => LoginScreen(),
@@ -81,10 +86,6 @@ class AppRouter {
       //   var category = settings.arguments as CategoryModel;
       //   return MaterialPageRoute(
       //       builder: (_) => CategoriesScreen(category: category));
-      // case CART:
-      //   return MaterialPageRoute(
-      //     builder: (_) => CartScreen(),
-      //   );
       // case MY_ORDERS:
       //   return MaterialPageRoute(
       //     builder: (_) => MyOrdersScreen(),

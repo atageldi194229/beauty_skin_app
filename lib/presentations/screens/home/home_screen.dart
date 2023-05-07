@@ -117,63 +117,6 @@ class HomeScreen extends StatelessWidget {
           //   header: const MaterialClassicHeader(
           //     color: COLOR_CONST.primaryColor,
           //   ),
-          //   child: BlocBuilder<HomeBloc, HomeState>(
-          //     builder: (context, homeState) {
-          //       if (homeState is HomeLoaded) {
-          //         var homeResponse = homeState.homeResponse;
-          //         return ListView(
-          //           children: [
-          //             ///
-          //             /// Banners
-          //             ///
-          //             BannerListView(banners: homeResponse.banners),
-          //             const SizedBox(height: kdefaultPadding * 2),
-
-          //             ///
-          //             /// Categories
-          //             ///
-          //             CategoriesView(categories: homeResponse.categories),
-          //             const SizedBox(height: kdefaultPadding * 2),
-          //             // ProductsView(products: 20),
-
-          //             ///
-          //             /// Popular products
-          //             ///
-          //             ProductListView(
-          //               products: homeResponse.popularProducts,
-          //             ),
-          //             const SizedBox(height: kdefaultPadding * 2),
-
-          //             ///
-          //             /// Discount products
-          //             ///
-          //             ProductListView(
-          //               products: homeResponse.discountProducts,
-          //             ),
-          //             const SizedBox(height: kdefaultPadding * 2),
-
-          //             ///
-          //             /// Discount products
-          //             ///
-          //             ProductListView(
-          //               products: homeResponse.discountProducts,
-          //             ),
-          //             const SizedBox(height: kdefaultPadding * 5),
-          //           ],
-          //         );
-          //       }
-
-          //       if (homeState is HomeLoading) {
-          //         return const Center(child: CircularProgressIndicator());
-          //       }
-
-          //       if (homeState is HomeLoadFailure) {
-          //         return Center(child: Text(homeState.error));
-          //       }
-
-          //       return const Center(child: Text("Something went wrong."));
-          //     },
-          //   ),
           // ),
         );
       }),
