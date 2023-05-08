@@ -18,6 +18,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<UpdateCartItemModel>(_mapUpdateCartItemModelToState);
     on<ClearCart>(_mapClearCartToState);
     on<CartUpdated>(_mapCartUpdatedToState);
+    on<RemoveCartItemModelByProductId>(
+        _mapRemoveCartItemModelByProductIdToState);
+    on<RemoveCartItemModel>(_mapRemoveCartItemModelToState);
   }
 
   _mapLoadCartToState(LoadCart event, Emitter<CartState> emit) async {
@@ -35,6 +38,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     try {
       await _cartRepository.addCartItemModel(event.cartItem);
+      add(LoadCart());
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -46,6 +50,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     try {
       await _cartRepository.updateCartItemModel(event.cartItem);
+      add(LoadCart());
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -57,6 +62,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     try {
       await _cartRepository.clearCart();
+      add(LoadCart());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  FutureOr<void> _mapRemoveCartItemModelByProductIdToState(
+    RemoveCartItemModelByProductId event,
+    Emitter<CartState> emit,
+  ) async {
+    try {
+      await _cartRepository.removeCartItemModelByProductId(event.cartItemId);
+      add(LoadCart());
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -79,5 +97,17 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       cart: updatedCart,
       priceOfGoods: priceOfGoods,
     ));
+  }
+
+  FutureOr<void> _mapRemoveCartItemModelToState(
+    RemoveCartItemModel event,
+    Emitter<CartState> emit,
+  ) async {
+    try {
+      await _cartRepository.removeCartItemModel(event.cartItem);
+      add(LoadCart());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

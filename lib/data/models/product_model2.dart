@@ -1,20 +1,39 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:convert';
 
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
-class ProductModel2 extends Equatable {
+part 'product_model2.g.dart';
+
+@HiveType(typeId: 2)
+class ProductModel2 extends Equatable with HiveObjectMixin {
+  @HiveField(0)
   final int? id;
+
+  @HiveField(1)
   final int? minValue;
+
+  @HiveField(2)
   final int? discountValue;
+
+  @HiveField(3)
   final int? stockCount;
+
+  @HiveField(4)
   final String? productName;
+
+  @HiveField(5)
   final String? price;
+
+  @HiveField(6)
   final String? imagePath;
 
   get imageUrl => "$kBaseUrl/$imagePath-big.webp";
 
-  const ProductModel2({
+  ProductModel2({
     this.id,
     this.minValue,
     this.discountValue,

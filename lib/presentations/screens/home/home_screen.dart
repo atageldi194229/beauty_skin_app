@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:beauty_skin/configs/application.dart';
 import 'package:beauty_skin/presentations/screens/home/widgets/product_list_view.dart';
 // import 'package:easy_search_bar/easy_search_bar.dart';
@@ -56,7 +57,8 @@ class HomeScreen extends StatelessWidget {
                         ///
                         /// Banners
                         ///
-                        BannerListView(banners: homeResponse.banners),
+                        if (Platform.isAndroid || Platform.isIOS)
+                          BannerListView(banners: homeResponse.banners),
                         const SizedBox(height: kdefaultPadding * 2),
 
                         ///

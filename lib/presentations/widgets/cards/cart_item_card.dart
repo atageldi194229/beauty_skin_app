@@ -18,7 +18,12 @@ class CartItemModelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var product = cartItem.productInfo!;
+    var product = cartItem.productInfo;
+
+    if (product == null) {
+      return Text(cartItem.id);
+    }
+
     return CustomCardWidget(
       // onTap: () => Navigator.pushNamed(
       //   context,
@@ -47,6 +52,7 @@ class CartItemModelCard extends StatelessWidget {
         color: Colors.amber,
         width: SizeConfig.defaultSize * 13,
         height: SizeConfig.defaultSize * 13,
+        child: Image.network(product.imageUrl, fit: BoxFit.fill),
       ),
     );
   }
@@ -88,7 +94,7 @@ class CartItemModelCard extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.remove),
           // svgIcon: ICON_CONST.SUBTRACT,
-          color: const Color(0xFFF5F6F9),
+          // color: const Color(0xFFF5F6F9),
           iconSize: SizeConfig.defaultSize * 1.2,
           onPressed: cartItem.quantity > 1
               ? () => _onChangeQuantity(context, product, cartItem.quantity - 1)
@@ -108,7 +114,7 @@ class CartItemModelCard extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.add),
           // svgIcon: ICON_CONST.ADD,
-          color: const Color(0xFFF5F6F9),
+          // color: Colors.amber,
           iconSize: SizeConfig.defaultSize * 1.2,
           onPressed: cartItem.quantity < 10
               ? () => _onChangeQuantity(context, product, cartItem.quantity + 1)
@@ -119,12 +125,15 @@ class CartItemModelCard extends StatelessWidget {
   }
 
   _onChangeQuantity(
-      BuildContext context, ProductModel2 product, int newQuantity) {
+    BuildContext context,
+    ProductModel2 product,
+    int newQuantity,
+  ) {
     // update cart item
     BlocProvider.of<CartBloc>(context).add(UpdateCartItemModel(
       cartItem.copyWith(
         quantity: newQuantity,
-        price: newQuantity * int.parse(product.price!),
+        price: newQuantity * double.parse(product.price!).toInt(),
       ),
     ));
   }

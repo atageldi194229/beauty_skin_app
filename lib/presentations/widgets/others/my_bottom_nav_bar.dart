@@ -1,9 +1,12 @@
+import 'package:badges/badges.dart';
 import 'package:beauty_skin/constants/color_constant.dart';
+import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
 import 'package:beauty_skin/presentations/screens/favorites/favorites_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Badge;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -44,6 +47,28 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(IconlyBold.bag2),
+        inactiveIcon: BlocBuilder<CartBloc, CartState>(
+          builder: (context, state) {
+            const icon = Icon(IconlyBold.bag2);
+
+            if (state is CartLoaded && state.cart.isNotEmpty) {
+              return Badge(
+                badgeContent: Text(
+                  state.cart.length.toString(),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    // fontFamily: montserratMedium,
+                  ),
+                ),
+                badgeAnimation: const BadgeAnimation.fade(),
+                child: icon,
+              );
+            }
+
+            return icon;
+          },
+        ),
         title: "Cart",
         activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,

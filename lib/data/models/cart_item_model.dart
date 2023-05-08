@@ -39,17 +39,6 @@ class CartItemModel extends Equatable with HiveObjectMixin {
     this.productInfo,
   });
 
-  @override
-  List<Object> get props {
-    return [
-      id,
-      productId,
-      quantity,
-      price,
-      // productInfo,
-    ];
-  }
-
   CartItemModel copyWith({
     String? id,
     String? productId,
@@ -95,4 +84,15 @@ class CartItemModel extends Equatable with HiveObjectMixin {
 
   @override
   bool get stringify => true;
+
+  @override
+  List<Object?> get props {
+    return [
+      id,
+      productId,
+      quantity,
+      price,
+      productInfo,
+    ];
+  }
 }

@@ -16,7 +16,7 @@ void main() async {
 
   GoogleFonts.config.allowRuntimeFetching = false;
 
-  Boxes.initBoxes();
+  await Boxes.initBoxes();
 
   runApp(const MyApp());
 }

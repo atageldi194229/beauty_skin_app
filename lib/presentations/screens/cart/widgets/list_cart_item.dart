@@ -1,4 +1,5 @@
 import 'package:beauty_skin/configs/config.dart';
+import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/constants/image_constant.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
@@ -44,15 +45,13 @@ class ListCartItemModel extends StatelessWidget {
                       );
                     },
                   )
-                : Center(
-                    child: Image.asset(
-                    IMAGE_CONST.CART_EMPTY,
-                    width: SizeConfig.defaultSize * 20,
-                  )),
+                : const Center(
+                    child: Text("Emtpty List"),
+                  ),
           );
         }
         if (state is CartLoadFailure) {
-          return const Center(child: Text("Load failure"));
+          return Center(child: Text("Load failure.\n${state.error}"));
         }
         return const Center(child: Text("Something went wrong."));
       },

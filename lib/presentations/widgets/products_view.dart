@@ -28,10 +28,12 @@ class ProductsView extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: products,
         itemBuilder: (context, index) {
-          return const ProductCard2(
-            imageUrl:
-                "https://sharafyabi.com/uploads/115/16022022-071957_383-big.webp",
-          );
+          // return const ProductCard2(
+          //   product: products[index],
+          //   imageUrl:
+          //       "https://sharafyabi.com/uploads/115/16022022-071957_383-big.webp",
+          // );
+          return Container();
         },
       ),
     );

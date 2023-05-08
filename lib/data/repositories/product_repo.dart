@@ -13,6 +13,16 @@ class ProductRepository {
         .toList();
   }
 
+  Future<List<ProductModel2>> fetchProducts2Fake() async {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () => [
+        ProductModel2(id: 1, price: "10", productName: "aaaaa"),
+        ProductModel2(id: 2, price: "30", productName: "abb1n"),
+      ],
+    );
+  }
+
   ///Singleton factory
   static final ProductRepository _instance = ProductRepository._internal();
   factory ProductRepository() => _instance;

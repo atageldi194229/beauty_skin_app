@@ -43,6 +43,16 @@ class RemoveCartItemModel extends CartEvent {
   List<Object> get props => [cartItem];
 }
 
+/// When user swipes to remove cart item => remove cart item event
+class RemoveCartItemModelByProductId extends CartEvent {
+  final String cartItemId;
+
+  const RemoveCartItemModelByProductId(this.cartItemId);
+
+  @override
+  List<Object> get props => [cartItemId];
+}
+
 /// When user clicks to change quantity => update cart event
 class UpdateCartItemModel extends CartEvent {
   final CartItemModel cartItem;

@@ -10,24 +10,30 @@ class CartRepository {
   /// Add item
   /// [newItem] is data of new cart item
   Future<void> addCartItemModel(CartItemModel newItem) async {
-    Boxes.getCart().add(newItem);
+    await Boxes.getCart().add(newItem);
   }
 
   /// Remove item
   /// [cartItem] is data of cart item
   Future<void> removeCartItemModel(CartItemModel cartItem) async {
-    cartItem.delete();
+    await cartItem.delete();
+  }
+
+  /// Remove cart item by cartItemId
+  /// [cartItem.id] is ID of cart item
+  Future<void> removeCartItemModelByProductId(String id) async {
+    Boxes.getCart().values.firstWhere((e) => e.productId == id).delete();
   }
 
   /// Clear cart
   Future<void> clearCart() async {
-    Boxes.getCart().clear();
+    await Boxes.getCart().clear();
   }
 
   /// Update quantity
   /// [cartItem] is updated data of cart item
   Future<void> updateCartItemModel(CartItemModel cartItem) async {
-    cartItem.save();
+    await cartItem.save();
   }
 
   ///Singleton factory

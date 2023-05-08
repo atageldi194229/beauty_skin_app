@@ -1,20 +1,29 @@
 import 'dart:math' as math;
 
+import 'package:beauty_skin/data/models/cart_item_model.dart';
+import 'package:beauty_skin/data/models/product_model2.dart';
+import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uuid/uuid.dart';
 
 class ProductCard2 extends StatefulWidget {
   final String imageUrl;
   final String description;
   final String price;
   final VoidCallback? onTap;
+  final ProductModel2 product;
+  final bool inCart;
 
   const ProductCard2({
     Key? key,
     required this.imageUrl,
+    required this.product,
     this.description = "",
     this.price = "???",
     this.onTap,
+    this.inCart = false,
   }) : super(key: key);
 
   @override
@@ -43,6 +52,10 @@ class _ProductCard2State extends State<ProductCard2>
         _angle = _animationController.value * 45 / 360 * math.pi * 2;
       });
     });
+
+    if (widget.inCart) {
+      _animationController.forward();
+    }
   }
 
   @override
@@ -56,10 +69,24 @@ class _ProductCard2State extends State<ProductCard2>
       // isAdded = !isAdded;
       // isAdded ? _animationController.forward() : _animationController.reverse();
 
+      debugPrint(_animationController.status.toString());
+
+      final cartBloc = BlocProvider.of<CartBloc>(context);
+
       if (_animationController.status == AnimationStatus.completed) {
         _animationController.reverse();
+
+        cartBloc.add(RemoveCartItemModelByProductId(widget.description));
       } else if (_animationController.status == AnimationStatus.dismissed) {
         _animationController.forward();
+
+        cartBloc.add(AddCartItemModel(CartItemModel(
+          id: const Uuid().v4(),
+          price: double.parse(widget.price).toInt(),
+          productId: widget.description,
+          quantity: 1,
+          productInfo: widget.product,
+        )));
       }
     });
   }
@@ -72,7 +99,7 @@ class _ProductCard2State extends State<ProductCard2>
     const borderRadius = kBorderRadius5;
 
     return InkWell(
-      onTap: widget.onTap,
+      onTap: () {},
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
@@ -102,7 +129,9 @@ class _ProductCard2State extends State<ProductCard2>
                       // color: kSoftGreen,
                     ),
                     width: double.infinity,
-                    child: Image.network(widget.imageUrl, fit: BoxFit.fill),
+                    child: widget.product.imagePath != null
+                        ? Image.network(widget.imageUrl, fit: BoxFit.fill)
+                        : const Center(child: Icon(Icons.close_outlined)),
                   ),
                   Positioned(
                     top: 8.0,

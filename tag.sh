@@ -7,6 +7,7 @@ echo $VERSION
 
 git add pubspec.yaml
 git commit -m "$VERSION"
+git push
 
 # Create a git tag with the version
 git tag $VERSION
