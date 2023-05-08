@@ -57,7 +57,6 @@ class HomeScreen extends StatelessWidget {
                         ///
                         /// Banners
                         ///
-                        if (Platform.isAndroid || Platform.isIOS)
                           BannerListView(banners: homeResponse.banners),
                         const SizedBox(height: kdefaultPadding * 2),
 
