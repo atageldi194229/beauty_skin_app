@@ -35,17 +35,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         _productRepository.fetchProducts2().then(
               (value) => popularProducts = value,
             ),
-        // _bannerRepository.fetchBanners2().then(
-        //       (value) => banners = value,
-        //     ),
-        // _categoryRepository.fetchCategories2().then(
-        //       (value) => categories = value,
-        //     ),
+         _bannerRepository.fetchBanners2().then(
+               (value) => banners = value,
+             ),
+         _categoryRepository.fetchCategories2().then(
+               (value) => categories = value,
+             ),
       ]);
 
       HomeResponse homeResponse = HomeResponse(
-        banners: [], // banners,
-        categories: [], //categories,
+        banners: banners,
+        categories: categories,
         popularProducts: popularProducts,
         discountProducts: popularProducts,
       );
