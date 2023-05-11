@@ -34,6 +34,8 @@ dependencies:
   easy_search_bar: ^2.5.0
   persistent_bottom_nav_bar: ^4.0.2
   uuid: ^3.0.7
+  share_plus: ^7.0.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

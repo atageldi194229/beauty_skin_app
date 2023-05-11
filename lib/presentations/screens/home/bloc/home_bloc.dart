@@ -1,6 +1,6 @@
 import 'package:beauty_skin/data/models/banner_model.dart';
 import 'package:beauty_skin/data/models/category_model.dart';
-import 'package:beauty_skin/data/models/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/data/repositories/banner_repo.dart';
 import 'package:beauty_skin/data/repositories/category_repo.dart';
 import 'package:beauty_skin/data/repositories/product_repo.dart';
@@ -35,12 +35,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         _productRepository.fetchProducts2().then(
               (value) => popularProducts = value,
             ),
-         _bannerRepository.fetchBanners2().then(
-               (value) => banners = value,
-             ),
-         _categoryRepository.fetchCategories2().then(
-               (value) => categories = value,
-             ),
+        _bannerRepository.fetchBanners2().then(
+              (value) => banners = value,
+            ),
+        _categoryRepository.fetchCategories2().then(
+              (value) => categories = value,
+            ),
       ]);
 
       HomeResponse homeResponse = HomeResponse(

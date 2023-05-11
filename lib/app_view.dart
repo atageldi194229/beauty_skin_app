@@ -17,10 +17,6 @@ class AppView extends StatefulWidget {
 }
 
 class AppViewState extends State<AppView> {
-  final _navigatorKey = GlobalKey<NavigatorState>();
-
-  NavigatorState? get _navigator => _navigatorKey.currentState;
-
   @override
   void initState() {
     CommonBloc.applicationBloc.add(SetupApplication());
@@ -34,13 +30,18 @@ class AppViewState extends State<AppView> {
   }
 
   void onNavigate(String route) {
-    _navigator?.pushNamedAndRemoveUntil(route, (route) => false);
+    AppRouter()
+        .navigatorKey
+        .currentState
+        ?.pushNamedAndRemoveUntil(route, (route) => false);
   }
 
   void navigateToMainScreen() {
-    _navigator?.pushReplacement(MaterialPageRoute(
-      builder: (_) => const MyBottomNavBar(),
-    ));
+    AppRouter().navigatorKey.currentState?.pushReplacement(
+          MaterialPageRoute(
+            builder: (_) => const MyBottomNavBar(),
+          ),
+        );
   }
 
   void loadData() {
@@ -68,7 +69,7 @@ class AppViewState extends State<AppView> {
         return BlocBuilder<LanguageBloc, LanguageState>(
           builder: (context, state) {
             return MaterialApp(
-              navigatorKey: _navigatorKey,
+              navigatorKey: AppRouter().navigatorKey,
               debugShowCheckedModeBanner: Application.debug,
               title: Application.title,
               theme: AppTheme.currentTheme,

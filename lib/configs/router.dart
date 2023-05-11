@@ -1,12 +1,16 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
+import 'package:beauty_skin/presentations/screens/detail_product/detail_product_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
 import 'package:beauty_skin/presentations/screens/splash/splash_screen.dart';
 import 'package:beauty_skin/presentations/widgets/others/my_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
+  final navigatorKey = GlobalKey<NavigatorState>();
+
   static const String SPLASH = '/splash';
   static const String LOGIN = '/login';
   static const String INITIALIZE_INFO = '/initialize_info';
@@ -34,17 +38,26 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const MyBottomNavBar(),
         );
+
       case HOME:
         return MaterialPageRoute(
           builder: (_) => HomeScreen(),
         );
+
       case SPLASH:
         return MaterialPageRoute(
           builder: (_) => const SplashScreen(),
         );
+
       case CART: // case CART:
         return MaterialPageRoute(
           builder: (_) => const CartScreen(),
+        );
+
+      case DETAIL_PRODUCT:
+        var product = settings.arguments as ProductModel2;
+        return MaterialPageRoute(
+          builder: (_) => DetailProductScreen(product: product),
         );
       // case LOGIN:
       //   return MaterialPageRoute(
@@ -69,10 +82,7 @@ class AppRouter {
       //   return MaterialPageRoute(
       //     builder: (_) => SettingScreen(),
       //   );
-      // case DETAIL_PRODUCT:
-      //   var product = settings.arguments as Product;
-      //   return MaterialPageRoute(
-      //       builder: (_) => DetailProductScreen(product: product));
+
       // case DETAIL_IMAGE:
       //   var imageUrl = settings.arguments as String;
       //   return MaterialPageRoute(

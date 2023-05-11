@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
-import 'product_model2.dart';
+import 'product/product_model2.dart';
 
 part 'cart_item_model.g.dart';
 

@@ -1,7 +1,8 @@
 import 'dart:math' as math;
 
+import 'package:beauty_skin/configs/router.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
-import 'package:beauty_skin/data/models/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
@@ -99,7 +100,12 @@ class _ProductCard2State extends State<ProductCard2>
     const borderRadius = kBorderRadius5;
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        AppRouter().navigatorKey.currentState?.pushNamed(
+              AppRouter.DETAIL_PRODUCT,
+              arguments: widget.product,
+            );
+      },
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
@@ -137,17 +143,6 @@ class _ProductCard2State extends State<ProductCard2>
                     top: 8.0,
                     right: 8.0,
                     child: _buildAddCartButton(),
-                    // child: ElevatedButton(
-                    //   style: ElevatedButton.styleFrom(
-                    //     maximumSize: const Size(28, 28),
-                    //     shape: const CircleBorder(),
-                    //     // padding: const EdgeInsets.all(10),
-                    //     backgroundColor: COLOR_CONST.primaryColor,
-                    //     foregroundColor: Colors.white,
-                    //   ),
-                    //   onPressed: () {},
-                    //   child: const Icon(Icons.add_outlined),
-                    // ),
                   ),
                 ],
               ),

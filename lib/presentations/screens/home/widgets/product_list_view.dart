@@ -1,4 +1,4 @@
-import 'package:beauty_skin/data/models/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/cards/product_card2.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +27,13 @@ class ProductListView extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemCount: products.length,
-        itemBuilder: (context, index) {
+        itemBuilder: (_, index) {
           return Container(
             width: cardWidth,
             height: cardHeight,
             padding: const EdgeInsets.only(right: kdefaultPadding),
             child: BlocBuilder<CartBloc, CartState>(
-              builder: (context, state) {
+              builder: (_, state) {
                 return ProductCard2(
                   product: products[index],
                   imageUrl: products[index].imageUrl,

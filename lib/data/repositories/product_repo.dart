@@ -1,5 +1,5 @@
 import 'package:beauty_skin/data/api/product_api.dart';
-import 'package:beauty_skin/data/models/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model2.dart';
 
 class ProductRepository {
   // Get all Products 2
