@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, camel_case_types
+
 class ICON_CONST {
   static const HOME = "assets/icons/home.svg";
   static const MESSAGE = "assets/icons/speech.svg";

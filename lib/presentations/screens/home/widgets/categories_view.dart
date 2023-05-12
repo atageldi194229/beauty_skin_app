@@ -1,5 +1,4 @@
 import 'package:beauty_skin/data/models/category_model.dart';
-import 'package:beauty_skin/data/repositories/category_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/utils/translate.dart';

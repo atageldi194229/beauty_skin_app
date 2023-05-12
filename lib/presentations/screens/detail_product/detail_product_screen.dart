@@ -1,5 +1,8 @@
 import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'widgets/product_images.dart';
@@ -14,6 +17,12 @@ class DetailProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<FavoriteBloc>().add(AddFavoriteItemModel(product));
+        },
+        child: const Icon(IconlyBold.heart),
+      ),
       body: SafeArea(
         child: ListView(
           children: [

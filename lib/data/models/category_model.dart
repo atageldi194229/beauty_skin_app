@@ -4,8 +4,6 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-import 'package:beauty_skin/constants/constants.dart';
-
 class CategoryModel extends Equatable {
   final int id;
   final String name;

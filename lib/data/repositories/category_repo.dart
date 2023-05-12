@@ -1,6 +1,4 @@
-import 'package:beauty_skin/data/api/banner_api.dart';
 import 'package:beauty_skin/data/api/category_api.dart';
-import 'package:beauty_skin/data/models/banner_model.dart';
 import 'package:beauty_skin/data/models/category_model.dart';
 
 class CategoryRepository {

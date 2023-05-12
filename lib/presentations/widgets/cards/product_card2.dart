@@ -60,6 +60,21 @@ class _ProductCard2State extends State<ProductCard2>
   }
 
   @override
+  void didUpdateWidget(covariant ProductCard2 oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.inCart == oldWidget.inCart) {
+      return;
+    }
+
+    if (widget.inCart) {
+      _animationController.forward();
+    } else {
+      _animationController.reverse();
+    }
+  }
+
+  @override
   void dispose() {
     _animationController.dispose();
     super.dispose();

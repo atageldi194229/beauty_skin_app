@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:beauty_skin/constants/color_constant.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:beauty_skin/constants/constants.dart';
 
@@ -58,7 +57,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   color: Colors.black,
                 ),
           onPressed: () {
-            // TODO: on pressed shop cart app bar action button
+            // on pressed shop cart app bar action button
           },
         ),
         const SizedBox(width: kdefaultPadding * 2)

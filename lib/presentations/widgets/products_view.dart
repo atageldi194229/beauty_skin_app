@@ -1,7 +1,5 @@
-import 'package:beauty_skin/presentations/widgets/cards/product_card2.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
-import 'package:beauty_skin/presentations/widgets/cards/product_card.dart';
 
 class ProductsView extends StatelessWidget {
   const ProductsView({

@@ -1,8 +1,7 @@
+import 'package:beauty_skin/presentations/widgets/others/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:beauty_skin/configs/size_config.dart';
 import 'package:beauty_skin/constants/constants.dart';
-
-import 'loading.dart';
 
 class BannerLoading extends StatelessWidget {
   const BannerLoading({super.key});

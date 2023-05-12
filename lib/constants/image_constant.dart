@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, constant_identifier_names
+
 class IMAGE_CONST {
   static const APP_LOGO = "assets/images/ic_launcher.png";
   static const CART_EMPTY = "assets/images/empty_cart.png";

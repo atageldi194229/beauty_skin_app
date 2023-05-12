@@ -41,7 +41,7 @@ class AppRouter {
 
       case HOME:
         return MaterialPageRoute(
-          builder: (_) => HomeScreen(),
+          builder: (_) => const HomeScreen(),
         );
 
       case SPLASH:

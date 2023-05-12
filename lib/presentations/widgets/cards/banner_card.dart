@@ -1,8 +1,8 @@
+import 'package:beauty_skin/presentations/widgets/others/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/presentations/widgets/error_states/no_image.dart';
-import 'package:beauty_skin/presentations/widgets/loadings/loading.dart';
 
 class BannerCard extends StatelessWidget {
   const BannerCard({

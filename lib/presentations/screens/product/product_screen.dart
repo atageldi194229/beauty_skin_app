@@ -1,4 +1,3 @@
-import 'package:beauty_skin/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProductScreen extends StatelessWidget {

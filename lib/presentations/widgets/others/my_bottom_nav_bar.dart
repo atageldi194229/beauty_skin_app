@@ -30,7 +30,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
 
   List<Widget> _buildScreens() {
     return [
-      HomeScreen(),
+      const HomeScreen(),
       const CartScreen(),
       const FavoritesScreen(),
     ];

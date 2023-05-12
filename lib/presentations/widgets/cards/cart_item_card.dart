@@ -1,4 +1,5 @@
 import 'package:beauty_skin/configs/config.dart';
+import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
@@ -49,7 +50,12 @@ class CartItemModelCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(SizeConfig.defaultSize * 0.5),
       child: Container(
-        color: Colors.amber,
+        // color: Colors.amber,
+        decoration: BoxDecoration(
+          // boxShadow: kElevationToShadow[1],
+          border: Border.all(color: Colors.grey),
+          borderRadius: kBorderRadius10,
+        ),
         width: SizeConfig.defaultSize * 13,
         height: SizeConfig.defaultSize * 13,
         child: Image.network(product.imageUrl, fit: BoxFit.fill),

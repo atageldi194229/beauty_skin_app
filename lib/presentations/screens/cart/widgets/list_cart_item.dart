@@ -1,11 +1,8 @@
-import 'package:beauty_skin/configs/config.dart';
-import 'package:beauty_skin/constants/constants.dart';
-import 'package:beauty_skin/constants/image_constant.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/cards/cart_item_card.dart';
-import 'package:beauty_skin/presentations/widgets/loadings/loading.dart';
 import 'package:beauty_skin/presentations/widgets/others/custom_dismissible.dart';
+import 'package:beauty_skin/presentations/widgets/others/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -28,25 +28,26 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: SizeConfig.defaultPadding),
-      padding: EdgeInsets.symmetric(vertical: SizeConfig.defaultSize * 2),
+      padding: const EdgeInsets.symmetric(vertical: kdefaultPadding * 2),
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildProductName(),
-          SizedBox(height: SizeConfig.defaultSize * 0.5),
+          const SizedBox(height: kdefaultPadding),
           _buildPrice(),
           SizedBox(height: SizeConfig.defaultSize * 2),
-          Row(
-            children: [
-              SizedBox(width: SizeConfig.defaultPadding),
-              _buildSoldQuantity(),
-              SizedBox(width: SizeConfig.defaultSize),
-              Container(height: 15, width: 2, color: Colors.black12),
-              SizedBox(width: SizeConfig.defaultSize),
-            ],
-          ),
-          SizedBox(height: SizeConfig.defaultSize * 2),
+          // Row(
+          //   children: [
+          //     SizedBox(width: SizeConfig.defaultPadding),
+          //     _buildSoldQuantity(),
+          //     const SizedBox(width: kdefaultPadding),
+          //     Container(height: 15, width: 2, color: Colors.black12),
+          //     const SizedBox(width: kdefaultPadding),
+          //   ],
+          // ),
+          const Divider(height: 1),
+          const SizedBox(height: kdefaultPadding * 2),
           _buildDescription(),
         ],
       ),
@@ -55,8 +56,11 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
 
   _buildProductName() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultPadding),
-      child: Text(product.productName!, style: FONT_CONST.BOLD_DEFAULT_24),
+      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2),
+      child: Text(
+        product.productName!,
+        style: Theme.of(context).textTheme.headlineSmall,
+      ),
     );
   }
 
@@ -102,7 +106,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
 
   _buildDescription() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -111,19 +115,62 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
             style: FONT_CONST.REGULAR_DEFAULT_18,
             maxLines: seeMore ? null : 2,
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: kdefaultPadding * 2),
 
           // See more button
-          GestureDetector(
-            onTap: onSeeMore,
-            child: Text(
-              seeMore
+          Center(
+            child: GradientButtonFb1(
+              onPressed: onSeeMore,
+              text: seeMore
                   ? Translate.of(context).translate('see_less')
                   : Translate.of(context).translate('see_more'),
-              style: FONT_CONST.BOLD_PRIMARY_18,
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class GradientButtonFb1 extends StatelessWidget {
+  final String text;
+  final Function() onPressed;
+  const GradientButtonFb1(
+      {required this.text, required this.onPressed, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    const primaryColor = COLOR_CONST.primaryColor; // Color(0xff4338CA);
+    const secondaryColor = COLOR_CONST.secondaryColor; // Color(0xff6D28D9);
+    const accentColor = Color(0xffffffff);
+
+    const double borderRadius = 15;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius),
+        gradient: const LinearGradient(colors: [primaryColor, secondaryColor]),
+      ),
+      child: ElevatedButton(
+        style: ButtonStyle(
+          elevation: MaterialStateProperty.all(0),
+          alignment: Alignment.center,
+          padding: MaterialStateProperty.all(
+            const EdgeInsets.only(right: 75, left: 75, top: 15, bottom: 15),
+          ),
+          backgroundColor: MaterialStateProperty.all(Colors.transparent),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
+          ),
+        ),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: const TextStyle(color: accentColor, fontSize: 16),
+        ),
       ),
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 
 class COLOR_CONST {
@@ -15,7 +17,7 @@ class COLOR_CONST {
     colors: [Color(0xFF25164d), Colors.white],
   );
 
-  static const secondaryColor = Color(0xFF979797);
+  static const secondaryColor = Color.fromARGB(255, 212, 96, 152);
   static const textColor = Color(0xFF4a4a4a);
   static const googleButtonColor = Color(0xFFFFF1F0);
   static const deleteButtonColor = Color(0xFFeb4d4b);

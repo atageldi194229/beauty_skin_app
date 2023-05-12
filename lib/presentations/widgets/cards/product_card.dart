@@ -1,3 +1,5 @@
+import 'package:beauty_skin/presentations/widgets/error_states/no_image.dart';
+import 'package:beauty_skin/presentations/widgets/others/loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
@@ -35,8 +37,8 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                // placeholder: (context, url) => Center(child: spinKit()), // TODO: make me spin
-                errorWidget: (context, url, error) => noImage(),
+                placeholder: (context, url) => const Loading(),
+                errorWidget: (context, url, error) => const NoImage(),
               ),
             ),
             Padding(
@@ -86,19 +88,3 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
-
-Widget noImage() {
-  return Container(
-    padding: const EdgeInsets.all(6.0),
-    decoration:
-        BoxDecoration(color: Colors.grey[100], borderRadius: kBorderRadius15),
-    child: Image.asset(
-      appLogo,
-      color: Colors.grey,
-    ),
-  );
-}
-
-// Widget spinKit() {
-//   return Lottie.asset(spinKitLoading, animate: true, width: 200, height: 200);
-// }

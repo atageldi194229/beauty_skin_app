@@ -13,30 +13,24 @@ import 'bloc/home_bloc.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  // final scaffoldKey = GlobalKey<ScaffoldState>();
-  // final RefreshController refreshController =
-  //     RefreshController(initialRefresh: false);
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => HomeBloc()..add(LoadHome()),
       child: Scaffold(
-        // key: scaffoldKey,
-        backgroundColor: COLOR_CONST.backgroundColor,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(
             Application.title,
-            style: const TextStyle(color: Colors.black),
+            // style: const TextStyle(color: Colors.black),
           ),
-          backgroundColor: COLOR_CONST.backgroundColor,
+          // backgroundColor: COLOR_CONST.backgroundColor,
           actions: [
             IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.search_outlined,
-                color: Colors.black,
+                // color: Colors.black,
               ),
             )
           ],

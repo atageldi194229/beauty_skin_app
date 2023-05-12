@@ -8,6 +8,7 @@ class Boxes {
   // Hive box names
   static const _PRODUCTS2 = 'products2';
   static const _CART = 'cart';
+  static const _FAVORITES = 'favorites';
 
   // Register all adapters & Initialize all boxes
   static initBoxes() async {
@@ -21,12 +22,21 @@ class Boxes {
     // Open hive boxes
     await Hive.openBox<ProductModel2>(_PRODUCTS2);
     await Hive.openBox<CartItemModel>(_CART);
+    await Hive.openBox<ProductModel2>(_FAVORITES);
   }
 
   // static methods to get open hive boxes
-  static Box<ProductModel2> getProducts2() =>
-      Hive.box<ProductModel2>(_PRODUCTS2);
-  static Box<CartItemModel> getCart() => Hive.box<CartItemModel>(_CART);
+  static Box<ProductModel2> getProducts2() {
+    return Hive.box<ProductModel2>(_PRODUCTS2);
+  }
+
+  static Box<CartItemModel> getCart() {
+    return Hive.box<CartItemModel>(_CART);
+  }
+
+  static Box<ProductModel2> getFavorites() {
+    return Hive.box<ProductModel2>(_FAVORITES);
+  }
 
   // Close all open hive boxes
   static close() {

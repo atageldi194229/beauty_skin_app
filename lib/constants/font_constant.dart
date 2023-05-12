@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, non_constant_identifier_names
 
 import 'package:beauty_skin/configs/size_config.dart';
 import 'package:beauty_skin/constants/color_constant.dart';
