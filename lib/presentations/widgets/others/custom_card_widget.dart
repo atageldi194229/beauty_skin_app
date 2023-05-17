@@ -1,5 +1,4 @@
 import 'package:beauty_skin/configs/size_config.dart';
-import 'package:beauty_skin/constants/color_constant.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:flutter/material.dart';
 

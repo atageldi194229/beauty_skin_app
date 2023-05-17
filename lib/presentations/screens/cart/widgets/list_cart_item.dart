@@ -1,4 +1,3 @@
-import 'package:beauty_skin/configs/size_config.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
