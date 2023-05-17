@@ -28,7 +28,7 @@ class ListCartItemModel extends StatelessWidget {
             child: cart.isNotEmpty
                 ? ListView.builder(
                     padding: const EdgeInsets.all(kdefaultPadding).copyWith(
-                      bottom: kBottomNavigationBarHeight,
+                      bottom: kdefaultPadding * 2,
                     ),
                     physics: const BouncingScrollPhysics(),
                     itemCount: cart.length + 1,
