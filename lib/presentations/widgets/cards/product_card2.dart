@@ -92,7 +92,7 @@ class _ProductCard2State extends State<ProductCard2>
       if (_animationController.status == AnimationStatus.completed) {
         _animationController.reverse();
 
-        cartBloc.add(RemoveCartItemModelByProductId(widget.description));
+        cartBloc.add(RemoveCartItemModelByProduct(widget.product));
       } else if (_animationController.status == AnimationStatus.dismissed) {
         _animationController.forward();
 
@@ -167,6 +167,7 @@ class _ProductCard2State extends State<ProductCard2>
               child: Padding(
                 padding: const EdgeInsets.all(kdefaultPadding),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(

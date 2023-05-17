@@ -13,7 +13,7 @@ class CartLoading extends CartState {}
 /// Cart was loaded
 class CartLoaded extends CartState {
   final List<CartItemModel> cart;
-  final int priceOfGoods;
+  final double priceOfGoods;
 
   const CartLoaded({
     required this.cart,

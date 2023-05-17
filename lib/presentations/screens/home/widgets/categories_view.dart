@@ -44,7 +44,6 @@ class _CategoriesViewState extends State<CategoriesView> {
               category: widget.categories[index],
               isFirst: index == 0,
               isLast: index == widget.categories.length - 1,
-              isActive: index == currentIndex,
             ),
           ),
         ),
@@ -71,15 +70,12 @@ class _CategoriesViewState extends State<CategoriesView> {
     required CategoryModel category,
     required bool isFirst,
     required bool isLast,
-    required bool isActive,
   }) {
     var cardMargin = const EdgeInsets.only(
       right: kdefaultPadding * 2,
       top: kdefaultPadding,
       bottom: kdefaultPadding,
     );
-    Color cardColor = COLOR_CONST.primaryColor;
-    Color? cardTextColor = Colors.black;
 
     if (isFirst) {
       cardMargin = cardMargin.copyWith(left: kdefaultPadding * 2);
@@ -89,28 +85,26 @@ class _CategoriesViewState extends State<CategoriesView> {
       cardMargin = cardMargin.copyWith(right: kdefaultPadding * 2);
     }
 
-    if (!isActive) {
-      cardColor = Colors.white;
-      cardTextColor = null;
-    }
-
     return Container(
       margin: cardMargin,
-      decoration: BoxDecoration(
+      child: InkWell(
         borderRadius: kBorderRadius5,
-        color: cardColor,
-        boxShadow: kElevationToShadow[1],
-      ),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kdefaultPadding * 2,
+        onTap: () {},
+        child: Ink(
+          decoration: BoxDecoration(
+            borderRadius: kBorderRadius5,
+            color: Colors.white,
+            boxShadow: kElevationToShadow[1],
           ),
-          child: Text(
-            category.name,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: cardTextColor,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: kdefaultPadding * 2,
+              ),
+              child: Text(
+                category.name,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ),

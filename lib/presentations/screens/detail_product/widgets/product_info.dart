@@ -1,7 +1,6 @@
 import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/product/product_model2.dart';
-import 'package:beauty_skin/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class ProductInfoWidget extends StatefulWidget {
@@ -86,23 +85,23 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
     );
   }
 
-  _buildSoldQuantity() {
-    return Text.rich(
-      TextSpan(
-        style: FONT_CONST.BOLD_DEFAULT,
-        children: [
-          TextSpan(
-            text: Translate.of(context).translate('sold'),
-            style: FONT_CONST.BOLD_DEFAULT_18,
-          ),
-          TextSpan(
-            text: " 12",
-            style: FONT_CONST.BOLD_PRIMARY_18,
-          ),
-        ],
-      ),
-    );
-  }
+  // _buildSoldQuantity() {
+  //   return Text.rich(
+  //     TextSpan(
+  //       style: FONT_CONST.BOLD_DEFAULT,
+  //       children: [
+  //         TextSpan(
+  //           text: Translate.of(context).translate('sold'),
+  //           style: FONT_CONST.BOLD_DEFAULT_18,
+  //         ),
+  //         TextSpan(
+  //           text: " 12",
+  //           style: FONT_CONST.BOLD_PRIMARY_18,
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   _buildDescription() {
     return Padding(
@@ -113,19 +112,19 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
           Text(
             product.productName!,
             style: FONT_CONST.REGULAR_DEFAULT_18,
-            maxLines: seeMore ? null : 2,
+            // maxLines: seeMore ? null : 2,
           ),
           const SizedBox(height: kdefaultPadding * 2),
 
           // See more button
-          Center(
-            child: GradientButtonFb1(
-              onPressed: onSeeMore,
-              text: seeMore
-                  ? Translate.of(context).translate('see_less')
-                  : Translate.of(context).translate('see_more'),
-            ),
-          ),
+          // Center(
+          //   child: GradientButtonFb1(
+          //     onPressed: onSeeMore,
+          //     text: seeMore
+          //         ? Translate.of(context).translate('see_less')
+          //         : Translate.of(context).translate('see_more'),
+          //   ),
+          // ),
         ],
       ),
     );

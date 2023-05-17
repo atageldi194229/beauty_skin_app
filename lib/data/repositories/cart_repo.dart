@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:beauty_skin/data/boxes.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
+import 'package:beauty_skin/data/models/product/product_model2.dart';
 
 class CartRepository {
   /// Cart stream
@@ -21,8 +24,11 @@ class CartRepository {
 
   /// Remove cart item by cartItemId
   /// [cartItem.id] is ID of cart item
-  Future<void> removeCartItemModelByProductId(String id) async {
-    Boxes.getCart().values.firstWhere((e) => e.productId == id).delete();
+  Future<void> removeCartItemModelByProductId(ProductModel2 product) async {
+    return Boxes.getCart()
+        .values
+        .firstWhere((e) => e.productInfo == product)
+        .delete();
   }
 
   /// Clear cart
@@ -33,7 +39,14 @@ class CartRepository {
   /// Update quantity
   /// [cartItem] is updated data of cart item
   Future<void> updateCartItemModel(CartItemModel cartItem) async {
-    await cartItem.save();
+    final cartBox = Boxes.getCart();
+
+    for (var key in cartBox.keys) {
+      final a = cartBox.get(key);
+      if (a != null && a.productInfo == cartItem.productInfo) {
+        await cartBox.put(key, cartItem);
+      }
+    }
   }
 
   ///Singleton factory

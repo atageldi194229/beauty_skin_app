@@ -30,11 +30,12 @@ class GridProducts extends StatelessWidget {
         return GridView.builder(
           physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
+          padding: const EdgeInsets.all(kdefaultPadding),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            // childAspectRatio: 15 / 21,
+            childAspectRatio: 15 / 21,
             mainAxisSpacing: kdefaultPadding,
-            crossAxisSpacing: 0,
+            crossAxisSpacing: kdefaultPadding,
           ),
           itemCount: products.length,
           itemBuilder: (context, index) {

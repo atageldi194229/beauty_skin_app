@@ -1,5 +1,6 @@
 import 'package:beauty_skin/configs/size_config.dart';
 import 'package:beauty_skin/constants/color_constant.dart';
+import 'package:beauty_skin/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomCardWidget extends StatelessWidget {
@@ -30,11 +31,11 @@ class CustomCardWidget extends StatelessWidget {
         child: Container(
           width: width,
           height: height,
-          margin: margin ??
-              EdgeInsets.symmetric(
-                vertical: SizeConfig.defaultSize * 0.5,
-                horizontal: SizeConfig.defaultSize * 1.5,
-              ),
+          // margin: margin ??
+          //     EdgeInsets.symmetric(
+          //       vertical: SizeConfig.defaultSize * 0.5,
+          //       horizontal: SizeConfig.defaultSize * 1.5,
+          //     ),
           padding: padding ?? EdgeInsets.all(SizeConfig.defaultPadding),
           decoration: decoration ?? _defaultDecoration(),
           child: child,
@@ -45,7 +46,7 @@ class CustomCardWidget extends StatelessWidget {
 
   _defaultDecoration() {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: kBorderRadius10,
       border: Border.all(color: COLOR_CONST.borderColor.withOpacity(0.3)),
       color: Colors.white,
       boxShadow: [

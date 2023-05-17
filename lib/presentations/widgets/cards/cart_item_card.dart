@@ -1,5 +1,4 @@
 import 'package:beauty_skin/configs/config.dart';
-import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
@@ -26,15 +25,14 @@ class CartItemModelCard extends StatelessWidget {
     }
 
     return CustomCardWidget(
-      // onTap: () => Navigator.pushNamed(
-      //   context,
-      //   AppRouter.DETAIL_PRODUCT,
-      //   arguments: product,
+      onTap: () => AppRouter().navigatorKey.currentState?.pushNamed(
+            AppRouter.DETAIL_PRODUCT,
+            arguments: product,
+          ),
+      // margin: EdgeInsets.symmetric(
+      //   vertical: SizeConfig.defaultSize * 0.5,
+      //   horizontal: SizeConfig.defaultSize,
       // ),
-      margin: EdgeInsets.symmetric(
-        vertical: SizeConfig.defaultSize * 0.5,
-        horizontal: SizeConfig.defaultSize,
-      ),
       padding: EdgeInsets.only(right: SizeConfig.defaultSize),
       child: Row(
         children: [
@@ -49,13 +47,12 @@ class CartItemModelCard extends StatelessWidget {
   _buildCartItemModelImage(ProductModel2 product) {
     return Padding(
       padding: EdgeInsets.all(SizeConfig.defaultSize * 0.5),
-      child: Container(
+      child: SizedBox(
         // color: Colors.amber,
-        decoration: BoxDecoration(
-          // boxShadow: kElevationToShadow[1],
-          border: Border.all(color: Colors.grey),
-          borderRadius: kBorderRadius10,
-        ),
+        // decoration: BoxDecoration(
+        //   border: Border.all(color: Colors.grey),
+        //   borderRadius: kBorderRadius10,
+        // ),
         width: SizeConfig.defaultSize * 13,
         height: SizeConfig.defaultSize * 13,
         child: Image.network(product.imageUrl, fit: BoxFit.fill),

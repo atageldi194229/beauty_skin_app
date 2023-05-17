@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:beauty_skin/data/models/cart_item_model.dart';
+import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/data/repositories/cart_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -18,8 +19,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<UpdateCartItemModel>(_mapUpdateCartItemModelToState);
     on<ClearCart>(_mapClearCartToState);
     on<CartUpdated>(_mapCartUpdatedToState);
-    on<RemoveCartItemModelByProductId>(
-        _mapRemoveCartItemModelByProductIdToState);
+    on<RemoveCartItemModelByProduct>(_mapRemoveCartItemModelByProductToState);
     on<RemoveCartItemModel>(_mapRemoveCartItemModelToState);
   }
 
@@ -69,12 +69,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
   }
 
-  FutureOr<void> _mapRemoveCartItemModelByProductIdToState(
-    RemoveCartItemModelByProductId event,
+  FutureOr<void> _mapRemoveCartItemModelByProductToState(
+    RemoveCartItemModelByProduct event,
     Emitter<CartState> emit,
   ) async {
     try {
-      await _cartRepository.removeCartItemModelByProductId(event.cartItemId);
+      await _cartRepository.removeCartItemModelByProductId(event.product);
       add(LoadCart());
     } catch (e) {
       debugPrint(e.toString());
@@ -88,10 +88,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     emit(CartLoading());
 
     final updatedCart = event.updatedCart;
-    int priceOfGoods = 0;
+    double priceOfGoods = 0;
 
     for (int i = 0; i < updatedCart.length; i++) {
-      priceOfGoods += updatedCart[i].price;
+      priceOfGoods += double.parse(updatedCart[i].productInfo!.price!) *
+          updatedCart[i].quantity;
     }
 
     emit(CartLoaded(
