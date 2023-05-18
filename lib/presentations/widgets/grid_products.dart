@@ -8,8 +8,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GridProducts extends StatelessWidget {
   final List<ProductModel2> products;
+  final bool isMore;
+  final VoidCallback? getMore;
 
-  const GridProducts({Key? key, required this.products}) : super(key: key);
+  const GridProducts({
+    Key? key,
+    required this.products,
+    this.isMore = false,
+    this.getMore,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +37,21 @@ class GridProducts extends StatelessWidget {
         return GridView.builder(
           physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
-          padding: const EdgeInsets.all(kdefaultPadding),
+          padding: const EdgeInsets.all(kdefaultPadding)
+              .copyWith(bottom: kdefaultPadding * 2),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 15 / 21,
             mainAxisSpacing: kdefaultPadding,
             crossAxisSpacing: kdefaultPadding,
           ),
-          itemCount: products.length,
+          itemCount: products.length + (isMore ? 1 : 0),
           itemBuilder: (context, index) {
+            if (index == products.length) {
+              getMore?.call();
+              return const Center(child: CircularProgressIndicator());
+            }
+
             bool inCart = false;
 
             if (cart != null) {

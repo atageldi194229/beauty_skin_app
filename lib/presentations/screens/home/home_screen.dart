@@ -1,4 +1,5 @@
 import 'package:beauty_skin/configs/application.dart';
+import 'package:beauty_skin/configs/router.dart';
 import 'package:beauty_skin/presentations/screens/home/widgets/product_list_view.dart';
 // import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,12 @@ class HomeScreen extends StatelessWidget {
           // backgroundColor: COLOR_CONST.backgroundColor,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                AppRouter()
+                    .navigatorKey
+                    .currentState
+                    ?.pushNamed(AppRouter.SEARCH);
+              },
               icon: const Icon(
                 Icons.search_outlined,
                 // color: Colors.black,

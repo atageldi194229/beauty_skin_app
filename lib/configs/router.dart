@@ -4,6 +4,7 @@ import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
 import 'package:beauty_skin/presentations/screens/detail_product/detail_product_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
+import 'package:beauty_skin/presentations/screens/search/search_screen.dart';
 import 'package:beauty_skin/presentations/screens/splash/splash_screen.dart';
 import 'package:beauty_skin/presentations/widgets/others/my_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => DetailProductScreen(product: product),
         );
+
+      case SEARCH:
+        return MaterialPageRoute(
+          builder: (_) => const SearchScreen(),
+        );
+
       // case LOGIN:
       //   return MaterialPageRoute(
       //     builder: (_) => LoginScreen(),

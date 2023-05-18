@@ -1,10 +1,9 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
-import 'package:beauty_skin/presentations/screens/favorites/widgets/grid_products.dart';
+import 'package:beauty_skin/presentations/widgets/grid_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../utils/utils.dart';
+import 'package:beauty_skin/utils/utils.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -21,17 +20,23 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       body: BlocBuilder<FavoriteBloc, FavoriteState>(
         buildWhen: (previous, current) => current is FavoritesLoaded,
         builder: (context, state) {
-          List<FavoriteItemModel> data = [];
-
           if (state is FavoritesLoaded) {
-            data = state.products;
+            return Column(
+              children: [
+                Expanded(child: GridProducts(products: state.products)),
+              ],
+            );
           }
 
-          return Column(
-            children: [
-              Expanded(child: GridProducts(products: data)),
-            ],
-          );
+          if (state is FavoritesLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state is FavoritesLoadFailure) {
+            return Center(child: Text(state.error));
+          }
+
+          return const Center(child: Text("Something went wrong."));
         },
       ),
     );
