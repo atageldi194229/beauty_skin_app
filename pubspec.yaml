@@ -36,6 +36,7 @@ dependencies:
   uuid: ^3.0.7
   share_plus: ^7.0.0
   rxdart: ^0.27.7
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

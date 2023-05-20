@@ -1,7 +1,7 @@
 import 'package:beauty_skin/constants/color_constant.dart';
 import 'package:beauty_skin/constants/font_constant.dart';
 import 'package:beauty_skin/presentations/widgets/others/loading.dart';
-import 'package:beauty_skin/utils/translate.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter/material.dart';
 
 class UtilDialog {

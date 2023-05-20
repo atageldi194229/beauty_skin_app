@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import '../app_locale_delegate.dart';
+import 'app_locale_delegate.dart';
 
 class Translate {
   final Locale locale;
@@ -28,5 +28,11 @@ class Translate {
 
   String translate(String key) {
     return _localizedStrings![key] ?? key;
+  }
+}
+
+extension TranslateString on String {
+  String tr(BuildContext context) {
+    return Translate.of(context).translate(this);
   }
 }

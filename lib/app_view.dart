@@ -1,10 +1,11 @@
+import 'package:beauty_skin/localization/tm_material_localization.dart';
 import 'package:beauty_skin/presentations/common_blocs/application/application_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/common_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/language/language_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/others/my_bottom_nav_bar.dart';
-import 'package:beauty_skin/utils/translate.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,6 +82,7 @@ class AppViewState extends State<AppView> {
               supportedLocales: AppLanguage.supportLanguage,
               localizationsDelegates: const [
                 Translate.delegate,
+                TmMaterialLocalization.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,

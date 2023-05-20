@@ -4,6 +4,7 @@ import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
 import 'package:beauty_skin/presentations/screens/favorites/favorites_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
+import 'package:beauty_skin/presentations/screens/profile/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +34,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       const HomeScreen(),
       const CartScreen(),
       const FavoritesScreen(),
+      const ProfileScreen(),
     ];
   }
 
@@ -77,6 +79,13 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       PersistentBottomNavBarItem(
         icon: const Icon(IconlyBold.heart),
         title: "Favorites",
+        activeColorPrimary: _activeColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(IconlyBold.profile),
+        title: "Profile",
         activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),

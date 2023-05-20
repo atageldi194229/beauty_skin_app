@@ -1,4 +1,4 @@
-import 'package:beauty_skin/configs/language.dart';
+import 'package:beauty_skin/localization/language.dart';
 import 'package:flutter/material.dart' show immutable, Locale;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';

@@ -4,8 +4,10 @@ class UtilLanguage {
     switch (code) {
       case 'en':
         return 'English';
-      case 'vi':
-        return 'Vietnamese';
+      case 'ru':
+        return 'Русский';
+      case 'tm':
+        return 'Türkmençe';
       default:
         return 'English';
     }

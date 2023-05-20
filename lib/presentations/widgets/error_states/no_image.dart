@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:beauty_skin/utils/translate.dart';
+import 'package:beauty_skin/localization/translate.dart';
 
 class NoImage extends StatelessWidget {
   const NoImage({super.key});

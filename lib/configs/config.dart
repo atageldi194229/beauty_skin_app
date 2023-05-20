@@ -1,4 +1,4 @@
-export 'language.dart';
+export '../localization/language.dart';
 export 'router.dart';
 export 'size_config.dart';
 export 'theme.dart';

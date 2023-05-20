@@ -68,12 +68,14 @@ class SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: GridProducts(
-        products: products,
-        isMore: isMore,
-        getMore: () {
-          fetchProducts();
-        },
+      body: SafeArea(
+        child: GridProducts(
+          products: products,
+          isMore: isMore,
+          getMore: () {
+            fetchProducts();
+          },
+        ),
       ),
     );
   }

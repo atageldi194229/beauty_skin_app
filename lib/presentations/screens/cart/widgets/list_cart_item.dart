@@ -4,7 +4,7 @@ import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/cards/cart_item_card.dart';
 import 'package:beauty_skin/presentations/widgets/others/custom_dismissible.dart';
 import 'package:beauty_skin/presentations/widgets/others/loading.dart';
-import 'package:beauty_skin/utils/translate.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

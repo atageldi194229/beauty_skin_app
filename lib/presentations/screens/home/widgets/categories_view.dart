@@ -1,7 +1,7 @@
 import 'package:beauty_skin/data/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
-import 'package:beauty_skin/utils/translate.dart';
+import 'package:beauty_skin/localization/translate.dart';
 
 class CategoriesView extends StatefulWidget {
   const CategoriesView({super.key, required this.categories});
