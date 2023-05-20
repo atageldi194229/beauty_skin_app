@@ -49,9 +49,7 @@ class ListCartItemModel extends StatelessWidget {
                       );
                     },
                   )
-                : const Center(
-                    child: Text("Emtpty List"),
-                  ),
+                : Center(child: Text("cartEmpty".tr(context))),
           );
         }
         if (cartState is CartLoadFailure) {
@@ -74,10 +72,16 @@ class ListCartItemModel extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text("check_out".tr(context)),
-            const Icon(Icons.navigate_next_outlined),
+            Text(
+              "check_out".tr(context),
+              style: const TextStyle(color: Colors.white),
+            ),
+            const Icon(Icons.navigate_next_outlined, color: Colors.white),
             const Spacer(),
-            Text("${cartState.priceOfGoods} TMT"),
+            Text(
+              "${cartState.priceOfGoods} TMT",
+              style: const TextStyle(color: Colors.white),
+            ),
           ],
         ),
       ),
