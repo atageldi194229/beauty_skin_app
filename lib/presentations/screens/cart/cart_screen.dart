@@ -19,7 +19,7 @@ class CartScreen extends StatelessWidget {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text(Translate.of(context).translate("cart")),
+      title: Text("cart".tr(context)),
       actions: [
         IconButton(
           icon: const Icon(Icons.clear_all_rounded),
@@ -32,13 +32,13 @@ class CartScreen extends StatelessWidget {
   _onClearCart(BuildContext context) async {
     final response = await UtilDialog.showConfirmation(
       context,
-      title: Translate.of(context).translate("clear_cart"),
+      title: "clear_cart".tr(context),
       content: Text(
         Translate.of(context)
             .translate("all_cart_items_will_be_deleted_from_your_cart"),
         style: FONT_CONST.REGULAR_DEFAULT_20,
       ),
-      confirmButtonText: Translate.of(context).translate("delete"),
+      confirmButtonText: "delete".tr(context),
     ) as bool;
 
     if (response) {

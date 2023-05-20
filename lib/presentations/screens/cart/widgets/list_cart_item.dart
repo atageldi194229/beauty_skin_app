@@ -74,7 +74,7 @@ class ListCartItemModel extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text(Translate.of(context).translate("check_out")),
+            Text("check_out".tr(context)),
             const Icon(Icons.navigate_next_outlined),
             const Spacer(),
             Text("${cartState.priceOfGoods} TMT"),

@@ -90,7 +90,7 @@ class SearchScreenState extends State<SearchScreen> {
         style: FONT_CONST.REGULAR_WHITE_18,
         decoration: InputDecoration(
           isDense: true,
-          hintText: Translate.of(context).translate("search"),
+          hintText: "search".tr(context),
           hintStyle: FONT_CONST.REGULAR_WHITE_18,
           border: InputBorder.none,
         ),

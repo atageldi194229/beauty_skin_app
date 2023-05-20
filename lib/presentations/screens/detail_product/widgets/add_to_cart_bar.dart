@@ -104,7 +104,7 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          Translate.of(context).translate("price"),
+          "price".tr(context),
           style: FONT_CONST.BOLD_DEFAULT_18.copyWith(color: Colors.grey),
         ),
         const SizedBox(height: kdefaultPadding * 2),
@@ -128,7 +128,7 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          Translate.of(context).translate("count"),
+          "count".tr(context),
           style: FONT_CONST.BOLD_DEFAULT_18.copyWith(color: Colors.grey),
         ),
         const SizedBox(height: kdefaultPadding * 2),

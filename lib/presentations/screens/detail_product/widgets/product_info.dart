@@ -91,7 +91,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
   //       style: FONT_CONST.BOLD_DEFAULT,
   //       children: [
   //         TextSpan(
-  //           text: Translate.of(context).translate('sold'),
+  //           text: 'sold'.tr(context),
   //           style: FONT_CONST.BOLD_DEFAULT_18,
   //         ),
   //         TextSpan(
@@ -121,8 +121,8 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
           //   child: GradientButtonFb1(
           //     onPressed: onSeeMore,
           //     text: seeMore
-          //         ? Translate.of(context).translate('see_less')
-          //         : Translate.of(context).translate('see_more'),
+          //         ? 'see_less.tr(context)
+          //         : 'see_more'.tr(context),
           //   ),
           // ),
         ],

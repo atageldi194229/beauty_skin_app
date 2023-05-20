@@ -24,7 +24,7 @@ class _CategoriesViewState extends State<CategoriesView> {
         Padding(
           padding: const EdgeInsets.only(left: kdefaultPadding * 2),
           child: Text(
-            Translate.of(context).translate("category"),
+            "category".tr(context),
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,

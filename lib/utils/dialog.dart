@@ -16,7 +16,7 @@ class UtilDialog {
       builder: (context) {
         return AlertDialog(
           title: Text(
-            title ?? Translate.of(context).translate("message_for_you"),
+            title ?? "message_for_you".tr(context),
             style: FONT_CONST.MEDIUM_PRIMARY_20,
           ),
           content: Text(content!),
@@ -24,7 +24,7 @@ class UtilDialog {
             TextButton(
               onPressed: onClose ?? () => Navigator.of(context).pop(),
               child: Text(
-                Translate.of(context).translate("close"),
+                "close".tr(context),
                 style: FONT_CONST.MEDIUM_PRIMARY_18,
               ),
             )
@@ -66,14 +66,14 @@ class UtilDialog {
       builder: (context) {
         return AlertDialog(
           title: Text(
-            title ?? Translate.of(context).translate("message_for_you"),
+            title ?? "message_for_you".tr(context),
             style: FONT_CONST.MEDIUM_PRIMARY_24,
           ),
           content: content,
           actions: <Widget>[
             TextButton(
               child: Text(
-                Translate.of(context).translate("close"),
+                "close".tr(context),
                 style: FONT_CONST.MEDIUM_PRIMARY_18,
               ),
               onPressed: () => Navigator.pop(context, false),

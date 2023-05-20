@@ -44,7 +44,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text(Translate.of(context).translate("cart")),
+      title: Text("favorites".tr(context)),
       actions: [
         IconButton(
           icon: const Icon(Icons.clear_all_rounded),
@@ -57,12 +57,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   _onClearCart(BuildContext context) async {
     final response = await UtilDialog.showConfirmation(
       context,
-      title: Translate.of(context).translate("clear_cart"),
+      title: "clear_cart".tr(context),
       content: Text(
-        Translate.of(context).translate("all_favorites_will_be_deleted"),
+        "all_favorites_will_be_deleted".tr(context),
         style: FONT_CONST.REGULAR_DEFAULT_20,
       ),
-      confirmButtonText: Translate.of(context).translate("delete"),
+      confirmButtonText: "delete".tr(context),
     ) as bool;
 
     if (response) {

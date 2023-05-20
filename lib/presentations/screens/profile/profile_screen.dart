@@ -21,7 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(Translate.of(context).translate("profile"))),
+      appBar: AppBar(title: Text("profile".tr(context))),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
