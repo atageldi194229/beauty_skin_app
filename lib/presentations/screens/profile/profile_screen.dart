@@ -1,6 +1,7 @@
 import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/presentations/common_blocs/language/language_bloc.dart';
+import 'package:beauty_skin/presentations/common_blocs/profile/profile_bloc.dart';
 import 'package:beauty_skin/utils/language.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +20,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController usernameController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final profileState = context.read<ProfileBloc>().state;
+
+      if (profileState is ProfileLoaded) {
+        phoneController.text = profileState.phoneNumber ?? "";
+        usernameController.text = profileState.username ?? "";
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("profile".tr(context))),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(kdefaultPadding * 2),
+            padding: const EdgeInsets.all(kdefaultPadding * 4),
             child: _buildForm(context),
           ),
         ),
@@ -40,9 +55,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _buildPhoneInput(),
           const SizedBox(height: kdefaultPadding),
           _buildUsernameInput(),
-          const SizedBox(height: kdefaultPadding * 3),
+          const SizedBox(height: kdefaultPadding * 4),
           _buildLanguageDropdown(context),
-          const SizedBox(height: kdefaultPadding * 3),
+          const SizedBox(height: kdefaultPadding * 4),
           _buildFormButton(
             context,
             name: "delivery_addresses",
@@ -54,14 +69,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             iconData: IconlyBold.location,
           ),
-          const SizedBox(height: kdefaultPadding * 3),
+          const SizedBox(height: kdefaultPadding * 4),
           _buildFormButton(
             context,
             name: "order_history",
             onTap: () {},
             iconData: Icons.history,
           ),
-          const SizedBox(height: kdefaultPadding * 3),
+          const SizedBox(height: kdefaultPadding * 4),
           _buildFormButton(
             context,
             name: "about_us",
@@ -73,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             iconData: Icons.info_outline,
           ),
-          const SizedBox(height: kdefaultPadding * 3),
+          const SizedBox(height: kdefaultPadding * 4),
           _buildSaveButton(),
         ],
       ),
@@ -88,7 +103,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           horizontal: kdefaultPadding * 3,
         ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        context
+            .read<ProfileBloc>()
+            .add(ProfileUpdated(phoneController.text, usernameController.text));
+      },
       child: const Text("save"),
     );
   }
@@ -100,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       keyboardType: TextInputType.phone,
       decoration: const InputDecoration(
         labelText: "phone_number",
-        prefix: Text("+993 "),
+        prefix: Text("+993 ", style: TextStyle(fontSize: 16)),
         prefixIcon: Icon(IconlyBold.call),
       ),
     );

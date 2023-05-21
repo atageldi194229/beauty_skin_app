@@ -55,31 +55,6 @@ class _BannersViewState extends State<BannerListView> {
         ),
       ],
     );
-
-    // return FutureBuilder<List<BannerModel>>(
-    //   future: BannerRepository().fetchBanners2(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.waiting) {
-    //       return const BannerLoading();
-    //       // return const Center(child: CircularProgressIndicator());
-    //     } else if (snapshot.hasError) {
-    //       // return ErrorState(
-    //       //   onTap: () {
-    //       //     BannerService().getBanners();
-    //       //   },
-    //       // );
-    //       return const Center(child: Text("Load error"));
-    //     } else if (banners.isEmpty) {
-    //       // return SizedBox(
-    //       //   height: SizeConfig.screenHeight / 4,
-    //       //   child: EmptyStateText(),
-    //       // );
-    //       return const Center(child: Text("No images"));
-    //     }
-
-    //     // return
-    //   },
-    // );
   }
 
   SizedBox dots(int length) {
