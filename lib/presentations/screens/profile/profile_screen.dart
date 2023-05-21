@@ -102,6 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           vertical: kdefaultPadding * 2,
           horizontal: kdefaultPadding * 3,
         ),
+        backgroundColor: COLOR_CONST.primaryColor,
       ),
       onPressed: () {
         context
