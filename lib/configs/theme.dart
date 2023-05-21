@@ -28,21 +28,21 @@ class AppTheme {
       // bodyMedium: TextStyle(color: COLOR_CONST.textColor),
       );
 
-  static final _inputDecorationThem = InputDecorationTheme(
-    contentPadding: const EdgeInsets.symmetric(
+  static const _inputDecorationThem = InputDecorationTheme(
+    contentPadding: EdgeInsets.symmetric(
       horizontal: kdefaultPadding,
       vertical: kdefaultPadding * 2,
     ),
     // .copyWith(bottom: kdefaultPadding * 4),
-    border: const OutlineInputBorder(
+    border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       borderSide: BorderSide(color: COLOR_CONST.textColor),
     ),
-    focusedBorder: const OutlineInputBorder(
+    focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(width: 3, color: COLOR_CONST.primaryColor),
     ),
-    hintStyle: FONT_CONST.REGULAR_DEFAULT,
-    labelStyle: FONT_CONST.REGULAR_DEFAULT,
+    // hintStyle: FONT_CONST.REGULAR_DEFAULT,
+    // labelStyle: FONT_CONST.REGULAR_DEFAULT,
   );
 
   /// Singleton factory

@@ -22,8 +22,19 @@ void main() async {
 }
 
 // This widget is the root of your application.
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void dispose() {
+    Boxes.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

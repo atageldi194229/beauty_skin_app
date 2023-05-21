@@ -2,6 +2,9 @@ import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/presentations/common_blocs/language/language_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/profile/profile_bloc.dart';
+import 'package:beauty_skin/presentations/widgets/form/tappable_form_field.dart';
+import 'package:beauty_skin/presentations/widgets/form/text_field_phone_number.dart';
+import 'package:beauty_skin/presentations/widgets/form/text_field_username.dart';
 import 'package:beauty_skin/utils/language.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter/material.dart';
@@ -52,42 +55,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Form(
       child: Column(
         children: [
-          _buildPhoneInput(),
+          // phone_number
+          TextFieldPhoneNumber(controller: phoneController),
           const SizedBox(height: kdefaultPadding),
-          _buildUsernameInput(),
+
+          // username
+          TextFieldUsername(controller: usernameController),
           const SizedBox(height: kdefaultPadding * 4),
+
+          // language select
           _buildLanguageDropdown(context),
           const SizedBox(height: kdefaultPadding * 4),
-          _buildFormButton(
-            context,
-            name: "delivery_addresses",
+
+          // delivery_addresses
+          TappableFormField(
             onTap: () {
               AppRouter()
                   .navigatorKey
                   .currentState
                   ?.pushNamed(AppRouter.DELIVERY_ADDRESS);
             },
-            iconData: IconlyBold.location,
+            labelText: "delivery_addresses".tr(context),
+            prefixIcon: const Icon(IconlyBold.location),
           ),
           const SizedBox(height: kdefaultPadding * 4),
-          _buildFormButton(
-            context,
-            name: "order_history",
+
+          // order_history
+          TappableFormField(
             onTap: () {},
-            iconData: Icons.history,
+            labelText: "order_history".tr(context),
+            prefixIcon: const Icon(Icons.history),
           ),
           const SizedBox(height: kdefaultPadding * 4),
-          _buildFormButton(
-            context,
-            name: "about_us",
+
+          // about_us
+          TappableFormField(
             onTap: () {
               AppRouter()
                   .navigatorKey
                   .currentState
                   ?.pushNamed(AppRouter.ABOUT_US);
             },
-            iconData: Icons.info_outline,
+            labelText: "about_us".tr(context),
+            prefixIcon: const Icon(Icons.info_outline),
           ),
+
+          // save button
           const SizedBox(height: kdefaultPadding * 4),
           _buildSaveButton(),
         ],
@@ -110,61 +123,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             .add(ProfileUpdated(phoneController.text, usernameController.text));
       },
       child: const Text("save"),
-    );
-  }
-
-  Widget _buildPhoneInput() {
-    return TextFormField(
-      controller: phoneController,
-      maxLength: 8,
-      keyboardType: TextInputType.phone,
-      decoration: const InputDecoration(
-        labelText: "phone_number",
-        prefix: Text("+993 ", style: TextStyle(fontSize: 16)),
-        prefixIcon: Icon(IconlyBold.call),
-      ),
-    );
-  }
-
-  Widget _buildUsernameInput() {
-    return TextFormField(
-      controller: usernameController,
-      keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
-        labelText: "username",
-        prefixIcon: Icon(IconlyBold.profile),
-      ),
-    );
-  }
-
-  Widget _buildFormButton(
-    BuildContext context, {
-    VoidCallback? onTap,
-    required String name,
-    IconData? iconData,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Ink(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kdefaultPadding,
-          vertical: kdefaultPadding * 1.5,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: kBorderRadius5,
-          border: Border.all(width: 1, color: Colors.grey),
-        ),
-        child: Row(
-          children: [
-            Icon(iconData, color: Colors.grey),
-            const SizedBox(width: kdefaultPadding),
-            Text(name),
-            const Spacer(),
-            const Icon(Icons.navigate_next_outlined, color: Colors.grey),
-            const SizedBox(width: kdefaultPadding),
-          ],
-        ),
-      ),
     );
   }
 

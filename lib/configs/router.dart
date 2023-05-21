@@ -3,6 +3,7 @@
 import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/presentations/screens/about_us/about_us_screen.dart';
 import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
+import 'package:beauty_skin/presentations/screens/checkout/checkout_screen.dart';
 import 'package:beauty_skin/presentations/screens/delivery_address/delivery_address_screen.dart';
 import 'package:beauty_skin/presentations/screens/detail_product/detail_product_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
@@ -28,6 +29,7 @@ class AppRouter {
   static const String MAIN = '/main';
   static const String ABOUT_US = '/about_us';
   static const String DELIVERY_ADDRESS = '/delivery_address';
+  static const String CHECKOUT_SCREEN = '/checkout_screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -73,8 +75,19 @@ class AppRouter {
         );
 
       case DELIVERY_ADDRESS:
+        DeliveryAddressScreenArguments? arguments;
+
+        if (settings.arguments != null) {
+          arguments = settings.arguments as DeliveryAddressScreenArguments;
+        }
+
         return MaterialPageRoute(
-          builder: (_) => const DeliveryAddressScreen(),
+          builder: (_) => DeliveryAddressScreen(arguments: arguments),
+        );
+
+      case CHECKOUT_SCREEN:
+        return MaterialPageRoute(
+          builder: (_) => const CheckoutScreen(),
         );
 
       default:

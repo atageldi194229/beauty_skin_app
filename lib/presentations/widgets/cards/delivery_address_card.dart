@@ -6,11 +6,13 @@ class DeliveryAddressCard extends StatelessWidget {
   const DeliveryAddressCard({
     super.key,
     required this.deliveryAddress,
-    this.onPressed,
+    this.onEditPressed,
+    this.onTap,
   });
 
   final DeliveryAddressModel deliveryAddress;
-  final VoidCallback? onPressed;
+  final VoidCallback? onEditPressed;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +20,25 @@ class DeliveryAddressCard extends StatelessWidget {
       borderRadius: kBorderRadius5,
       elevation: 3,
       shadowColor: Colors.grey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: kdefaultPadding),
-        child: ListTile(
-          // onTap: onPressed,
-          title: Text(
-            deliveryAddress.name,
-            style: FONT_CONST.BOLD_DEFAULT_18,
-          ),
-          subtitle: Text(
-            deliveryAddress.address,
-            style: FONT_CONST.REGULAR_PRIMARY,
-          ),
-          trailing: IconButton(
-            onPressed: onPressed,
-            icon: const Icon(
-              Icons.edit_outlined,
-              color: COLOR_CONST.primaryColor,
-            ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: kdefaultPadding,
+          horizontal: kdefaultPadding * 2,
+        ),
+        onTap: onTap,
+        title: Text(
+          deliveryAddress.name,
+          style: FONT_CONST.BOLD_DEFAULT_18,
+        ),
+        subtitle: Text(
+          deliveryAddress.address,
+          style: FONT_CONST.REGULAR_PRIMARY,
+        ),
+        trailing: IconButton(
+          onPressed: onEditPressed,
+          icon: const Icon(
+            Icons.edit_outlined,
+            color: COLOR_CONST.primaryColor,
           ),
         ),
       ),

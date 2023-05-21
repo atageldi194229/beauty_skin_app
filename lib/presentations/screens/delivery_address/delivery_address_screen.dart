@@ -10,7 +10,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/delivery_address_bottom_sheet.dart';
 
 class DeliveryAddressScreen extends StatefulWidget {
-  const DeliveryAddressScreen({super.key});
+  const DeliveryAddressScreen({super.key, this.arguments});
+
+  final DeliveryAddressScreenArguments? arguments;
 
   @override
   State<DeliveryAddressScreen> createState() => _DeliveryAddressScreenState();
@@ -98,13 +100,26 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
           padding: const EdgeInsets.only(top: kdefaultPadding),
           child: DeliveryAddressCard(
             deliveryAddress: addressList[index],
-            onPressed: () => _openDeliveryBottomSheet(
+            onEditPressed: () => _openDeliveryBottomSheet(
               context,
               deliveryAddress: addressList[index],
             ),
+            onTap: () {
+              final arguments = widget.arguments;
+
+              if (arguments != null && arguments.onSelect != null) {
+                arguments.onSelect?.call(addressList[index]);
+                Navigator.of(context).pop();
+              }
+            },
           ),
         );
       },
     );
   }
+}
+
+class DeliveryAddressScreenArguments {
+  final void Function(DeliveryAddressModel deliveryAddress)? onSelect;
+  DeliveryAddressScreenArguments({this.onSelect});
 }
