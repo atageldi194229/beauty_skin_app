@@ -46,8 +46,11 @@ jobs:
           channel: "stable" # or: 'beta', 'dev' or 'master'
           cache: true
 
-      - name: Get dependencies
-        run: flutter pub get
+      - name: Disable telemetry reporting
+        run: flutter --disable-telemetry
+
+      - name: Get dependencies with suppress analytics reporting
+        run: flutter pub get --suppress-analytics
 
       - name: Start release build
         run: flutter build apk --split-per-abi
