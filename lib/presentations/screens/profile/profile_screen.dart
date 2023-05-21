@@ -46,7 +46,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _buildFormButton(
             context,
             name: "delivery_addresses",
-            onTap: () {},
+            onTap: () {
+              AppRouter()
+                  .navigatorKey
+                  .currentState
+                  ?.pushNamed(AppRouter.DELIVERY_ADDRESS);
+            },
             iconData: IconlyBold.location,
           ),
           const SizedBox(height: kdefaultPadding * 3),

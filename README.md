@@ -11,5 +11,5 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 
 # ToDo:
 
-- home screen bloc
-- cart screen
+[] categories screen
+[] order screen

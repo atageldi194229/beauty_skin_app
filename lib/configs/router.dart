@@ -3,6 +3,7 @@
 import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/presentations/screens/about_us/about_us_screen.dart';
 import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
+import 'package:beauty_skin/presentations/screens/delivery_address/delivery_address_screen.dart';
 import 'package:beauty_skin/presentations/screens/detail_product/detail_product_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
 import 'package:beauty_skin/presentations/screens/profile/profile_screen.dart';
@@ -26,6 +27,7 @@ class AppRouter {
   static const String SEARCH = '/search';
   static const String MAIN = '/main';
   static const String ABOUT_US = '/about_us';
+  static const String DELIVERY_ADDRESS = '/delivery_address';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -68,6 +70,11 @@ class AppRouter {
       case ABOUT_US:
         return MaterialPageRoute(
           builder: (_) => const AboutUsScreen(),
+        );
+
+      case DELIVERY_ADDRESS:
+        return MaterialPageRoute(
+          builder: (_) => const DeliveryAddressScreen(),
         );
 
       default:

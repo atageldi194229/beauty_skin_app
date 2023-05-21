@@ -2,6 +2,7 @@ import 'package:beauty_skin/presentations/common_blocs/application/application_b
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/language/language_bloc.dart';
+import 'package:beauty_skin/presentations/common_blocs/profile/profile_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CommonBloc {
@@ -10,8 +11,7 @@ class CommonBloc {
   static final languageBloc = LanguageBloc();
   static final cartBloc = CartBloc();
   static final favoriteBloc = FavoriteBloc();
-  // static final orderBloc = OrderBloc();
-  // static final profileBloc = ProfileBloc();
+  static final profileBloc = ProfileBloc();
 
   static final List<BlocProvider> blocProviders = [
     BlocProvider<ApplicationBloc>(
@@ -26,10 +26,9 @@ class CommonBloc {
     BlocProvider<FavoriteBloc>(
       create: (context) => favoriteBloc,
     ),
-
-    // BlocProvider<ProfileBloc>(
-    //   create: (context) => profileBloc,
-    // ),
+    BlocProvider<ProfileBloc>(
+      create: (context) => profileBloc,
+    ),
     // BlocProvider<OrderBloc>(
     //   create: (context) => orderBloc,
     // ),
@@ -41,8 +40,8 @@ class CommonBloc {
     languageBloc.close();
     cartBloc.close();
     favoriteBloc.close();
+    profileBloc.close();
     // orderBloc.close();
-    // profileBloc.close();
   }
 
   /// Singleton factory

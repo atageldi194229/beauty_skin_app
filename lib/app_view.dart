@@ -4,6 +4,7 @@ import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/common_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/language/language_bloc.dart';
+import 'package:beauty_skin/presentations/common_blocs/profile/profile_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/others/my_bottom_nav_bar.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -48,7 +49,7 @@ class AppViewState extends State<AppView> {
 
   void loadData() {
     // Only load data when authenticated
-    // BlocProvider.of<ProfileBloc>(context).add(LoadProfile());
+    BlocProvider.of<ProfileBloc>(context).add(LoadProfile());
     BlocProvider.of<CartBloc>(context).add(LoadCart());
     BlocProvider.of<FavoriteBloc>(context).add(LoadFavorites());
   }
@@ -65,7 +66,7 @@ class AppViewState extends State<AppView> {
         } else {
           // navigateToMainScreen();
           // onNavigate(AppRouter.MAIN);
-          // onNavigate(AppRouter.SPLASH);
+          onNavigate(AppRouter.SPLASH);
         }
       },
       builder: (context, applicationState) {
