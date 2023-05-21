@@ -91,11 +91,13 @@ class _DeliveryAddressModelBottomSheetState
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: kdefaultPadding * 2),
+      padding: const EdgeInsets.symmetric(vertical: kdefaultPadding * 2)
+          .copyWith(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
+            const SizedBox(height: kdefaultPadding),
             _buildInput(),
             const SizedBox(height: kdefaultPadding * 2),
             Row(
@@ -107,6 +109,7 @@ class _DeliveryAddressModelBottomSheetState
                 const SizedBox(width: kdefaultPadding * 2),
               ],
             ),
+            const SizedBox(height: kdefaultPadding * 2),
           ],
         ),
       ),
@@ -129,6 +132,7 @@ class _DeliveryAddressModelBottomSheetState
 
           const SizedBox(height: kdefaultPadding * 2),
 
+          // detail address
           TextFormField(
             controller: detailAddressController,
             keyboardType: TextInputType.text,
