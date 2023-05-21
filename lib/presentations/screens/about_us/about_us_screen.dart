@@ -20,42 +20,44 @@ class AboutUsScreen extends StatelessWidget {
   }
 
   _buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(kdefaultPadding * 2),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "delivery".tr(context),
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: kdefaultPadding * 2),
-          Text(
-            "deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat",
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          const SizedBox(height: kdefaultPadding * 2),
-          Text(
-            "contact_us".tr(context),
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: kdefaultPadding * 2),
-          _buildKeyValueText(
-            context,
-            "phone_number".tr(context),
-            "+99312345678".tr(context),
-          ),
-          _buildKeyValueText(
-            context,
-            "imo".tr(context),
-            "+99312345678".tr(context),
-          ),
-          _buildKeyValueText(
-            context,
-            "instagram".tr(context),
-            "beauty_skin_tm".tr(context),
-          ),
-        ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(kdefaultPadding * 2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "delivery".tr(context),
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: kdefaultPadding * 2),
+            Text(
+              "deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat",
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(height: kdefaultPadding * 2),
+            Text(
+              "contact_us".tr(context),
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: kdefaultPadding * 2),
+            _buildKeyValueText(
+              context,
+              "phone_number".tr(context),
+              "+99312345678".tr(context),
+            ),
+            _buildKeyValueText(
+              context,
+              "imo".tr(context),
+              "+99312345678".tr(context),
+            ),
+            _buildKeyValueText(
+              context,
+              "instagram".tr(context),
+              "beauty_skin_tm".tr(context),
+            ),
+          ],
+        ),
       ),
     );
   }

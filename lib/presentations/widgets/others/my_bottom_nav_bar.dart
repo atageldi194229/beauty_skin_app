@@ -1,7 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:beauty_skin/constants/color_constant.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
+import 'package:beauty_skin/presentations/screens/categories/categories_screen.dart';
 import 'package:beauty_skin/presentations/screens/favorites/favorites_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
 import 'package:beauty_skin/presentations/screens/profile/profile_screen.dart';
@@ -32,6 +34,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
   List<Widget> _buildScreens() {
     return [
       const HomeScreen(),
+      const CategoriesScreen(),
       const CartScreen(),
       const FavoritesScreen(),
       const ProfileScreen(),
@@ -42,7 +45,14 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     return [
       PersistentBottomNavBarItem(
         icon: const Icon(IconlyBold.home),
-        title: "Home",
+        title: "home".tr(context),
+        activeColorPrimary: _activeColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(IconlyBold.category),
+        title: "categories".tr(context),
         activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
@@ -71,21 +81,21 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             return icon;
           },
         ),
-        title: "Cart",
+        title: "cart".tr(context),
         activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(IconlyBold.heart),
-        title: "Favorites",
+        title: "favorites".tr(context),
         activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(IconlyBold.profile),
-        title: "Profile",
+        title: "profile".tr(context),
         activeColorPrimary: _activeColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
