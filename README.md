@@ -12,3 +12,4 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 ## ToDo:
 - [x] categories screen
 - [ ] order screen
+- [ ] connect all api to original server url
