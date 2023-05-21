@@ -9,7 +9,6 @@ Beauty Skin is Flutter app that created by flutter developer. HeHe:)
 flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
-# ToDo:
-
-[] categories screen
-[] order screen
+## ToDo:
+- [x] categories screen
+- [ ] order screen
