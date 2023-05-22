@@ -1,4 +1,5 @@
 import 'package:beauty_skin/constants/constants.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/grid_products.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             return Center(child: Text(state.error));
           }
 
-          return const Center(child: Text("Something went wrong."));
+          return Center(child: Text("something_went_wrong".tr(context)));
         },
       ),
     );
@@ -49,7 +50,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         IconButton(
           icon: const Icon(Icons.clear_all_rounded),
           onPressed: () => _onClearCart(context),
-        )
+        ),
+        const SizedBox(width: kdefaultPadding),
       ],
     );
   }

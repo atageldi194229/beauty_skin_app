@@ -36,8 +36,6 @@ class _BannersViewState extends State<BannerListView> {
             onPageChanged: (index, CarouselPageChangedReason a) {
               _currentIndex = index;
               _dotUpdater.add(index);
-              // setState(() {
-              // });
             },
             height: SizeConfig.screenHeight / 4,
             viewportFraction: 1.0,

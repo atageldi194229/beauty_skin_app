@@ -64,6 +64,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
           onPressed: () => _openDeliveryBottomSheet(context),
           icon: const Icon(Icons.add_outlined),
         ),
+        const SizedBox(width: kdefaultPadding),
       ],
     );
   }

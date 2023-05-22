@@ -113,7 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(
           vertical: kdefaultPadding * 2,
-          horizontal: kdefaultPadding * 3,
+          horizontal: kdefaultPadding * 4,
         ),
         backgroundColor: COLOR_CONST.primaryColor,
       ),
@@ -122,7 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             .read<ProfileBloc>()
             .add(ProfileUpdated(phoneController.text, usernameController.text));
       },
-      child: const Text("save"),
+      child: Text("save".tr(context)),
     );
   }
 
@@ -131,9 +131,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       isDense: true,
       value: Translate.of(context).locale,
       focusColor: Colors.transparent,
-      decoration: const InputDecoration(
-        labelText: "language",
-        prefixIcon: Icon(Icons.language_outlined),
+      decoration: InputDecoration(
+        labelText: "language".tr(context),
+        prefixIcon: const Icon(Icons.language_outlined),
       ),
       items: AppLanguage.supportLanguage.map<DropdownMenuItem<Locale>>((e) {
         return DropdownMenuItem(

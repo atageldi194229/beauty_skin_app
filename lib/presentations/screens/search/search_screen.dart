@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/product/product_model2.dart';
 import 'package:beauty_skin/data/repositories/product_repo.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/widgets/grid_products.dart';
-import 'package:beauty_skin/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -99,7 +99,8 @@ class SearchScreenState extends State<SearchScreen> {
         IconButton(
           icon: const Icon(Icons.close_outlined),
           onPressed: () => searchController.clear(),
-        )
+        ),
+        const SizedBox(width: kdefaultPadding),
       ],
     );
   }

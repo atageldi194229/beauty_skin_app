@@ -63,9 +63,9 @@ class ListCartItemModel extends StatelessWidget {
           );
         }
         if (cartState is CartLoadFailure) {
-          return Center(child: Text("Load failure.\n${cartState.error}"));
+          return Center(child: Text(cartState.error));
         }
-        return const Center(child: Text("Something went wrong."));
+        return Center(child: Text("something_went_wrong".tr(context)));
       },
     );
   }

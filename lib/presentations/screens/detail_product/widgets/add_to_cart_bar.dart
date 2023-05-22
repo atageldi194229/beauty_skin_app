@@ -1,8 +1,8 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
-import 'package:beauty_skin/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';

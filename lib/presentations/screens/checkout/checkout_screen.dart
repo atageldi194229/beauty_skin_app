@@ -34,9 +34,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   void initState() {
     super.initState();
 
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    // });
-
     final profileState = context.read<ProfileBloc>().state;
 
     if (profileState is ProfileLoaded) {

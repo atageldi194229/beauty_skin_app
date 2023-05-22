@@ -58,7 +58,7 @@ class UtilDialog {
     BuildContext context, {
     String? title,
     required Widget content,
-    String confirmButtonText = "Yes",
+    String confirmButtonText = "yes",
   }) {
     return showDialog<bool>(
       context: context,
@@ -84,7 +84,7 @@ class UtilDialog {
                 backgroundColor: COLOR_CONST.primaryColor,
               ),
               child: Text(
-                confirmButtonText,
+                confirmButtonText.tr(context),
                 style: FONT_CONST.REGULAR_WHITE_18,
               ),
             ),

@@ -25,14 +25,12 @@ class CartItemModelCard extends StatelessWidget {
     }
 
     return CustomCardWidget(
-      onTap: () => AppRouter().navigatorKey.currentState?.pushNamed(
-            AppRouter.DETAIL_PRODUCT,
-            arguments: product,
-          ),
-      // margin: EdgeInsets.symmetric(
-      //   vertical: SizeConfig.defaultSize * 0.5,
-      //   horizontal: SizeConfig.defaultSize,
-      // ),
+      onTap: () {
+        AppRouter()
+            .navigatorKey
+            .currentState
+            ?.pushNamed(AppRouter.DETAIL_PRODUCT, arguments: product);
+      },
       padding: EdgeInsets.only(right: SizeConfig.defaultSize),
       child: Row(
         children: [
@@ -48,11 +46,6 @@ class CartItemModelCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(SizeConfig.defaultSize * 0.5),
       child: SizedBox(
-        // color: Colors.amber,
-        // decoration: BoxDecoration(
-        //   border: Border.all(color: Colors.grey),
-        //   borderRadius: kBorderRadius10,
-        // ),
         width: SizeConfig.defaultSize * 13,
         height: SizeConfig.defaultSize * 13,
         child: Image.network(product.imageUrl, fit: BoxFit.fill),
@@ -96,8 +89,6 @@ class CartItemModelCard extends StatelessWidget {
         // Decrease button
         IconButton(
           icon: const Icon(Icons.remove),
-          // svgIcon: ICON_CONST.SUBTRACT,
-          // color: const Color(0xFFF5F6F9),
           iconSize: SizeConfig.defaultSize * 1.2,
           onPressed: cartItem.quantity > 1
               ? () => _onChangeQuantity(context, product, cartItem.quantity - 1)
@@ -116,8 +107,6 @@ class CartItemModelCard extends StatelessWidget {
         // Increase button
         IconButton(
           icon: const Icon(Icons.add),
-          // svgIcon: ICON_CONST.ADD,
-          // color: Colors.amber,
           iconSize: SizeConfig.defaultSize * 1.2,
           onPressed: cartItem.quantity < 10
               ? () => _onChangeQuantity(context, product, cartItem.quantity + 1)

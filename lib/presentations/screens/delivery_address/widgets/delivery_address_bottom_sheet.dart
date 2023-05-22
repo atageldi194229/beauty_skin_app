@@ -1,5 +1,6 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/delivery_address_model.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/profile/profile_bloc.dart';
 import 'package:beauty_skin/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -149,6 +150,9 @@ class _DeliveryAddressModelBottomSheetState
   _buildSubmitButton() {
     return ElevatedButton(
       onPressed: onSubmitAddress,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.lightGreen,
+      ),
       child: Padding(
         padding: const EdgeInsets.all(kdefaultPadding),
         child: Text(
@@ -163,7 +167,7 @@ class _DeliveryAddressModelBottomSheetState
     return ElevatedButton(
       onPressed: onRemoveAddress,
       style: ElevatedButton.styleFrom(
-        backgroundColor: COLOR_CONST.deleteButtonColor,
+        backgroundColor: Colors.redAccent,
       ),
       child: Padding(
         padding: const EdgeInsets.all(kdefaultPadding),

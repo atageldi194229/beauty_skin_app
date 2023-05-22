@@ -27,6 +27,9 @@ class Translate {
   }
 
   String translate(String key) {
+    if (_localizedStrings![key] == null) {
+      debugPrint("\"$key\": \"${_localizedStrings![key]}\",");
+    }
     return _localizedStrings![key] ?? key;
   }
 }

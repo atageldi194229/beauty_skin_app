@@ -30,11 +30,6 @@ class CustomCardWidget extends StatelessWidget {
         child: Container(
           width: width,
           height: height,
-          // margin: margin ??
-          //     EdgeInsets.symmetric(
-          //       vertical: SizeConfig.defaultSize * 0.5,
-          //       horizontal: SizeConfig.defaultSize * 1.5,
-          //     ),
           padding: padding ?? EdgeInsets.all(SizeConfig.defaultPadding),
           decoration: decoration ?? _defaultDecoration(),
           child: child,

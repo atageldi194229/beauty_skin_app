@@ -1,5 +1,5 @@
 import 'package:beauty_skin/constants/constants.dart';
-import 'package:beauty_skin/utils/utils.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter/material.dart';
 
 class AboutUsScreen extends StatelessWidget {

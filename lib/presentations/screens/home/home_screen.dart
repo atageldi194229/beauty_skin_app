@@ -1,10 +1,9 @@
 import 'package:beauty_skin/configs/application.dart';
 import 'package:beauty_skin/configs/router.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/screens/home/widgets/product_list_view.dart';
-// import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:beauty_skin/constants/constants.dart';
 
 import './widgets/banners_view.dart';
@@ -23,9 +22,7 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             Application.title,
-            // style: const TextStyle(color: Colors.black),
           ),
-          // backgroundColor: COLOR_CONST.backgroundColor,
           actions: [
             IconButton(
               onPressed: () {
@@ -38,7 +35,8 @@ class HomeScreen extends StatelessWidget {
                 Icons.search_outlined,
                 // color: Colors.black,
               ),
-            )
+            ),
+            const SizedBox(width: kdefaultPadding),
           ],
         ),
         body: SafeArea(
@@ -100,23 +98,11 @@ class HomeScreen extends StatelessWidget {
                   return Center(child: Text(homeState.error));
                 }
 
-                return const Center(child: Text("Something went wrong."));
+                return Center(child: Text("something_went_wrong".tr(context)));
               },
             ),
           ),
         ),
-        // body: SmartRefresher(
-        //   controller: refreshController,
-        //   onRefresh: () {
-        //     BlocProvider.of<HomeBloc>(context).add(RefreshHome());
-        //   },
-        //   enablePullDown: true,
-        //   enablePullUp: false,
-        //   physics: const BouncingScrollPhysics(),
-        //   header: const MaterialClassicHeader(
-        //     color: COLOR_CONST.primaryColor,
-        //   ),
-        // ),
       ),
     );
   }

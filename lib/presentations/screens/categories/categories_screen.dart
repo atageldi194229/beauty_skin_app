@@ -1,4 +1,4 @@
-import 'package:beauty_skin/utils/utils.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/categories_list_view.dart';
