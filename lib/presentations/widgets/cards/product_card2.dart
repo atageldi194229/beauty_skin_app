@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:beauty_skin/configs/router.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
@@ -12,9 +12,9 @@ import 'package:uuid/uuid.dart';
 class ProductCard2 extends StatefulWidget {
   final String imageUrl;
   final String description;
-  final String price;
+  final double price;
   final VoidCallback? onTap;
-  final ProductModel2 product;
+  final ProductModel product;
   final bool inCart;
 
   const ProductCard2({
@@ -22,7 +22,7 @@ class ProductCard2 extends StatefulWidget {
     required this.imageUrl,
     required this.product,
     this.description = "",
-    this.price = "???",
+    this.price = 0,
     this.onTap,
     this.inCart = false,
   }) : super(key: key);
@@ -98,8 +98,8 @@ class _ProductCard2State extends State<ProductCard2>
 
         cartBloc.add(AddCartItemModel(CartItemModel(
           id: const Uuid().v4(),
-          price: double.parse(widget.price).toInt(),
-          productId: widget.description,
+          price: widget.price,
+          productId: widget.product.id,
           quantity: 1,
           productInfo: widget.product,
         )));
@@ -150,9 +150,7 @@ class _ProductCard2State extends State<ProductCard2>
                       // color: kSoftGreen,
                     ),
                     width: double.infinity,
-                    child: widget.product.imagePath != null
-                        ? Image.network(widget.imageUrl, fit: BoxFit.fill)
-                        : const Center(child: Icon(Icons.close_outlined)),
+                    child: Image.network(widget.imageUrl, fit: BoxFit.fill),
                   ),
                   Positioned(
                     top: 8.0,
@@ -180,7 +178,7 @@ class _ProductCard2State extends State<ProductCard2>
                     ),
                     const SizedBox(height: 8.0),
                     Text(
-                      widget.price,
+                      "${widget.price}",
                       style: const TextStyle(fontSize: 13.0),
                     ),
                   ],
@@ -222,21 +220,5 @@ class _ProductCard2State extends State<ProductCard2>
         ),
       ),
     );
-
-    // return InkWell(
-    //   onTap: () {},
-    //   child: Container(
-    //     height: 30,
-    //     width: 30,
-    //     decoration: const BoxDecoration(
-    //       shape: BoxShape.circle,
-    //       color: COLOR_CONST.primaryColor,
-    //     ),
-    //     child: const Icon(
-    //       Icons.add_outlined,
-    //       color: Colors.white,
-    //     ),
-    //   ),
-    // );
   }
 }

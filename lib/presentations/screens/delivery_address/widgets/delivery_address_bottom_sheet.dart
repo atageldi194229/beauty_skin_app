@@ -82,10 +82,12 @@ class _DeliveryAddressModelBottomSheetState
   }
 
   void onRemoveAddress() {
-    BlocProvider.of<ProfileBloc>(context).add(AddressListChanged(
-      deliveryAddress: deliveryAddress!,
-      method: ListMethod.delete,
-    ));
+    if (deliveryAddress != null) {
+      BlocProvider.of<ProfileBloc>(context).add(AddressListChanged(
+        deliveryAddress: deliveryAddress!,
+        method: ListMethod.delete,
+      ));
+    }
     Navigator.pop(context);
   }
 
@@ -151,7 +153,7 @@ class _DeliveryAddressModelBottomSheetState
     return ElevatedButton(
       onPressed: onSubmitAddress,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: COLOR_CONST.primaryColor,
       ),
       child: Padding(
         padding: const EdgeInsets.all(kdefaultPadding),
@@ -167,13 +169,13 @@ class _DeliveryAddressModelBottomSheetState
     return ElevatedButton(
       onPressed: onRemoveAddress,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(kdefaultPadding),
         child: Text(
           "delete".tr(context),
-          style: FONT_CONST.BOLD_WHITE_18,
+          style: FONT_CONST.BOLD_WHITE_18.copyWith(color: Colors.red),
         ),
       ),
     );

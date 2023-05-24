@@ -1,6 +1,7 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
+import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/cards/product_card2.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GridProducts extends StatelessWidget {
-  final List<ProductModel2> products;
+  final List<ProductModel> products;
   final bool isMore;
   final VoidCallback? getMore;
 
@@ -61,9 +62,9 @@ class GridProducts extends StatelessWidget {
 
             return ProductCard2(
               product: products[index],
-              imageUrl: products[index].imageUrl,
-              description: products[index].productName!,
-              price: products[index].price!,
+              imageUrl: products[index].images.first,
+              description: products[index].nameTranslate(context),
+              price: products[index].price,
               inCart: inCart,
             );
           },

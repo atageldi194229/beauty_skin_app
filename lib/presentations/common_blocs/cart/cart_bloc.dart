@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:beauty_skin/data/models/cart_item_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
+import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/data/repositories/cart_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -91,8 +92,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     double priceOfGoods = 0;
 
     for (int i = 0; i < updatedCart.length; i++) {
-      priceOfGoods += double.parse(updatedCart[i].productInfo!.price!) *
-          updatedCart[i].quantity;
+      priceOfGoods +=
+          updatedCart[i].productInfo!.discountPrice * updatedCart[i].quantity;
     }
 
     emit(CartLoaded(

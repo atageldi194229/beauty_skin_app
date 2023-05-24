@@ -1,6 +1,6 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class AddToCartBarWidget extends StatefulWidget {
     required this.product,
   });
 
-  final ProductModel2 product;
+  final ProductModel product;
 
   @override
   State<AddToCartBarWidget> createState() => _AddToCartBarWidgetState();
@@ -48,14 +48,14 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
       // when we updating existing cart item
       cartBloc.add(UpdateCartItemModel(list.first.copyWith(
         quantity: count,
-        price: count * double.parse(widget.product.price!).toInt(),
+        price: count * widget.product.price,
       )));
     } else {
       // when adding new cart item
       cartBloc.add(AddCartItemModel(CartItemModel(
         id: const Uuid().v4(),
-        price: double.parse(widget.product.price!).toInt(),
-        productId: widget.product.productName!,
+        price: widget.product.price,
+        productId: widget.product.id,
         quantity: count,
         productInfo: widget.product,
       )));

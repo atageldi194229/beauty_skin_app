@@ -1,5 +1,6 @@
 import 'package:beauty_skin/data/models/cart_item_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
+import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/cards/product_card2.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class ProductListView extends StatelessWidget {
     this.onBottom,
   });
 
-  final List<ProductModel2> products;
+  final List<ProductModel> products;
   final VoidCallback? onBottom;
 
   @override
@@ -52,9 +53,9 @@ class ProductListView extends StatelessWidget {
                 padding: const EdgeInsets.only(right: kdefaultPadding),
                 child: ProductCard2(
                   product: products[index],
-                  imageUrl: products[index].imageUrl,
-                  description: products[index].productName!,
-                  price: products[index].price!,
+                  imageUrl: products[index].images.first,
+                  description: products[index].nameTranslate(context),
+                  price: products[index].price,
                   inCart: inCart,
                 ),
               );

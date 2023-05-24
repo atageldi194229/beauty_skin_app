@@ -2,7 +2,7 @@
 
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/data/models/delivery_address_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class Boxes {
@@ -19,31 +19,31 @@ class Boxes {
     await Hive.initFlutter();
 
     // Register hive adapters
-    Hive.registerAdapter(ProductModel2Adapter());
+    Hive.registerAdapter(ProductModelAdapter());
     Hive.registerAdapter(CartItemModelAdapter());
     Hive.registerAdapter(DeliveryAddressModelAdapter());
 
     // Open hive boxes
     await Hive.openBox(_SETTINGS);
-    await Hive.openBox<ProductModel2>(_PRODUCTS2);
+    await Hive.openBox<ProductModel>(_PRODUCTS2);
     await Hive.openBox<CartItemModel>(_CART);
-    await Hive.openBox<ProductModel2>(_FAVORITES);
+    await Hive.openBox<ProductModel>(_FAVORITES);
     await Hive.openBox<DeliveryAddressModel>(_DELIVERY_ADDRESS_LIST);
   }
 
   // static methods to get open hive boxes
   static Box getSettings() => Hive.box(_SETTINGS);
 
-  static Box<ProductModel2> getProducts2() {
-    return Hive.box<ProductModel2>(_PRODUCTS2);
+  static Box<ProductModel> getProducts2() {
+    return Hive.box<ProductModel>(_PRODUCTS2);
   }
 
   static Box<CartItemModel> getCart() {
     return Hive.box<CartItemModel>(_CART);
   }
 
-  static Box<ProductModel2> getFavorites() {
-    return Hive.box<ProductModel2>(_FAVORITES);
+  static Box<ProductModel> getFavorites() {
+    return Hive.box<ProductModel>(_FAVORITES);
   }
 
   static Box<DeliveryAddressModel> getDeliveryAddressList() {

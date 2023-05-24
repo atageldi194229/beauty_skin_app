@@ -1,14 +1,19 @@
 import 'dart:async';
 
 import 'package:beauty_skin/constants/constants.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/category/category_model.dart';
+import 'package:beauty_skin/data/models/category/sub_category_model.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/data/repositories/product_repo.dart';
 import 'package:beauty_skin/localization/translate.dart';
+import 'package:beauty_skin/presentations/screens/search/product_filter.dart';
 import 'package:beauty_skin/presentations/widgets/grid_products.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({super.key, required this.filter});
+
+  final ProductFilter filter;
 
   @override
   State<SearchScreen> createState() => SearchScreenState();
@@ -18,7 +23,7 @@ class SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
   final _productRepo = ProductRepository();
   Timer? _debounce;
-  List<ProductModel2> products = [];
+  List<ProductModel> products = [];
   bool isMore = true;
 
   @override
@@ -26,8 +31,6 @@ class SearchScreenState extends State<SearchScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // fetchProducts();
-
       searchController.addListener(() {
         if (_debounce?.isActive ?? false) _debounce?.cancel();
         _debounce = Timer(const Duration(milliseconds: 500), () {
@@ -41,7 +44,7 @@ class SearchScreenState extends State<SearchScreen> {
     isMore = true;
     int page = (this.products.length / 10).floor() + 1;
 
-    var products = await _productRepo.fetchProducts2(
+    var products = await _productRepo.fetchProducts(
       search: searchController.text,
       page: fromStart ? 1 : page,
     );
@@ -69,12 +72,21 @@ class SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: _buildAppBar(context),
       body: SafeArea(
-        child: GridProducts(
-          products: products,
-          isMore: isMore,
-          getMore: () {
-            fetchProducts();
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildCategory(),
+            Expanded(
+              child: GridProducts(
+                products: products,
+                isMore: isMore,
+                getMore: () {
+                  fetchProducts();
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -102,6 +114,45 @@ class SearchScreenState extends State<SearchScreen> {
         ),
         const SizedBox(width: kdefaultPadding),
       ],
+    );
+  }
+
+  Widget _buildCategory() {
+    CategoryModel? category;
+    SubCategoryModel? subCategory;
+    String text = "";
+    // TextStyle? style = Theme.of(context).textTheme.headlineSmall;
+    TextStyle? style = Theme.of(context).textTheme.titleMedium;
+
+    if (widget.filter.category != null) {
+      category = widget.filter.category;
+    }
+
+    if (widget.filter.subCategory != null) {
+      subCategory = widget.filter.subCategory;
+    }
+
+    if (category != null) {
+      text += category.nameTranslate(context);
+    }
+
+    if (category != null && subCategory != null) {
+      text += " > ";
+    }
+
+    if (subCategory != null) {
+      text += subCategory.nameTranslate(context);
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2)
+          .copyWith(top: kdefaultPadding),
+      width: double.infinity,
+      height: kToolbarHeight,
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(text, style: style),
+      ),
     );
   }
 }

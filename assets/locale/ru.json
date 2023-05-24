@@ -20,5 +20,19 @@
     "about_us": "О нас",
     "delivery_address": "Адрес доставки",
     "confirm": "Подтверждать",
-    "search": "Поиск"
+    "search": "Поиск",
+    "you_need_to_complete_all_fields": "Вам необходимо заполнить все поля",
+    "all_cart_items_will_be_deleted_from_your_cart": "Все товары в корзине будут удалены из вашей корзины",
+    "cartEmpty": "Корзина пуста",
+    "language": "Язык",
+    "save": "Сохранять",
+    "clear_cart": "Очистить корзину",
+    "empty": "Пустой",
+    "name": "Название",
+    "detail_address": "Подробный адрес",
+    "noImage": "Нет изображения",
+    "message_for_you": "Сообщение для вас",
+    "yes": "Да",
+    "no": "Нет",
+    "something_went_wrong": "Что-то пошло не так"
 }

@@ -1,6 +1,7 @@
 import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
+import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/others/custom_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -42,18 +43,18 @@ class CartItemModelCard extends StatelessWidget {
     );
   }
 
-  _buildCartItemModelImage(ProductModel2 product) {
+  _buildCartItemModelImage(ProductModel product) {
     return Padding(
       padding: EdgeInsets.all(SizeConfig.defaultSize * 0.5),
       child: SizedBox(
         width: SizeConfig.defaultSize * 13,
         height: SizeConfig.defaultSize * 13,
-        child: Image.network(product.imageUrl, fit: BoxFit.fill),
+        child: Image.network(product.images.first, fit: BoxFit.fill),
       ),
     );
   }
 
-  _buildCartItemModelInfo(ProductModel2 product, BuildContext context) {
+  _buildCartItemModelInfo(ProductModel product, BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +62,7 @@ class CartItemModelCard extends StatelessWidget {
       children: [
         // Product Name
         Text(
-          "${product.productName}",
+          product.nameTranslate(context),
           // style: FONT_CONST.MEDIUM_DEFAULT_16,
           maxLines: 1,
         ),
@@ -82,7 +83,7 @@ class CartItemModelCard extends StatelessWidget {
     );
   }
 
-  _buildCartItemModelQuantity(ProductModel2 product, BuildContext context) {
+  _buildCartItemModelQuantity(ProductModel product, BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -118,14 +119,14 @@ class CartItemModelCard extends StatelessWidget {
 
   _onChangeQuantity(
     BuildContext context,
-    ProductModel2 product,
+    ProductModel product,
     int newQuantity,
   ) {
     // update cart item
     BlocProvider.of<CartBloc>(context).add(UpdateCartItemModel(
       cartItem.copyWith(
         quantity: newQuantity,
-        price: newQuantity * double.parse(product.price!).toInt(),
+        price: newQuantity * product.price,
       ),
     ));
   }

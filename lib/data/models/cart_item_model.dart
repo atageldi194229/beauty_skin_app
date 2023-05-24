@@ -1,10 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'dart:convert';
 
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
-
-import 'product/product_model2.dart';
 
 part 'cart_item_model.g.dart';
 
@@ -16,20 +15,26 @@ class CartItemModel extends Equatable with HiveObjectMixin {
   final String id;
 
   /// Product Id
-  @HiveField(1)
-  final String productId;
+  @HiveField(8)
+  final int productId;
 
   /// Product quantity in the cart
   @HiveField(2)
   final int quantity;
 
   /// Product price * quantity
-  @HiveField(3)
-  final int price;
+  // @HiveField(3)
+  // final int price;
+
+  @HiveField(7)
+  final double price;
 
   /// Product info, only use in client side
-  @HiveField(5)
-  final ProductModel2? productInfo;
+  // @HiveField(5)
+  // final ProductModel? productInfo;
+
+  @HiveField(6)
+  final ProductModel? productInfo;
 
   CartItemModel({
     required this.id,
@@ -41,10 +46,10 @@ class CartItemModel extends Equatable with HiveObjectMixin {
 
   CartItemModel copyWith({
     String? id,
-    String? productId,
+    int? productId,
     int? quantity,
-    int? price,
-    ProductModel2? productInfo,
+    double? price,
+    ProductModel? productInfo,
   }) {
     return CartItemModel(
       id: id ?? this.id,
@@ -68,11 +73,11 @@ class CartItemModel extends Equatable with HiveObjectMixin {
   factory CartItemModel.fromMap(Map<String, dynamic> map) {
     return CartItemModel(
       id: map['id'] as String,
-      productId: map['productId'] as String,
+      productId: map['productId'] as int,
       quantity: map['quantity'] as int,
-      price: map['price'] as int,
+      price: map['price'] as double,
       productInfo: map['productInfo'] != null
-          ? ProductModel2.fromMap(map['productInfo'] as Map<String, dynamic>)
+          ? ProductModel.fromMap(map['productInfo'] as Map<String, dynamic>)
           : null,
     );
   }

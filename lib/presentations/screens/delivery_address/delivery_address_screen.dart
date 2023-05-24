@@ -50,7 +50,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
             return Center(child: Text(state.error));
           }
 
-          return const Center(child: Text("Something went wrong"));
+          return Center(child: Text("something_went_wrong".tr(context)));
         },
       )),
     );

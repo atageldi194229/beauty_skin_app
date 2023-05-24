@@ -1,5 +1,6 @@
 import 'package:beauty_skin/constants/constants.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
+import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:beauty_skin/presentations/screens/detail_product/widgets/add_to_cart_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import 'widgets/product_images.dart';
 import 'widgets/product_info.dart';
 
 class DetailProductScreen extends StatelessWidget {
-  final ProductModel2 product;
+  final ProductModel product;
 
   const DetailProductScreen({super.key, required this.product});
 
@@ -48,7 +49,7 @@ class DetailProductScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            ProductImagesWidget(images: [product.imageUrl]),
+            ProductImagesWidget(images: product.images),
             ProductInfoWidget(product: product),
             const SizedBox(height: kdefaultPadding),
             AddToCartBarWidget(product: product),
@@ -78,16 +79,18 @@ class DetailProductScreen extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
+            if (product.images.isEmpty) return;
+
             Share.share(
-              product.imageUrl,
-              subject: 'Beauty Skin App: ${product.productName}',
+              product.images.first,
+              subject: 'Beauty Skin App: ${product.nameTranslate(context)}',
             );
           },
           icon: const Icon(Icons.share, color: Colors.black),
         ),
       ],
       title: Text(
-        product.productName!,
+        product.nameTranslate(context),
         style: const TextStyle(
           color: Colors.black,
           fontSize: 18,

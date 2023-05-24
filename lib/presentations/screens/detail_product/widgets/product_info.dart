@@ -1,6 +1,7 @@
 import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/constants/constants.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
+import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:flutter/material.dart';
 
 class ProductInfoWidget extends StatefulWidget {
@@ -9,14 +10,14 @@ class ProductInfoWidget extends StatefulWidget {
     required this.product,
   }) : super(key: key);
 
-  final ProductModel2 product;
+  final ProductModel product;
 
   @override
   ProductInfoWidgetState createState() => ProductInfoWidgetState();
 }
 
 class ProductInfoWidgetState extends State<ProductInfoWidget> {
-  ProductModel2 get product => widget.product;
+  ProductModel get product => widget.product;
 
   // local states
   bool seeMore = false;
@@ -57,7 +58,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2),
       child: Text(
-        product.productName!,
+        product.nameTranslate(context),
         style: Theme.of(context).textTheme.headlineSmall,
       ),
     );
@@ -76,7 +77,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
-              product.price!,
+              "${product.discountPrice}",
               style: const TextStyle(decoration: TextDecoration.lineThrough),
             ),
           ),
@@ -110,7 +111,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            product.productName!,
+            product.contentTranslate(context),
             style: FONT_CONST.REGULAR_DEFAULT_18,
             // maxLines: seeMore ? null : 2,
           ),

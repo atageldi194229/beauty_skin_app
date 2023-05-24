@@ -4,40 +4,81 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-import 'package:beauty_skin/constants/constants.dart';
-
 class BannerModel extends Equatable {
   final int id;
-  final String imagePath;
+  final String? nameTk;
+  final String? nameRu;
+  final String? contentTk;
+  final String? contectRu;
+  final String imgPath;
+  final int views;
+  final String createdAt;
+  final String updatedAt;
 
-  get imageUrl => "$kBaseUrl/$imagePath-big.webp";
+  String get imageUrl => imgPath.replaceAll(
+      RegExp(r'http://216.250.8.137/'), 'http://216.250.8.137:5000/');
 
   const BannerModel({
     required this.id,
-    required this.imagePath,
+    this.nameTk,
+    this.nameRu,
+    this.contentTk,
+    this.contectRu,
+    required this.imgPath,
+    required this.views,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   BannerModel copyWith({
     int? id,
-    String? imagePath,
+    String? nameTk,
+    String? nameRu,
+    String? contentTk,
+    String? contectRu,
+    String? imgPath,
+    int? views,
+    String? createdAt,
+    String? updatedAt,
   }) {
     return BannerModel(
       id: id ?? this.id,
-      imagePath: imagePath ?? this.imagePath,
+      nameTk: nameTk ?? this.nameTk,
+      nameRu: nameRu ?? this.nameRu,
+      contentTk: contentTk ?? this.contentTk,
+      contectRu: contectRu ?? this.contectRu,
+      imgPath: imgPath ?? this.imgPath,
+      views: views ?? this.views,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'imagePath': imagePath,
+      'name_tk': nameTk,
+      'name_ru': nameRu,
+      'content_tk': contentTk,
+      'contect_ru': contectRu,
+      'img_path': imgPath,
+      'views': views,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
     };
   }
 
   factory BannerModel.fromMap(Map<String, dynamic> map) {
     return BannerModel(
       id: map['id'] as int,
-      imagePath: map['destination'] as String,
+      nameTk: map['name_tk'] != null ? map['name_tk'] as String : null,
+      nameRu: map['name_ru'] != null ? map['name_ru'] as String : null,
+      contentTk: map['content_tk'] != null ? map['content_tk'] as String : null,
+      contectRu: map['contect_ru'] != null ? map['contect_ru'] as String : null,
+      imgPath: map['img_path'] as String,
+      views: map['views'] as int,
+      createdAt: map['created_at'] as String,
+      updatedAt: map['updated_at'] as String,
     );
   }
 
@@ -50,5 +91,17 @@ class BannerModel extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [id, imagePath];
+  List<Object?> get props {
+    return [
+      id,
+      nameTk,
+      nameRu,
+      contentTk,
+      contectRu,
+      imgPath,
+      views,
+      createdAt,
+      updatedAt,
+    ];
+  }
 }

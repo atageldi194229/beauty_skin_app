@@ -1,5 +1,14 @@
+import 'package:beauty_skin/configs/router.dart';
 import 'package:beauty_skin/constants/color_constant.dart';
+import 'package:beauty_skin/data/models/category/category_model.dart';
+import 'package:beauty_skin/data/models/category/sub_category_model.dart';
+import 'package:beauty_skin/localization/translate.dart';
+import 'package:beauty_skin/presentations/screens/search/product_filter.dart';
+import 'package:beauty_skin/presentations/widgets/others/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/categories_bloc.dart';
 
 class CategoriesListView extends StatefulWidget {
   const CategoriesListView({super.key});
@@ -9,33 +18,24 @@ class CategoriesListView extends StatefulWidget {
 }
 
 class _CategoriesListViewState extends State<CategoriesListView> {
-  // A list of categories and sub-categories
-  final List<Map<String, dynamic>> categories = [
-    {
-      "name": "Food",
-      "subCategories": ["Pizza", "Burger", "Salad"]
-    },
-    {
-      "name": "Electronics",
-      "subCategories": ["Laptop", "Smartphone", "Tablet"]
-    },
-    {
-      "name": "Books",
-      "subCategories": ["Fiction", "Non-fiction", "Biography"]
-    }
-  ];
-
-// A list of booleans to track the expansion state of each category
-  List<bool> isExpanded = [false, false, false];
-
-// A function to build a list of sub-categories for a given category
-  List<Widget> buildSubCategories(List<String> subCategories) {
+  /// A function to build a list of sub-categories for a given category
+  List<Widget> buildSubCategories(
+      CategoryModel category, List<SubCategoryModel> subCategories) {
     List<Widget> list = [];
-    for (String subCategory in subCategories) {
+    for (var subCategory in subCategories) {
       list.add(
         ListTile(
+          onTap: () {
+            AppRouter().navigatorKey.currentState?.pushNamed(
+                  AppRouter.SEARCH,
+                  arguments: ProductFilter(
+                    category: category,
+                    subCategory: subCategory,
+                  ),
+                );
+          },
           style: ListTileStyle.drawer,
-          title: Text(subCategory),
+          title: Text(subCategory.nameTranslate(context)),
           leading: const VerticalDivider(
             width: 2,
             color: COLOR_CONST.primaryColor,
@@ -48,27 +48,47 @@ class _CategoriesListViewState extends State<CategoriesListView> {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionPanelList.radio(
-      expandedHeaderPadding: EdgeInsets.zero,
-      elevation: 0,
-      dividerColor: Colors.transparent,
-      children: categories.map<ExpansionPanelRadio>((category) {
-        return ExpansionPanelRadio(
-          // backgroundColor: Colors.transparent,
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              style: ListTileStyle.drawer,
-              title: Text(category["name"]),
-            );
-          },
-          body: Column(
-            children: buildSubCategories(
-              category["subCategories"],
-            ),
-          ),
-          value: category["name"],
-        );
-      }).toList(),
+    return BlocBuilder<CategoriesBloc, CategoriesState>(
+      builder: (context, state) {
+        if (state is CategoriesLoading) {
+          return const Loading();
+        }
+
+        if (state is CategoriesLoaded) {
+          final categories = state.categoriesResponse.categories;
+          final subCategories = state.categoriesResponse.subCategories;
+
+          return ExpansionPanelList.radio(
+            expandedHeaderPadding: EdgeInsets.zero,
+            elevation: 0,
+            dividerColor: Colors.transparent,
+            children: categories.map<ExpansionPanelRadio>((category) {
+              return ExpansionPanelRadio(
+                // backgroundColor: Colors.transparent,
+                headerBuilder: (BuildContext context, bool isExpanded) {
+                  return ListTile(
+                    style: ListTileStyle.drawer,
+                    title: Text(category.nameTranslate(context)),
+                  );
+                },
+                body: Column(
+                  children: buildSubCategories(
+                    category,
+                    subCategories.where((e) => e.catId == category.id).toList(),
+                  ),
+                ),
+                value: category.id,
+              );
+            }).toList(),
+          );
+        }
+
+        if (state is CategoriesLoadFailure) {
+          return Center(child: Text(state.error));
+        }
+
+        return Center(child: Text('something_went_wrong'.tr(context)));
+      },
     );
   }
 }

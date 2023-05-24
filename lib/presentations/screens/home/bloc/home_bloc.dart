@@ -1,6 +1,7 @@
 import 'package:beauty_skin/data/models/banner_model.dart';
-import 'package:beauty_skin/data/models/category_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/category/category_model.dart';
+import 'package:beauty_skin/data/models/category/sub_category_model.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/data/repositories/banner_repo.dart';
 import 'package:beauty_skin/data/repositories/category_repo.dart';
 import 'package:beauty_skin/data/repositories/product_repo.dart';
@@ -27,25 +28,30 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _mapLoadHomeToState(HomeEvent event, Emitter<HomeState> emit) async {
     try {
-      late List<ProductModel2> popularProducts;
+      late List<ProductModel> popularProducts;
       late List<BannerModel> banners;
       late List<CategoryModel> categories;
+      late List<SubCategoryModel> subCategories;
 
       await Future.wait([
-        _productRepository.fetchProducts2().then(
+        _productRepository.fetchProducts().then(
               (value) => popularProducts = value,
             ),
-        _bannerRepository.fetchBanners2().then(
+        _bannerRepository.fetchBanners().then(
               (value) => banners = value,
             ),
-        _categoryRepository.fetchCategories2().then(
-              (value) => categories = value,
-            ),
+        _categoryRepository.fetchCategories().then(
+          (r) {
+            categories = r.categories;
+            subCategories = r.subCategories;
+          },
+        ),
       ]);
 
       HomeResponse homeResponse = HomeResponse(
         banners: banners,
         categories: categories,
+        subCategories: subCategories,
         popularProducts: popularProducts,
         discountProducts: popularProducts,
       );
@@ -60,12 +66,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 class HomeResponse {
   final List<BannerModel> banners;
   final List<CategoryModel> categories;
-  final List<ProductModel2> popularProducts;
-  final List<ProductModel2> discountProducts;
+  final List<SubCategoryModel> subCategories;
+  final List<ProductModel> popularProducts;
+  final List<ProductModel> discountProducts;
 
   HomeResponse({
     required this.banners,
     required this.categories,
+    required this.subCategories,
     required this.popularProducts,
     required this.discountProducts,
   });

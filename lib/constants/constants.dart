@@ -10,7 +10,7 @@ const double kdefaultPadding = 8.0;
 const Color kGreyColor = Color.fromARGB(255, 234, 234, 234);
 
 // URL
-const String kBaseUrl = "https://sharafyabi.com";
+const String kBaseUrl = "http://216.250.8.137:5000";
 
 // BorderRadius
 const BorderRadius kBorderRadius5 = BorderRadius.all(Radius.circular(5));

@@ -31,7 +31,8 @@
     "name": "Ady",
     "detail_address": "Jikme-jik salgy",
     "noImage": "Surat ýok",
-    "message_for_you": "",
+    "message_for_you": "Siz üçin habar",
     "yes": "Howa",
-    "no": "Ýok"
+    "no": "Ýok",
+    "something_went_wrong": "Bir ýalňyşlyk ýüze çykdy"
 }

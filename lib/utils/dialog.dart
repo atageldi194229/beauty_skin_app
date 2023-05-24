@@ -1,5 +1,4 @@
-import 'package:beauty_skin/constants/color_constant.dart';
-import 'package:beauty_skin/constants/font_constant.dart';
+import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/presentations/widgets/others/loading.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +57,7 @@ class UtilDialog {
     BuildContext context, {
     String? title,
     required Widget content,
-    String confirmButtonText = "yes",
+    String confirmButtonText = "Yes",
   }) {
     return showDialog<bool>(
       context: context,
@@ -72,19 +71,29 @@ class UtilDialog {
           content: content,
           actions: <Widget>[
             TextButton(
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kdefaultPadding * 4,
+                  vertical: kdefaultPadding * 2,
+                ),
+              ),
+              onPressed: () => Navigator.pop(context, false),
               child: Text(
                 "close".tr(context),
                 style: FONT_CONST.MEDIUM_PRIMARY_18,
               ),
-              onPressed: () => Navigator.pop(context, false),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context, true),
               style: TextButton.styleFrom(
                 backgroundColor: COLOR_CONST.primaryColor,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kdefaultPadding * 4,
+                  vertical: kdefaultPadding * 2,
+                ),
               ),
               child: Text(
-                confirmButtonText.tr(context),
+                confirmButtonText,
                 style: FONT_CONST.REGULAR_WHITE_18,
               ),
             ),

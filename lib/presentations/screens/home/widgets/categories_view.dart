@@ -1,4 +1,4 @@
-import 'package:beauty_skin/data/models/category_model.dart';
+import 'package:beauty_skin/data/models/category/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/localization/translate.dart';
@@ -85,7 +85,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 horizontal: kdefaultPadding * 2,
               ),
               child: Text(
-                category.name,
+                category.nameTranslate(context),
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),

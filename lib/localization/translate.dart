@@ -32,6 +32,8 @@ class Translate {
     }
     return _localizedStrings![key] ?? key;
   }
+
+  bool get isRussian => locale.languageCode == 'ru';
 }
 
 extension TranslateString on String {

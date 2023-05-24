@@ -45,7 +45,7 @@ class RemoveCartItemModel extends CartEvent {
 
 /// When user swipes to remove cart item => remove cart item event
 class RemoveCartItemModelByProduct extends CartEvent {
-  final ProductModel2 product;
+  final ProductModel product;
 
   const RemoveCartItemModelByProduct(this.product);
 

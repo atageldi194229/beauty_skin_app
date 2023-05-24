@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:beauty_skin/data/boxes.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 
 class CartRepository {
   /// Cart stream
@@ -24,7 +24,7 @@ class CartRepository {
 
   /// Remove cart item by cartItemId
   /// [cartItem.id] is ID of cart item
-  Future<void> removeCartItemModelByProductId(ProductModel2 product) async {
+  Future<void> removeCartItemModelByProductId(ProductModel product) async {
     return Boxes.getCart()
         .values
         .firstWhere((e) => e.productInfo == product)

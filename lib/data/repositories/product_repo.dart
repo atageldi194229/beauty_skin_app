@@ -1,29 +1,17 @@
 import 'package:beauty_skin/data/api/product_api.dart';
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 
 class ProductRepository {
-  // Get all Products 2
-  Future<List<ProductModel2>> fetchProducts2({
+  // Get all Products
+  Future<List<ProductModel>> fetchProducts({
     int page = 1,
     String search = "",
   }) async {
-    final apiLoader = ProductApi.getAll2();
+    final response = await ProductApi.getAll();
 
-    final response = await apiLoader.load();
-
-    return (response.data["rows"]["products"] as Iterable)
-        .map<ProductModel2>((e) => ProductModel2.fromMap(e))
+    return (response.data["data"] as Iterable)
+        .map<ProductModel>((e) => ProductModel.fromMap(e))
         .toList();
-  }
-
-  Future<List<ProductModel2>> fetchProducts2Fake() async {
-    return Future.delayed(
-      const Duration(seconds: 1),
-      () => [
-        ProductModel2(id: 1, price: "10", productName: "aaaaa"),
-        ProductModel2(id: 2, price: "30", productName: "abb1n"),
-      ],
-    );
   }
 
   ///Singleton factory

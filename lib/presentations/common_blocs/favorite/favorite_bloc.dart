@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/data/repositories/favorites_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 part 'favorite_event.dart';
 part 'favorite_state.dart';
 
-typedef FavoriteItemModel = ProductModel2;
+typedef FavoriteItemModel = ProductModel;
 
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   final FavoritesRepository _favoriteRepository = FavoritesRepository();

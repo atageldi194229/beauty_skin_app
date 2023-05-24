@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:beauty_skin/data/models/product/product_model2.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/data/repositories/product_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -30,7 +30,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async {
     emit(Searching());
     try {
-      final products = await _productRepo.fetchProducts2(
+      final products = await _productRepo.fetchProducts(
         search: event.search,
         page: event.page,
       );

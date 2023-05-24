@@ -10,7 +10,7 @@ abstract class SearchState extends Equatable {
 class Searching extends SearchState {}
 
 class ResultsLoaded extends SearchState {
-  final List<ProductModel2> results;
+  final List<ProductModel> results;
 
   const ResultsLoaded(this.results);
 
