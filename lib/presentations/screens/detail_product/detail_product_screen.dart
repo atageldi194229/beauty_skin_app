@@ -1,6 +1,5 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
-import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:beauty_skin/presentations/screens/detail_product/widgets/add_to_cart_bar.dart';
 import 'package:flutter/material.dart';

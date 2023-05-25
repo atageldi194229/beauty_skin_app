@@ -1,7 +1,6 @@
 import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
-import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:flutter/material.dart';
 
 class ProductInfoWidget extends StatefulWidget {
@@ -71,13 +70,13 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "${product.price} TMT",
+            "${product.discountPrice} TMT",
             style: FONT_CONST.BOLD_PRIMARY_24,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
-              "${product.discountPrice}",
+              "${product.price}",
               style: const TextStyle(decoration: TextDecoration.lineThrough),
             ),
           ),

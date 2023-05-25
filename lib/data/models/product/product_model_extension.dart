@@ -1,6 +1,4 @@
-import 'package:beauty_skin/localization/translate.dart';
-
-import 'product_model.dart';
+part of 'product_model.dart';
 
 extension ProductModelExtension on ProductModel {
   String nameTranslate(context) {

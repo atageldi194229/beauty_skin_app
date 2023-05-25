@@ -3,8 +3,10 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
+import 'package:beauty_skin/localization/translate.dart';
 
 part 'product_model.g.dart';
+part 'product_model_extension.dart';
 
 @HiveType(typeId: 4)
 class ProductModel extends Equatable with HiveObjectMixin {

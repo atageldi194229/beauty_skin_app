@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
-import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/data/repositories/cart_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';

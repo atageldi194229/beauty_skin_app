@@ -1,7 +1,6 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
-import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/cards/product_card2.dart';
@@ -62,9 +61,6 @@ class GridProducts extends StatelessWidget {
 
             return ProductCard2(
               product: products[index],
-              imageUrl: products[index].images.first,
-              description: products[index].nameTranslate(context),
-              price: products[index].price,
               inCart: inCart,
             );
           },

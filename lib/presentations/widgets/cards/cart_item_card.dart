@@ -1,7 +1,6 @@
 import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
-import 'package:beauty_skin/data/models/product/product_model_extension.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/others/custom_card_widget.dart';
 import 'package:flutter/material.dart';

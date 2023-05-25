@@ -10,19 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 
 class ProductCard2 extends StatefulWidget {
-  final String imageUrl;
-  final String description;
-  final double price;
   final VoidCallback? onTap;
   final ProductModel product;
   final bool inCart;
 
   const ProductCard2({
     Key? key,
-    required this.imageUrl,
     required this.product,
-    this.description = "",
-    this.price = 0,
     this.onTap,
     this.inCart = false,
   }) : super(key: key);
@@ -98,7 +92,7 @@ class _ProductCard2State extends State<ProductCard2>
 
         cartBloc.add(AddCartItemModel(CartItemModel(
           id: const Uuid().v4(),
-          price: widget.price,
+          price: widget.product.discountPrice,
           productId: widget.product.id,
           quantity: 1,
           productInfo: widget.product,
@@ -150,7 +144,10 @@ class _ProductCard2State extends State<ProductCard2>
                       // color: kSoftGreen,
                     ),
                     width: double.infinity,
-                    child: Image.network(widget.imageUrl, fit: BoxFit.fill),
+                    child: Image.network(
+                      widget.product.images.first,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                   Positioned(
                     top: 8.0,
@@ -169,17 +166,32 @@ class _ProductCard2State extends State<ProductCard2>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.description,
+                      widget.product.nameTranslate(context),
                       style: const TextStyle(
-                        fontSize: 11.0,
+                        fontSize: 16.0,
                         overflow: TextOverflow.ellipsis,
                       ),
                       maxLines: 2,
                     ),
                     const SizedBox(height: 8.0),
-                    Text(
-                      "${widget.price}",
-                      style: const TextStyle(fontSize: 13.0),
+                    Row(
+                      children: [
+                        Text(
+                          "${widget.product.discountPrice}",
+                          style: const TextStyle(
+                            fontSize: 16.0,
+                            color: COLOR_CONST.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(width: kdefaultPadding),
+                        Text(
+                          "${widget.product.price}",
+                          style: const TextStyle(
+                            fontSize: 12.0,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
