@@ -95,15 +95,19 @@ class HomeScreen extends StatelessWidget {
                 }
 
                 if (homeState is HomeLoadFailure) {
-                  return Center(child: Text(homeState.error));
+                  return _buildCenterText(homeState.error);
                 }
 
-                return Center(child: Text("something_went_wrong".tr(context)));
+                return _buildCenterText("something_went_wrong".tr(context));
               },
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildCenterText(String text) {
+    return ListView(children: [Center(child: Text(text))]);
   }
 }

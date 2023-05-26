@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:beauty_skin/constants/constants.dart';
+import 'package:beauty_skin/data/api/product/product_api.dart';
 import 'package:beauty_skin/data/models/category/category_model.dart';
 import 'package:beauty_skin/data/models/category/sub_category_model.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
@@ -25,6 +26,7 @@ class SearchScreenState extends State<SearchScreen> {
   Timer? _debounce;
   List<ProductModel> products = [];
   bool isMore = true;
+  int page = 0;
 
   @override
   void initState() {
@@ -34,29 +36,34 @@ class SearchScreenState extends State<SearchScreen> {
       searchController.addListener(() {
         if (_debounce?.isActive ?? false) _debounce?.cancel();
         _debounce = Timer(const Duration(milliseconds: 500), () {
-          fetchProducts(true);
+          clearResults();
+          fetchProducts();
         });
       });
     });
   }
 
-  fetchProducts([bool fromStart = false]) async {
+  clearResults() {
+    setState(() {
+      page = 0;
+      products.clear();
+    });
+  }
+
+  fetchProducts() async {
     isMore = true;
-    int page = (this.products.length / 10).floor() + 1;
 
-    var products = await _productRepo.fetchProducts(
+    var products = await _productRepo.fetchProducts(ProductQueryParameters(
+      page: ++page,
       search: searchController.text,
-      page: fromStart ? 1 : page,
-    );
+      categoryId: widget.filter.category?.id,
+      subCategoryId: widget.filter.subCategory?.id,
+    ));
 
-    if (fromStart) {
-      setState(() => this.products = products);
+    if (products.isNotEmpty) {
+      setState(() => this.products = [...this.products, ...products]);
     } else {
-      if (products.isEmpty) {
-        setState(() => isMore = false);
-      } else {
-        setState(() => this.products = [...this.products, ...products]);
-      }
+      setState(() => isMore = false);
     }
   }
 
@@ -76,7 +83,7 @@ class SearchScreenState extends State<SearchScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildCategory(),
+            _buildCategoryTile(),
             Expanded(
               child: GridProducts(
                 products: products,
@@ -117,7 +124,7 @@ class SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget _buildCategory() {
+  Widget _buildCategoryTile() {
     CategoryModel? category;
     SubCategoryModel? subCategory;
     String text = "";
@@ -144,15 +151,27 @@ class SearchScreenState extends State<SearchScreen> {
       text += subCategory.nameTranslate(context);
     }
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2)
-          .copyWith(top: kdefaultPadding),
-      width: double.infinity,
-      height: kToolbarHeight,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Text(text, style: style),
+    if (text == "") {
+      return Container();
+    }
+
+    return Material(
+      elevation: 1,
+      child: ListTile(
+        style: ListTileStyle.drawer,
+        title: Text(text, style: style),
       ),
     );
+
+    // return Container(
+    //   padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2)
+    //       .copyWith(top: kdefaultPadding),
+    //   width: double.infinity,
+    //   height: kToolbarHeight,
+    //   child: Align(
+    //     alignment: Alignment.centerLeft,
+    //     child: Text(text, style: style),
+    //   ),
+    // );
   }
 }

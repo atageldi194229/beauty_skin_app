@@ -1,4 +1,6 @@
+import 'package:beauty_skin/configs/router.dart';
 import 'package:beauty_skin/data/models/category/category_model.dart';
+import 'package:beauty_skin/presentations/screens/search/product_filter.dart';
 import 'package:flutter/material.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/localization/translate.dart';
@@ -72,7 +74,12 @@ class _CategoriesViewState extends State<CategoriesView> {
       margin: cardMargin,
       child: InkWell(
         borderRadius: kBorderRadius5,
-        onTap: () {},
+        onTap: () {
+          AppRouter().navigatorKey.currentState?.pushNamed(
+                AppRouter.SEARCH,
+                arguments: ProductFilter(category: category),
+              );
+        },
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: kBorderRadius5,

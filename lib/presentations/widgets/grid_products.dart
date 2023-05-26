@@ -26,6 +26,7 @@ class GridProducts extends StatelessWidget {
         child: Text("empty".tr(context)),
       );
     }
+
     return BlocBuilder<CartBloc, CartState>(
       buildWhen: (previous, current) => current is CartLoaded,
       builder: (context, cartState) {

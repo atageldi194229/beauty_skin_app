@@ -10,30 +10,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/categories_bloc.dart';
 
-class CategoriesListView extends StatefulWidget {
+class CategoriesListView extends StatelessWidget {
   const CategoriesListView({super.key});
 
-  @override
-  State<CategoriesListView> createState() => _CategoriesListViewState();
-}
-
-class _CategoriesListViewState extends State<CategoriesListView> {
   /// A function to build a list of sub-categories for a given category
-  List<Widget> buildSubCategories(
-      CategoryModel category, List<SubCategoryModel> subCategories) {
+  List<Widget> _buildSubCategories(
+    BuildContext context,
+    CategoryModel category,
+    List<SubCategoryModel> subCategories,
+  ) {
     List<Widget> list = [];
     for (var subCategory in subCategories) {
       list.add(
         ListTile(
-          onTap: () {
-            AppRouter().navigatorKey.currentState?.pushNamed(
-                  AppRouter.SEARCH,
-                  arguments: ProductFilter(
-                    category: category,
-                    subCategory: subCategory,
-                  ),
-                );
-          },
+          onTap: () => _navigateToProducts(category, subCategory),
           style: ListTileStyle.drawer,
           title: Text(subCategory.nameTranslate(context)),
           leading: const VerticalDivider(
@@ -67,12 +57,14 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                 // backgroundColor: Colors.transparent,
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return ListTile(
+                    onTap: () => _navigateToProducts(category, null),
                     style: ListTileStyle.drawer,
                     title: Text(category.nameTranslate(context)),
                   );
                 },
                 body: Column(
-                  children: buildSubCategories(
+                  children: _buildSubCategories(
+                    context,
                     category,
                     subCategories.where((e) => e.catId == category.id).toList(),
                   ),
@@ -90,5 +82,15 @@ class _CategoriesListViewState extends State<CategoriesListView> {
         return Center(child: Text('something_went_wrong'.tr(context)));
       },
     );
+  }
+
+  _navigateToProducts(CategoryModel? category, SubCategoryModel? subCategory) {
+    AppRouter().navigatorKey.currentState?.pushNamed(
+          AppRouter.SEARCH,
+          arguments: ProductFilter(
+            category: category,
+            subCategory: subCategory,
+          ),
+        );
   }
 }
