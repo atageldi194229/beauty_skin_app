@@ -1,7 +1,7 @@
 import 'package:beauty_skin/configs/application.dart';
 import 'package:beauty_skin/configs/router.dart';
 import 'package:beauty_skin/localization/translate.dart';
-import 'package:beauty_skin/presentations/screens/home/widgets/product_list_view.dart';
+import 'package:beauty_skin/presentations/screens/home/widgets/category_product_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:beauty_skin/constants/constants.dart';
@@ -15,8 +15,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeBloc = HomeBloc();
+
     return BlocProvider(
-      create: (_) => HomeBloc()..add(LoadHome()),
+      create: (_) => homeBloc..add(LoadHome()),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -42,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         body: SafeArea(
           child: RefreshIndicator(
             onRefresh: () async {
-              BlocProvider.of<HomeBloc>(context).add(RefreshHome());
+              homeBloc.add(RefreshHome());
             },
             child: BlocBuilder<HomeBloc, HomeState>(
               builder: (_, homeState) {
@@ -63,28 +65,20 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: kdefaultPadding * 2),
                       // ProductsView(products: 20),
 
-                      ///
-                      /// Popular products
-                      ///
-                      ProductListView(
-                        products: homeResponse.popularProducts,
-                      ),
-                      const SizedBox(height: kdefaultPadding * 2),
+                      ...homeResponse.subCategoryIds
+                          .map<Widget>((subCategoryId) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CategoryProductListView(
+                              subCategory: homeResponse.subCategories
+                                  .firstWhere((e) => e.id == subCategoryId),
+                            ),
+                            const SizedBox(height: kdefaultPadding * 2),
+                          ],
+                        );
+                      }),
 
-                      ///
-                      /// Discount products
-                      ///
-                      ProductListView(
-                        products: homeResponse.discountProducts,
-                      ),
-                      const SizedBox(height: kdefaultPadding * 2),
-
-                      ///
-                      /// Discount products
-                      ///
-                      ProductListView(
-                        products: homeResponse.discountProducts,
-                      ),
                       const SizedBox(height: kdefaultPadding * 5),
                     ],
                   );

@@ -27,7 +27,7 @@ class ProductImagesWidgetState extends State<ProductImagesWidget> {
       children: [
         /// Product image preview
         SizedBox(
-          height: SizeConfig.defaultSize * 23,
+          height: SizeConfig.defaultSize * 30,
           child: PageView.builder(
             itemCount: images.length,
             itemBuilder: (context, index) {
@@ -39,7 +39,7 @@ class ProductImagesWidgetState extends State<ProductImagesWidget> {
                   //   arguments: images[index],
                   // );
                 },
-                child: Image.network(images[index]),
+                child: Image.network(images[index], fit: BoxFit.contain),
               );
             },
             onPageChanged: onPageChanged,

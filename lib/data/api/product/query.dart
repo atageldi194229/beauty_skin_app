@@ -8,7 +8,7 @@ class ProductQueryParameters {
 
   ProductQueryParameters({
     required this.page,
-    required this.search,
+    this.search,
     this.categoryId,
     this.subCategoryId,
   });
@@ -30,9 +30,9 @@ class ProductQueryParameters {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'page': page,
-      if (search != null) 'search': search,
-      if (categoryId != null) 'categoryId': categoryId,
-      if (subCategoryId != null) 'subCategoryId': subCategoryId,
+      'search': search,
+      'categoryId': categoryId,
+      'subCategoryId': subCategoryId,
     };
   }
 

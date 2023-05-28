@@ -105,7 +105,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
 
   _buildDescription() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
