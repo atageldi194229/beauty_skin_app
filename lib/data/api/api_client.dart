@@ -4,7 +4,9 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final localhostOptions = BaseOptions(
   baseUrl: kBaseUrl,
-  // connectTimeout: 5000,
+  connectTimeout: const Duration(milliseconds: 5000),
+  receiveTimeout: const Duration(milliseconds: 5000),
+  sendTimeout: const Duration(milliseconds: 5000),
   // receiveTimeout: 3000,
   // sendTimeout: 3000,
 );
