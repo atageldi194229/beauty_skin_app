@@ -72,9 +72,7 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
       if (state is CartLoaded) {
         if (state.cart.any((e) => e.productInfo == widget.product)) {
           setState(() {
-            count = state.cart
-                .firstWhere((e) => e.productInfo == widget.product)
-                .quantity;
+            count = state.cart.firstWhere((e) => e.productInfo == widget.product).quantity;
           });
         }
       }
@@ -84,7 +82,7 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(kdefaultPadding * 2),
+      padding: const EdgeInsets.all(kDefaultPadding * 2),
       color: Colors.white,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,14 +105,14 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
           "price".tr(context),
           style: FONT_CONST.BOLD_DEFAULT_18.copyWith(color: Colors.grey),
         ),
-        const SizedBox(height: kdefaultPadding * 2),
+        const SizedBox(height: kDefaultPadding * 2),
         Text(
           "${widget.product.price} TMT",
           style: FONT_CONST.REGULAR_PRIMARY.copyWith(
             decoration: TextDecoration.lineThrough,
           ),
         ),
-        const SizedBox(height: kdefaultPadding),
+        const SizedBox(height: kDefaultPadding),
         Text(
           "${widget.product.discountPrice} TMT",
           style: FONT_CONST.REGULAR_PRIMARY_16,
@@ -133,10 +131,10 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
           "count".tr(context),
           style: FONT_CONST.BOLD_DEFAULT_18.copyWith(color: Colors.grey),
         ),
-        const SizedBox(height: kdefaultPadding * 2),
+        const SizedBox(height: kDefaultPadding * 2),
         Container(
-          width: kdefaultPadding * 15,
-          padding: const EdgeInsets.all(kdefaultPadding / 2),
+          width: kDefaultPadding * 15,
+          padding: const EdgeInsets.all(kDefaultPadding / 2),
           // decoration: BoxDecoration(
           //   border: Border.all(color: COLOR_CONST.primaryColor, width: 1),
           //   borderRadius: kBorderRadius10,
@@ -169,7 +167,7 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(kdefaultPadding / 2),
+        padding: const EdgeInsets.all(kDefaultPadding / 2),
         decoration: BoxDecoration(
           border: Border.all(color: COLOR_CONST.primaryColor, width: 1),
           borderRadius: kBorderRadius10,

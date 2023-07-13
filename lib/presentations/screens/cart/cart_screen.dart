@@ -26,7 +26,7 @@ class CartScreen extends StatelessWidget {
           icon: const Icon(Icons.clear_all_rounded),
           onPressed: () => _onClearCart(context),
         ),
-        const SizedBox(width: kdefaultPadding),
+        const SizedBox(width: kDefaultPadding),
       ],
     );
   }

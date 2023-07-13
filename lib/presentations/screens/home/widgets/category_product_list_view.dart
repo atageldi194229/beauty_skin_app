@@ -19,8 +19,7 @@ class CategoryProductListView extends StatefulWidget {
   final SubCategoryModel subCategory;
 
   @override
-  State<CategoryProductListView> createState() =>
-      _CategoryProductListViewState();
+  State<CategoryProductListView> createState() => _CategoryProductListViewState();
 }
 
 class _CategoryProductListViewState extends State<CategoryProductListView> {
@@ -85,10 +84,7 @@ class _CategoryProductListViewState extends State<CategoryProductListView> {
 
   // A function that sends a GET request to the API and fetches more products when scrolling to the end of the list view
   void _loadMore() async {
-    if (_hasNextPage &&
-        !_isFirstLoadRunning &&
-        !_isLoadMoreRunning &&
-        _controller.position.extentAfter < 500) {
+    if (_hasNextPage && !_isFirstLoadRunning && !_isLoadMoreRunning && _controller.position.extentAfter < 500) {
       setState(() {
         _isLoadMoreRunning = true;
       });
@@ -139,13 +135,10 @@ class _CategoryProductListViewState extends State<CategoryProductListView> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: const EdgeInsets.all(kdefaultPadding * 2),
+          padding: const EdgeInsets.all(kDefaultPadding * 2),
           child: Text(
             widget.subCategory.nameTranslate(context),
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
         SizedBox(
@@ -160,7 +153,7 @@ class _CategoryProductListViewState extends State<CategoryProductListView> {
 
               return ListView.builder(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: kdefaultPadding * 2,
+                  horizontal: kDefaultPadding * 2,
                 ),
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
@@ -179,7 +172,7 @@ class _CategoryProductListViewState extends State<CategoryProductListView> {
                   return Container(
                     width: cardWidth,
                     height: cardHeight,
-                    padding: const EdgeInsets.only(right: kdefaultPadding),
+                    padding: const EdgeInsets.only(right: kDefaultPadding),
                     child: ProductCard2(
                       product: products[index],
                       inCart: inCart,

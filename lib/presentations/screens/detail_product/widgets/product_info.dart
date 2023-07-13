@@ -27,26 +27,26 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: SizeConfig.defaultPadding),
-      padding: const EdgeInsets.symmetric(vertical: kdefaultPadding * 2),
+      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildProductName(),
-          const SizedBox(height: kdefaultPadding),
+          const SizedBox(height: kDefaultPadding),
           _buildPrice(),
           SizedBox(height: SizeConfig.defaultSize * 2),
           // Row(
           //   children: [
           //     SizedBox(width: SizeConfig.defaultPadding),
           //     _buildSoldQuantity(),
-          //     const SizedBox(width: kdefaultPadding),
+          //     const SizedBox(width: kDefaultPadding),
           //     Container(height: 15, width: 2, color: Colors.black12),
-          //     const SizedBox(width: kdefaultPadding),
+          //     const SizedBox(width: kDefaultPadding),
           //   ],
           // ),
           const Divider(height: 1),
-          const SizedBox(height: kdefaultPadding * 2),
+          const SizedBox(height: kDefaultPadding * 2),
           _buildDescription(),
         ],
       ),
@@ -55,7 +55,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
 
   _buildProductName() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2),
+      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
       child: Text(
         product.nameTranslate(context),
         style: Theme.of(context).textTheme.headlineSmall,
@@ -105,7 +105,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
 
   _buildDescription() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2),
+      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -114,7 +114,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
             style: FONT_CONST.REGULAR_DEFAULT_18,
             // maxLines: seeMore ? null : 2,
           ),
-          const SizedBox(height: kdefaultPadding * 2),
+          const SizedBox(height: kDefaultPadding * 2),
 
           // See more button
           // Center(
@@ -134,9 +134,7 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
 class GradientButtonFb1 extends StatelessWidget {
   final String text;
   final Function() onPressed;
-  const GradientButtonFb1(
-      {required this.text, required this.onPressed, Key? key})
-      : super(key: key);
+  const GradientButtonFb1({required this.text, required this.onPressed, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

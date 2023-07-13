@@ -1,8 +1,11 @@
 import 'package:beauty_skin/configs/router.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/delivery_address_model.dart';
+import 'package:beauty_skin/data/models/order_model.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
+import 'package:beauty_skin/presentations/common_blocs/order/order_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/profile/profile_bloc.dart';
 import 'package:beauty_skin/presentations/screens/delivery_address/delivery_address_screen.dart';
 import 'package:beauty_skin/presentations/widgets/form/tappable_form_field.dart';
@@ -24,11 +27,12 @@ class CheckoutScreen extends StatefulWidget {
 class _CheckoutScreenState extends State<CheckoutScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController additionalInfoController =
-      TextEditingController();
+  final TextEditingController additionalInfoController = TextEditingController();
 
   DeliveryAddressModel? deliveryAddress;
   String? deliveryAddressErrorText;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -49,7 +53,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(kdefaultPadding * 4),
+            padding: const EdgeInsets.all(kDefaultPadding * 4),
             child: _buildForm(context),
           ),
         ),
@@ -59,25 +63,26 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   Widget _buildForm(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           // phone_number
           TextFieldPhoneNumber(controller: phoneController),
-          const SizedBox(height: kdefaultPadding),
+          const SizedBox(height: kDefaultPadding),
 
           // username
           TextFieldUsername(controller: usernameController),
-          const SizedBox(height: kdefaultPadding * 4),
+          const SizedBox(height: kDefaultPadding * 4),
 
           // delivery_addresses
           _buildDeliveryAddressField(),
-          const SizedBox(height: kdefaultPadding * 4),
+          const SizedBox(height: kDefaultPadding * 4),
 
-          // additional infromation
+          // additional information
           TextFieldAdditionalInfo(
             controller: additionalInfoController,
           ),
-          const SizedBox(height: kdefaultPadding * 4),
+          const SizedBox(height: kDefaultPadding * 4),
 
           // checkout button
           BlocBuilder<CartBloc, CartState>(
@@ -90,7 +95,25 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               }
 
               return CheckoutButton(
-                onTap: () {},
+                onTap: () {
+                  if (state is! CartLoaded) return;
+
+                  BlocProvider.of<OrderBloc>(context).add(AddOrder(OrderModel(
+                    address: deliveryAddress!.address,
+                    comment: additionalInfoController.text,
+                    fullName: usernameController.text,
+                    phoneNumber: phoneController.text,
+                    products: state.cart
+                        .map((e) => OrderModelItem(
+                              productId: e.productInfo!.id.toString(),
+                              productName: e.productInfo!.nameTranslate(context),
+                              productPrice: e.price,
+                              productImage: e.productInfo!.img1!,
+                              quantity: e.quantity,
+                            ))
+                        .toList(),
+                  )));
+                },
                 priceOfGoods: priceOfGoods,
               );
             },
@@ -111,10 +134,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           },
         );
 
-        AppRouter()
-            .navigatorKey
-            .currentState
-            ?.pushNamed(AppRouter.DELIVERY_ADDRESS, arguments: arguments);
+        AppRouter().navigatorKey.currentState?.pushNamed(AppRouter.DELIVERY_ADDRESS, arguments: arguments);
       },
       labelText: "delivery_addresses".tr(context),
       prefixIcon: const Icon(IconlyBold.location),

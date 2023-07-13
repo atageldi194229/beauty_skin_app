@@ -9,16 +9,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class DeliveryAddressModelBottomSheet extends StatefulWidget {
   final DeliveryAddressModel? deliveryAddress;
 
-  const DeliveryAddressModelBottomSheet({Key? key, this.deliveryAddress})
-      : super(key: key);
+  const DeliveryAddressModelBottomSheet({Key? key, this.deliveryAddress}) : super(key: key);
 
   @override
-  State<DeliveryAddressModelBottomSheet> createState() =>
-      _DeliveryAddressModelBottomSheetState();
+  State<DeliveryAddressModelBottomSheet> createState() => _DeliveryAddressModelBottomSheetState();
 }
 
-class _DeliveryAddressModelBottomSheetState
-    extends State<DeliveryAddressModelBottomSheet> {
+class _DeliveryAddressModelBottomSheetState extends State<DeliveryAddressModelBottomSheet> {
   // [deliveryAddress] is null, that means addresses is empty
   // So name is default
   DeliveryAddressModel? get deliveryAddress => widget.deliveryAddress;
@@ -27,8 +24,7 @@ class _DeliveryAddressModelBottomSheetState
   TextEditingController nameController = TextEditingController();
   TextEditingController detailAddressController = TextEditingController();
 
-  bool get isPopulated =>
-      nameController.text.isNotEmpty && detailAddressController.text.isNotEmpty;
+  bool get isPopulated => nameController.text.isNotEmpty && detailAddressController.text.isNotEmpty;
 
   @override
   void initState() {
@@ -94,25 +90,24 @@ class _DeliveryAddressModelBottomSheetState
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: kdefaultPadding * 2)
-          .copyWith(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2).copyWith(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            const SizedBox(height: kdefaultPadding),
+            const SizedBox(height: kDefaultPadding),
             _buildInput(),
-            const SizedBox(height: kdefaultPadding * 2),
+            const SizedBox(height: kDefaultPadding * 2),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 _buildDeleteButton(),
-                const SizedBox(width: kdefaultPadding * 2),
+                const SizedBox(width: kDefaultPadding * 2),
                 _buildSubmitButton(),
-                const SizedBox(width: kdefaultPadding * 2),
+                const SizedBox(width: kDefaultPadding * 2),
               ],
             ),
-            const SizedBox(height: kdefaultPadding * 2),
+            const SizedBox(height: kDefaultPadding * 2),
           ],
         ),
       ),
@@ -121,7 +116,7 @@ class _DeliveryAddressModelBottomSheetState
 
   _buildInput() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2),
+      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
       child: Column(
         children: [
           // Name input
@@ -133,7 +128,7 @@ class _DeliveryAddressModelBottomSheetState
             ),
           ),
 
-          const SizedBox(height: kdefaultPadding * 2),
+          const SizedBox(height: kDefaultPadding * 2),
 
           // detail address
           TextFormField(
@@ -156,7 +151,7 @@ class _DeliveryAddressModelBottomSheetState
         backgroundColor: COLOR_CONST.primaryColor,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(kdefaultPadding),
+        padding: const EdgeInsets.all(kDefaultPadding),
         child: Text(
           "confirm".tr(context),
           style: FONT_CONST.BOLD_WHITE_18,
@@ -172,7 +167,7 @@ class _DeliveryAddressModelBottomSheetState
         backgroundColor: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(kdefaultPadding),
+        padding: const EdgeInsets.all(kDefaultPadding),
         child: Text(
           "delete".tr(context),
           style: FONT_CONST.BOLD_WHITE_18.copyWith(color: Colors.red),

@@ -24,7 +24,7 @@ class _CategoriesViewState extends State<CategoriesView> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: kdefaultPadding * 2),
+          padding: const EdgeInsets.only(left: kDefaultPadding * 2),
           child: Text(
             "categories".tr(context),
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
@@ -33,9 +33,9 @@ class _CategoriesViewState extends State<CategoriesView> {
                 ),
           ),
         ),
-        const SizedBox(height: kdefaultPadding),
+        const SizedBox(height: kDefaultPadding),
         SizedBox(
-          height: 38 + kdefaultPadding,
+          height: 38 + kDefaultPadding,
           child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -57,17 +57,17 @@ class _CategoriesViewState extends State<CategoriesView> {
     required bool isLast,
   }) {
     var cardMargin = const EdgeInsets.only(
-      right: kdefaultPadding * 2,
-      top: kdefaultPadding,
-      bottom: kdefaultPadding,
+      right: kDefaultPadding * 2,
+      top: kDefaultPadding,
+      bottom: kDefaultPadding,
     );
 
     if (isFirst) {
-      cardMargin = cardMargin.copyWith(left: kdefaultPadding * 2);
+      cardMargin = cardMargin.copyWith(left: kDefaultPadding * 2);
     }
 
     if (isLast) {
-      cardMargin = cardMargin.copyWith(right: kdefaultPadding * 2);
+      cardMargin = cardMargin.copyWith(right: kDefaultPadding * 2);
     }
 
     return Container(
@@ -89,7 +89,7 @@ class _CategoriesViewState extends State<CategoriesView> {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: kdefaultPadding * 2,
+                horizontal: kDefaultPadding * 2,
               ),
               child: Text(
                 category.nameTranslate(context),

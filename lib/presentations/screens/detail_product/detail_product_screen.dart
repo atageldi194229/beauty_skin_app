@@ -34,9 +34,7 @@ class DetailProductScreen extends StatelessWidget {
           return FloatingActionButton(
             onPressed: () {
               if (isFavorited) {
-                context
-                    .read<FavoriteBloc>()
-                    .add(RemoveFavoriteItemModel(productToRemove));
+                context.read<FavoriteBloc>().add(RemoveFavoriteItemModel(productToRemove));
               } else {
                 context.read<FavoriteBloc>().add(AddFavoriteItemModel(product));
               }
@@ -50,7 +48,7 @@ class DetailProductScreen extends StatelessWidget {
           children: [
             ProductImagesWidget(images: product.images),
             ProductInfoWidget(product: product),
-            const SizedBox(height: kdefaultPadding),
+            const SizedBox(height: kDefaultPadding),
             AddToCartBarWidget(product: product),
           ],
         ),

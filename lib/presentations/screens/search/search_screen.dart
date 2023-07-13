@@ -119,7 +119,7 @@ class SearchScreenState extends State<SearchScreen> {
           icon: const Icon(Icons.close_outlined),
           onPressed: () => searchController.clear(),
         ),
-        const SizedBox(width: kdefaultPadding),
+        const SizedBox(width: kDefaultPadding),
       ],
     );
   }
@@ -164,8 +164,8 @@ class SearchScreenState extends State<SearchScreen> {
     );
 
     // return Container(
-    //   padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding * 2)
-    //       .copyWith(top: kdefaultPadding),
+    //   padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2)
+    //       .copyWith(top: kDefaultPadding),
     //   width: double.infinity,
     //   height: kToolbarHeight,
     //   child: Align(

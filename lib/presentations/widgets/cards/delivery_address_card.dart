@@ -22,8 +22,8 @@ class DeliveryAddressCard extends StatelessWidget {
       shadowColor: Colors.grey,
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(
-          vertical: kdefaultPadding,
-          horizontal: kdefaultPadding * 2,
+          vertical: kDefaultPadding,
+          horizontal: kDefaultPadding * 2,
         ),
         onTap: onTap,
         title: Text(

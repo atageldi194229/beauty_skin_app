@@ -6,7 +6,7 @@ export 'image_constant.dart';
 export 'icon_constant.dart';
 
 // Constants
-const double kdefaultPadding = 8.0;
+const double kDefaultPadding = 8.0;
 const Color kGreyColor = Color.fromARGB(255, 234, 234, 234);
 
 // URL

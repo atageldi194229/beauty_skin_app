@@ -244,17 +244,13 @@ const tmDateSymbols = {
   ],
 };
 
-class _TkMaterialLocalization
-    extends LocalizationsDelegate<MaterialLocalizations> {
+class _TkMaterialLocalization extends LocalizationsDelegate<MaterialLocalizations> {
   const _TkMaterialLocalization();
 
   @override
-  bool isSupported(Locale locale) =>
-      locale.countryCode == "TM" && locale.languageCode == "tm";
+  bool isSupported(Locale locale) => locale.countryCode == "TM" && locale.languageCode == "tm";
   @override
-  bool shouldReload(
-          covariant LocalizationsDelegate<MaterialLocalizations> old) =>
-      false;
+  bool shouldReload(covariant LocalizationsDelegate<MaterialLocalizations> old) => false;
 
   @override
   Future<MaterialLocalizations> load(Locale locale) async {
@@ -306,8 +302,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
           twoDigitZeroPaddedFormat: twoDigitZeroPaddedFormat,
         );
 
-  static const LocalizationsDelegate<MaterialLocalizations> delegate =
-      _TkMaterialLocalization();
+  static const LocalizationsDelegate<MaterialLocalizations> delegate = _TkMaterialLocalization();
 
   static const List<String> _weekdays = <String>[
     'Ýekşenbe',
@@ -319,15 +314,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
     'Şenbe',
   ];
 
-  static const List<String> _narrowWeekdays = <String>[
-    'Ý',
-    'D',
-    'S',
-    'Ç',
-    'P',
-    'A',
-    'Ş'
-  ];
+  static const List<String> _narrowWeekdays = <String>['Ý', 'D', 'S', 'Ç', 'P', 'A', 'Ş'];
 
   static const List<String> _shortWeekdays = <String>[
     'Ýek',
@@ -427,8 +414,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get dateRangePickerHelpText => r'Çägini saýlaň';
 
   @override
-  String get dateRangeStartDateSemanticLabelRaw =>
-      'Başlanýan senesi \$fullDate';
+  String get dateRangeStartDateSemanticLabelRaw => 'Başlanýan senesi \$fullDate';
 
   @override
   String get dateRangeStartLabel => 'Başlanýan senesi';
@@ -483,8 +469,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   }
 
   @override
-  String get licensesPackageDetailTextOther =>
-      '\$licenseCount sany ygtyýarnama';
+  String get licensesPackageDetailTextOther => '\$licenseCount sany ygtyýarnama';
 
   @override
   String get licensesPageTitle => r'Ygtyýarnama';
@@ -508,8 +493,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get openAppDrawerTooltip => r'Nawigasiýa menýüsyny açyň';
 
   @override
-  String get pageRowsInfoTitleApproximateRaw =>
-      r'$firstRow–$lastRow / takmynan $rowCount';
+  String get pageRowsInfoTitleApproximateRaw => r'$firstRow–$lastRow / takmynan $rowCount';
 
   @override
   String get pageRowsInfoTitleRaw => r'$firstRow–$lastRow / $rowCount';
@@ -533,8 +517,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get refreshIndicatorSemanticLabel => r'Tazelenme';
 
   @override
-  String get remainingTextFieldCharacterCountOther =>
-      r'$remainingCount simwolar galdy';
+  String get remainingTextFieldCharacterCountOther => r'$remainingCount simwolar galdy';
 
   @override
   String get remainingTextFieldCharacterCountZero => r'Simwol galmady';
@@ -576,8 +559,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get selectYearSemanticsLabel => 'Ýyly saýlaň';
 
   @override
-  String get selectedRowCountTitleOther =>
-      r'$selectedRowCount element saýlanan';
+  String get selectedRowCountTitleOther => r'$selectedRowCount element saýlanan';
 
   @override
   String get showAccountsLabel => r'Hasaplary görkezmek';
@@ -715,25 +697,11 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
 
   int _getDaysInMonth(int year, int month) {
     if (month == DateTime.february) {
-      final bool isLeapYear =
-          (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
+      final bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
       if (isLeapYear) return 29;
       return 28;
     }
-    const List<int> daysInMonth = <int>[
-      31,
-      -1,
-      31,
-      30,
-      31,
-      30,
-      31,
-      31,
-      30,
-      31,
-      30,
-      31
-    ];
+    const List<int> daysInMonth = <int>[31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     return daysInMonth[month - 1];
   }
 
@@ -749,8 +717,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   }
 
   @override
-  String formatTimeOfDay(TimeOfDay timeOfDay,
-      {bool alwaysUse24HourFormat = false}) {
+  String formatTimeOfDay(TimeOfDay timeOfDay, {bool alwaysUse24HourFormat = false}) {
     final StringBuffer buffer = StringBuffer();
     buffer
       ..write(formatHour(timeOfDay, alwaysUse24HourFormat: true))
@@ -767,238 +734,158 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get lastPageTooltip => 'Soňky sahypa';
 
   @override
-  // TODO: implement keyboardKeyAlt
-  String get keyboardKeyAlt => throw UnimplementedError();
+  String get keyboardKeyAlt => const DefaultMaterialLocalizations().keyboardKeyAlt;
 
   @override
-  // TODO: implement keyboardKeyAltGraph
-  String get keyboardKeyAltGraph => throw UnimplementedError();
+  String get keyboardKeyAltGraph => const DefaultMaterialLocalizations().keyboardKeyAltGraph;
 
   @override
-  // TODO: implement keyboardKeyBackspace
-  String get keyboardKeyBackspace => throw UnimplementedError();
+  String get keyboardKeyBackspace => const DefaultMaterialLocalizations().keyboardKeyBackspace;
 
   @override
-  // TODO: implement keyboardKeyCapsLock
-  String get keyboardKeyCapsLock => throw UnimplementedError();
+  String get keyboardKeyCapsLock => const DefaultMaterialLocalizations().keyboardKeyCapsLock;
 
   @override
-  // TODO: implement keyboardKeyChannelDown
-  String get keyboardKeyChannelDown => throw UnimplementedError();
+  String get keyboardKeyChannelDown => const DefaultMaterialLocalizations().keyboardKeyChannelDown;
 
   @override
-  // TODO: implement keyboardKeyChannelUp
-  String get keyboardKeyChannelUp => throw UnimplementedError();
+  String get keyboardKeyChannelUp => const DefaultMaterialLocalizations().keyboardKeyChannelUp;
 
   @override
-  // TODO: implement keyboardKeyControl
-  String get keyboardKeyControl => throw UnimplementedError();
+  String get keyboardKeyControl => const DefaultMaterialLocalizations().keyboardKeyControl;
 
   @override
-  // TODO: implement keyboardKeyDelete
-  String get keyboardKeyDelete => throw UnimplementedError();
+  String get keyboardKeyDelete => const DefaultMaterialLocalizations().keyboardKeyDelete;
 
   @override
-  // TODO: implement keyboardKeyEisu
-  String get keyboardKeyEisu => throw UnimplementedError();
+  String get keyboardKeyEject => const DefaultMaterialLocalizations().keyboardKeyEject;
 
   @override
-  // TODO: implement keyboardKeyEject
-  String get keyboardKeyEject => throw UnimplementedError();
+  String get keyboardKeyEnd => const DefaultMaterialLocalizations().keyboardKeyEnd;
 
   @override
-  // TODO: implement keyboardKeyEnd
-  String get keyboardKeyEnd => throw UnimplementedError();
+  String get keyboardKeyEscape => const DefaultMaterialLocalizations().keyboardKeyEscape;
 
   @override
-  // TODO: implement keyboardKeyEscape
-  String get keyboardKeyEscape => throw UnimplementedError();
+  String get keyboardKeyFn => const DefaultMaterialLocalizations().keyboardKeyFn;
 
   @override
-  // TODO: implement keyboardKeyFn
-  String get keyboardKeyFn => throw UnimplementedError();
+  String get keyboardKeyHome => const DefaultMaterialLocalizations().keyboardKeyHome;
 
   @override
-  // TODO: implement keyboardKeyHangulMode
-  String get keyboardKeyHangulMode => throw UnimplementedError();
+  String get keyboardKeyInsert => const DefaultMaterialLocalizations().keyboardKeyInsert;
 
   @override
-  // TODO: implement keyboardKeyHanjaMode
-  String get keyboardKeyHanjaMode => throw UnimplementedError();
+  String get keyboardKeyMeta => const DefaultMaterialLocalizations().keyboardKeyMeta;
 
   @override
-  // TODO: implement keyboardKeyHankaku
-  String get keyboardKeyHankaku => throw UnimplementedError();
+  String get keyboardKeyMetaMacOs => const DefaultMaterialLocalizations().keyboardKeyMetaMacOs;
 
   @override
-  // TODO: implement keyboardKeyHiragana
-  String get keyboardKeyHiragana => throw UnimplementedError();
+  String get keyboardKeyMetaWindows => const DefaultMaterialLocalizations().keyboardKeyMetaWindows;
 
   @override
-  // TODO: implement keyboardKeyHiraganaKatakana
-  String get keyboardKeyHiraganaKatakana => throw UnimplementedError();
+  String get keyboardKeyNumLock => const DefaultMaterialLocalizations().keyboardKeyNumLock;
 
   @override
-  // TODO: implement keyboardKeyHome
-  String get keyboardKeyHome => throw UnimplementedError();
+  String get keyboardKeyNumpad0 => const DefaultMaterialLocalizations().keyboardKeyNumpad0;
 
   @override
-  // TODO: implement keyboardKeyInsert
-  String get keyboardKeyInsert => throw UnimplementedError();
+  String get keyboardKeyNumpad1 => const DefaultMaterialLocalizations().keyboardKeyNumpad1;
 
   @override
-  // TODO: implement keyboardKeyKanaMode
-  String get keyboardKeyKanaMode => throw UnimplementedError();
+  String get keyboardKeyNumpad2 => const DefaultMaterialLocalizations().keyboardKeyNumpad2;
 
   @override
-  // TODO: implement keyboardKeyKanjiMode
-  String get keyboardKeyKanjiMode => throw UnimplementedError();
+  String get keyboardKeyNumpad3 => const DefaultMaterialLocalizations().keyboardKeyNumpad3;
 
   @override
-  // TODO: implement keyboardKeyKatakana
-  String get keyboardKeyKatakana => throw UnimplementedError();
+  String get keyboardKeyNumpad4 => const DefaultMaterialLocalizations().keyboardKeyNumpad4;
 
   @override
-  // TODO: implement keyboardKeyMeta
-  String get keyboardKeyMeta => throw UnimplementedError();
+  String get keyboardKeyNumpad5 => const DefaultMaterialLocalizations().keyboardKeyNumpad5;
 
   @override
-  // TODO: implement keyboardKeyMetaMacOs
-  String get keyboardKeyMetaMacOs => throw UnimplementedError();
+  String get keyboardKeyNumpad6 => const DefaultMaterialLocalizations().keyboardKeyNumpad6;
 
   @override
-  // TODO: implement keyboardKeyMetaWindows
-  String get keyboardKeyMetaWindows => throw UnimplementedError();
+  String get keyboardKeyNumpad7 => const DefaultMaterialLocalizations().keyboardKeyNumpad7;
 
   @override
-  // TODO: implement keyboardKeyNumLock
-  String get keyboardKeyNumLock => throw UnimplementedError();
+  String get keyboardKeyNumpad8 => const DefaultMaterialLocalizations().keyboardKeyNumpad8;
 
   @override
-  // TODO: implement keyboardKeyNumpad0
-  String get keyboardKeyNumpad0 => throw UnimplementedError();
+  String get keyboardKeyNumpad9 => const DefaultMaterialLocalizations().keyboardKeyNumpad9;
 
   @override
-  // TODO: implement keyboardKeyNumpad1
-  String get keyboardKeyNumpad1 => throw UnimplementedError();
+  String get keyboardKeyNumpadAdd => const DefaultMaterialLocalizations().keyboardKeyNumpadAdd;
 
   @override
-  // TODO: implement keyboardKeyNumpad2
-  String get keyboardKeyNumpad2 => throw UnimplementedError();
+  String get keyboardKeyNumpadComma => const DefaultMaterialLocalizations().keyboardKeyNumpadComma;
 
   @override
-  // TODO: implement keyboardKeyNumpad3
-  String get keyboardKeyNumpad3 => throw UnimplementedError();
+  String get keyboardKeyNumpadDecimal => const DefaultMaterialLocalizations().keyboardKeyNumpadDecimal;
 
   @override
-  // TODO: implement keyboardKeyNumpad4
-  String get keyboardKeyNumpad4 => throw UnimplementedError();
+  String get keyboardKeyNumpadDivide => const DefaultMaterialLocalizations().keyboardKeyNumpadDivide;
 
   @override
-  // TODO: implement keyboardKeyNumpad5
-  String get keyboardKeyNumpad5 => throw UnimplementedError();
+  String get keyboardKeyNumpadEnter => const DefaultMaterialLocalizations().keyboardKeyNumpadEnter;
 
   @override
-  // TODO: implement keyboardKeyNumpad6
-  String get keyboardKeyNumpad6 => throw UnimplementedError();
+  String get keyboardKeyNumpadEqual => const DefaultMaterialLocalizations().keyboardKeyNumpadEqual;
 
   @override
-  // TODO: implement keyboardKeyNumpad7
-  String get keyboardKeyNumpad7 => throw UnimplementedError();
+  String get keyboardKeyNumpadMultiply => const DefaultMaterialLocalizations().keyboardKeyNumpadMultiply;
 
   @override
-  // TODO: implement keyboardKeyNumpad8
-  String get keyboardKeyNumpad8 => throw UnimplementedError();
+  String get keyboardKeyNumpadParenLeft => const DefaultMaterialLocalizations().keyboardKeyNumpadParenLeft;
 
   @override
-  // TODO: implement keyboardKeyNumpad9
-  String get keyboardKeyNumpad9 => throw UnimplementedError();
+  String get keyboardKeyNumpadParenRight => const DefaultMaterialLocalizations().keyboardKeyNumpadParenRight;
 
   @override
-  // TODO: implement keyboardKeyNumpadAdd
-  String get keyboardKeyNumpadAdd => throw UnimplementedError();
+  String get keyboardKeyNumpadSubtract => const DefaultMaterialLocalizations().keyboardKeyNumpadSubtract;
 
   @override
-  // TODO: implement keyboardKeyNumpadComma
-  String get keyboardKeyNumpadComma => throw UnimplementedError();
+  String get keyboardKeyPageDown => const DefaultMaterialLocalizations().keyboardKeyPageDown;
 
   @override
-  // TODO: implement keyboardKeyNumpadDecimal
-  String get keyboardKeyNumpadDecimal => throw UnimplementedError();
+  String get keyboardKeyPageUp => const DefaultMaterialLocalizations().keyboardKeyPageUp;
 
   @override
-  // TODO: implement keyboardKeyNumpadDivide
-  String get keyboardKeyNumpadDivide => throw UnimplementedError();
+  String get keyboardKeyPower => const DefaultMaterialLocalizations().keyboardKeyPower;
 
   @override
-  // TODO: implement keyboardKeyNumpadEnter
-  String get keyboardKeyNumpadEnter => throw UnimplementedError();
+  String get keyboardKeyPowerOff => const DefaultMaterialLocalizations().keyboardKeyPowerOff;
 
   @override
-  // TODO: implement keyboardKeyNumpadEqual
-  String get keyboardKeyNumpadEqual => throw UnimplementedError();
+  String get keyboardKeyPrintScreen => const DefaultMaterialLocalizations().keyboardKeyPrintScreen;
 
   @override
-  // TODO: implement keyboardKeyNumpadMultiply
-  String get keyboardKeyNumpadMultiply => throw UnimplementedError();
+  String get keyboardKeyScrollLock => const DefaultMaterialLocalizations().keyboardKeyScrollLock;
 
   @override
-  // TODO: implement keyboardKeyNumpadParenLeft
-  String get keyboardKeyNumpadParenLeft => throw UnimplementedError();
+  String get keyboardKeySelect => const DefaultMaterialLocalizations().keyboardKeySelect;
 
   @override
-  // TODO: implement keyboardKeyNumpadParenRight
-  String get keyboardKeyNumpadParenRight => throw UnimplementedError();
+  String get keyboardKeySpace => const DefaultMaterialLocalizations().keyboardKeySpace;
 
   @override
-  // TODO: implement keyboardKeyNumpadSubtract
-  String get keyboardKeyNumpadSubtract => throw UnimplementedError();
+  String get menuBarMenuLabel => const DefaultMaterialLocalizations().menuBarMenuLabel;
 
   @override
-  // TODO: implement keyboardKeyPageDown
-  String get keyboardKeyPageDown => throw UnimplementedError();
+  String get bottomSheetLabel => const DefaultMaterialLocalizations().bottomSheetLabel;
 
   @override
-  // TODO: implement keyboardKeyPageUp
-  String get keyboardKeyPageUp => throw UnimplementedError();
+  String get currentDateLabel => const DefaultMaterialLocalizations().currentDateLabel;
 
   @override
-  // TODO: implement keyboardKeyPower
-  String get keyboardKeyPower => throw UnimplementedError();
+  String get keyboardKeyShift => const DefaultMaterialLocalizations().keyboardKeyShift;
 
   @override
-  // TODO: implement keyboardKeyPowerOff
-  String get keyboardKeyPowerOff => throw UnimplementedError();
+  String get scrimLabel => const DefaultMaterialLocalizations().scrimLabel;
 
   @override
-  // TODO: implement keyboardKeyPrintScreen
-  String get keyboardKeyPrintScreen => throw UnimplementedError();
-
-  @override
-  // TODO: implement keyboardKeyRomaji
-  String get keyboardKeyRomaji => throw UnimplementedError();
-
-  @override
-  // TODO: implement keyboardKeyScrollLock
-  String get keyboardKeyScrollLock => throw UnimplementedError();
-
-  @override
-  // TODO: implement keyboardKeySelect
-  String get keyboardKeySelect => throw UnimplementedError();
-
-  @override
-  // TODO: implement keyboardKeySpace
-  String get keyboardKeySpace => throw UnimplementedError();
-
-  @override
-  // TODO: implement keyboardKeyZenkaku
-  String get keyboardKeyZenkaku => throw UnimplementedError();
-
-  @override
-  // TODO: implement keyboardKeyZenkakuHankaku
-  String get keyboardKeyZenkakuHankaku => throw UnimplementedError();
-
-  @override
-  // TODO: implement menuBarMenuLabel
-  String get menuBarMenuLabel => throw UnimplementedError();
+  String get scrimOnTapHintRaw => const DefaultMaterialLocalizations().scrimOnTapHint(r'$modalRouteContentName');
 }

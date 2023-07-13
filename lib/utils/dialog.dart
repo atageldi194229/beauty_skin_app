@@ -73,8 +73,8 @@ class UtilDialog {
             TextButton(
               style: TextButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: kdefaultPadding * 4,
-                  vertical: kdefaultPadding * 2,
+                  horizontal: kDefaultPadding * 4,
+                  vertical: kDefaultPadding * 2,
                 ),
               ),
               onPressed: () => Navigator.pop(context, false),
@@ -88,8 +88,8 @@ class UtilDialog {
               style: TextButton.styleFrom(
                 backgroundColor: COLOR_CONST.primaryColor,
                 padding: const EdgeInsets.symmetric(
-                  horizontal: kdefaultPadding * 4,
-                  vertical: kdefaultPadding * 2,
+                  horizontal: kDefaultPadding * 4,
+                  vertical: kDefaultPadding * 2,
                 ),
               ),
               child: Text(

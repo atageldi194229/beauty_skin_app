@@ -34,7 +34,7 @@ class ProductListView extends StatelessWidget {
 
           return ListView.builder(
             padding: const EdgeInsets.symmetric(
-              horizontal: kdefaultPadding * 2,
+              horizontal: kDefaultPadding * 2,
             ),
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
@@ -49,7 +49,7 @@ class ProductListView extends StatelessWidget {
               return Container(
                 width: cardWidth,
                 height: cardHeight,
-                padding: const EdgeInsets.only(right: kdefaultPadding),
+                padding: const EdgeInsets.only(right: kDefaultPadding),
                 child: ProductCard2(
                   product: products[index],
                   inCart: inCart,

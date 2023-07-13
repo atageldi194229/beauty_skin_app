@@ -28,17 +28,14 @@ class HomeScreen extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                AppRouter()
-                    .navigatorKey
-                    .currentState
-                    ?.pushNamed(AppRouter.SEARCH);
+                AppRouter().navigatorKey.currentState?.pushNamed(AppRouter.SEARCH);
               },
               icon: const Icon(
                 Icons.search_outlined,
                 // color: Colors.black,
               ),
             ),
-            const SizedBox(width: kdefaultPadding),
+            const SizedBox(width: kDefaultPadding),
           ],
         ),
         body: SafeArea(
@@ -56,30 +53,28 @@ class HomeScreen extends StatelessWidget {
                       /// Banners
                       ///
                       BannerListView(banners: homeResponse.banners),
-                      const SizedBox(height: kdefaultPadding * 2),
+                      const SizedBox(height: kDefaultPadding * 2),
 
                       ///
                       /// Categories
                       ///
                       CategoriesView(categories: homeResponse.categories),
-                      const SizedBox(height: kdefaultPadding * 2),
+                      const SizedBox(height: kDefaultPadding * 2),
                       // ProductsView(products: 20),
 
-                      ...homeResponse.subCategoryIds
-                          .map<Widget>((subCategoryId) {
+                      ...homeResponse.subCategoryIds.map<Widget>((subCategoryId) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CategoryProductListView(
-                              subCategory: homeResponse.subCategories
-                                  .firstWhere((e) => e.id == subCategoryId),
+                              subCategory: homeResponse.subCategories.firstWhere((e) => e.id == subCategoryId),
                             ),
-                            const SizedBox(height: kdefaultPadding * 2),
+                            const SizedBox(height: kDefaultPadding * 2),
                           ],
                         );
                       }),
 
-                      const SizedBox(height: kdefaultPadding * 5),
+                      const SizedBox(height: kDefaultPadding * 5),
                     ],
                   );
                 }

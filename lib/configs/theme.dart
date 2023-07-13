@@ -30,10 +30,10 @@ class AppTheme {
 
   static const _inputDecorationThem = InputDecorationTheme(
     contentPadding: EdgeInsets.symmetric(
-      horizontal: kdefaultPadding,
-      vertical: kdefaultPadding * 2,
+      horizontal: kDefaultPadding,
+      vertical: kDefaultPadding * 2,
     ),
-    // .copyWith(bottom: kdefaultPadding * 4),
+    // .copyWith(bottom: kDefaultPadding * 4),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       borderSide: BorderSide(color: COLOR_CONST.textColor),

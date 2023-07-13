@@ -41,9 +41,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
           if (state is ProfileLoaded) {
             final addressList = state.deliveryAddresses;
 
-            return addressList.isNotEmpty
-                ? _buildContect(addressList)
-                : Container();
+            return addressList.isNotEmpty ? _buildContect(addressList) : Container();
           }
 
           if (state is ProfileLoadFailure) {
@@ -64,7 +62,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
           onPressed: () => _openDeliveryBottomSheet(context),
           icon: const Icon(Icons.add_outlined),
         ),
-        const SizedBox(width: kdefaultPadding),
+        const SizedBox(width: kDefaultPadding),
       ],
     );
   }
@@ -93,12 +91,12 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
 
   Widget _buildContect(List<DeliveryAddressModel> addressList) {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: kdefaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       physics: const BouncingScrollPhysics(),
       itemCount: addressList.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.only(top: kdefaultPadding),
+          padding: const EdgeInsets.only(top: kDefaultPadding),
           child: DeliveryAddressCard(
             deliveryAddress: addressList[index],
             onEditPressed: () => _openDeliveryBottomSheet(

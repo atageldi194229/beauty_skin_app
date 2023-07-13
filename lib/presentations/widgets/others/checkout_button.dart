@@ -14,7 +14,7 @@ class CheckoutButton extends StatelessWidget {
       onTap: onTap,
       borderRadius: kBorderRadius10,
       child: Ink(
-        padding: const EdgeInsets.all(kdefaultPadding * 2),
+        padding: const EdgeInsets.all(kDefaultPadding * 2),
         decoration: const BoxDecoration(
           color: COLOR_CONST.primaryColor,
           borderRadius: kBorderRadius10,

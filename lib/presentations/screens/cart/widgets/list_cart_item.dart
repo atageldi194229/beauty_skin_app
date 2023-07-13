@@ -29,8 +29,8 @@ class ListCartItemModel extends StatelessWidget {
           return SafeArea(
             child: cart.isNotEmpty
                 ? ListView.builder(
-                    padding: const EdgeInsets.all(kdefaultPadding).copyWith(
-                      bottom: kdefaultPadding * 2,
+                    padding: const EdgeInsets.all(kDefaultPadding).copyWith(
+                      bottom: kDefaultPadding * 2,
                     ),
                     physics: const BouncingScrollPhysics(),
                     itemCount: cart.length + 1,
@@ -38,16 +38,13 @@ class ListCartItemModel extends StatelessWidget {
                       if (index == cart.length) {
                         return CheckoutButton(
                           onTap: () {
-                            AppRouter()
-                                .navigatorKey
-                                .currentState
-                                ?.pushNamed(AppRouter.CHECKOUT_SCREEN);
+                            AppRouter().navigatorKey.currentState?.pushNamed(AppRouter.CHECKOUT_SCREEN);
                           },
                           priceOfGoods: cartState.priceOfGoods,
                         );
                       }
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: kdefaultPadding),
+                        padding: const EdgeInsets.only(bottom: kDefaultPadding),
                         child: CustomDismissible(
                           key: Key(cart[index].id),
                           onDismissed: (direction) {

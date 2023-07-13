@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(kdefaultPadding * 4),
+            padding: const EdgeInsets.all(kDefaultPadding * 4),
             child: _buildForm(context),
           ),
         ),
@@ -57,28 +57,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           // phone_number
           TextFieldPhoneNumber(controller: phoneController),
-          const SizedBox(height: kdefaultPadding),
+          const SizedBox(height: kDefaultPadding),
 
           // username
           TextFieldUsername(controller: usernameController),
-          const SizedBox(height: kdefaultPadding * 4),
+          const SizedBox(height: kDefaultPadding * 4),
 
           // language select
           _buildLanguageDropdown(context),
-          const SizedBox(height: kdefaultPadding * 4),
+          const SizedBox(height: kDefaultPadding * 4),
 
           // delivery_addresses
           TappableFormField(
             onTap: () {
-              AppRouter()
-                  .navigatorKey
-                  .currentState
-                  ?.pushNamed(AppRouter.DELIVERY_ADDRESS);
+              AppRouter().navigatorKey.currentState?.pushNamed(AppRouter.DELIVERY_ADDRESS);
             },
             labelText: "delivery_addresses".tr(context),
             prefixIcon: const Icon(IconlyBold.location),
           ),
-          const SizedBox(height: kdefaultPadding * 4),
+          const SizedBox(height: kDefaultPadding * 4),
 
           // order_history
           TappableFormField(
@@ -86,22 +83,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             labelText: "order_history".tr(context),
             prefixIcon: const Icon(Icons.history),
           ),
-          const SizedBox(height: kdefaultPadding * 4),
+          const SizedBox(height: kDefaultPadding * 4),
 
           // about_us
           TappableFormField(
             onTap: () {
-              AppRouter()
-                  .navigatorKey
-                  .currentState
-                  ?.pushNamed(AppRouter.ABOUT_US);
+              AppRouter().navigatorKey.currentState?.pushNamed(AppRouter.ABOUT_US);
             },
             labelText: "about_us".tr(context),
             prefixIcon: const Icon(Icons.info_outline),
           ),
 
           // save button
-          const SizedBox(height: kdefaultPadding * 4),
+          const SizedBox(height: kDefaultPadding * 4),
           _buildSaveButton(),
         ],
       ),
@@ -112,15 +106,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(
-          vertical: kdefaultPadding * 2,
-          horizontal: kdefaultPadding * 4,
+          vertical: kDefaultPadding * 2,
+          horizontal: kDefaultPadding * 4,
         ),
         backgroundColor: COLOR_CONST.primaryColor,
       ),
       onPressed: () {
-        context
-            .read<ProfileBloc>()
-            .add(ProfileUpdated(phoneController.text, usernameController.text));
+        context.read<ProfileBloc>().add(ProfileUpdated(phoneController.text, usernameController.text));
       },
       child: Text("save".tr(context)),
     );
@@ -144,8 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       onChanged: (selectedLanguage) {
         if (selectedLanguage == null) return;
 
-        BlocProvider.of<LanguageBloc>(context)
-            .add(LanguageChanged(selectedLanguage));
+        BlocProvider.of<LanguageBloc>(context).add(LanguageChanged(selectedLanguage));
       },
     );
   }

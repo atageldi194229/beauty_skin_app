@@ -22,7 +22,7 @@ class AboutUsScreen extends StatelessWidget {
   _buildBody(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(kdefaultPadding * 2),
+        padding: const EdgeInsets.all(kDefaultPadding * 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -30,17 +30,17 @@ class AboutUsScreen extends StatelessWidget {
               "delivery".tr(context),
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            const SizedBox(height: kdefaultPadding * 2),
+            const SizedBox(height: kDefaultPadding * 2),
             Text(
               "deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            const SizedBox(height: kdefaultPadding * 2),
+            const SizedBox(height: kDefaultPadding * 2),
             Text(
               "contact_us".tr(context),
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            const SizedBox(height: kdefaultPadding * 2),
+            const SizedBox(height: kDefaultPadding * 2),
             _buildKeyValueText(
               context,
               "phone_number".tr(context),

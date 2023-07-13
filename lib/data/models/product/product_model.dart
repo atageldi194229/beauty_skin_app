@@ -135,12 +135,8 @@ class ProductModel extends Equatable with HiveObjectMixin {
       img2: map['img2'] != null ? map['img2'] as String : null,
       img3: map['img3'] != null ? map['img3'] as String : null,
       img4: map['img4'] != null ? map['img4'] as String : null,
-      price: (map['price'] is int)
-          ? (map['price'] as int).toDouble()
-          : map['price'] as double,
-      skidka: (map['skidka'] is int)
-          ? (map['skidka'] as int).toDouble()
-          : map['skidka'] as double,
+      price: double.parse(map['price'].toString()),
+      skidka: (map['skidka'] is int) ? (map['skidka'] as int).toDouble() : map['skidka'] as double,
       views: map['views'] as int,
       createdAt: map['created_at'] as String,
     );
@@ -148,8 +144,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
 
   String toJson() => json.encode(toMap());
 
-  factory ProductModel.fromJson(String source) =>
-      ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ProductModel.fromJson(String source) => ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool get stringify => true;
