@@ -8,6 +8,7 @@ import 'package:beauty_skin/presentations/screens/checkout/checkout_screen.dart'
 import 'package:beauty_skin/presentations/screens/delivery_address/delivery_address_screen.dart';
 import 'package:beauty_skin/presentations/screens/detail_product/detail_product_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
+import 'package:beauty_skin/presentations/screens/order/order_screen.dart';
 import 'package:beauty_skin/presentations/screens/profile/profile_screen.dart';
 import 'package:beauty_skin/presentations/screens/search/product_filter.dart';
 import 'package:beauty_skin/presentations/screens/search/search_screen.dart';
@@ -100,6 +101,9 @@ class AppRouter {
 
       case CATEGORIES:
         return MaterialPageRoute(builder: (_) => const CategoriesScreen());
+
+      case MY_ORDERS:
+        return MaterialPageRoute(builder: (_) => const OrderScreen());
 
       default:
         return MaterialPageRoute(

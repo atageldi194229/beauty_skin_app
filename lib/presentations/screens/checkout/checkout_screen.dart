@@ -1,7 +1,7 @@
 import 'package:beauty_skin/configs/router.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/delivery_address_model.dart';
-import 'package:beauty_skin/data/models/order_model.dart';
+import 'package:beauty_skin/data/models/order/order_model.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
@@ -87,34 +87,66 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           // checkout button
           BlocBuilder<CartBloc, CartState>(
             buildWhen: (_, current) => current is CartLoaded,
-            builder: (context, state) {
+            builder: (context, cartState) {
               double priceOfGoods = 0;
 
-              if (state is CartLoaded) {
-                priceOfGoods = state.priceOfGoods;
+              if (cartState is CartLoaded) {
+                priceOfGoods = cartState.priceOfGoods;
               }
 
-              return CheckoutButton(
-                onTap: () {
-                  if (state is! CartLoaded) return;
-
-                  BlocProvider.of<OrderBloc>(context).add(AddOrder(OrderModel(
-                    address: deliveryAddress!.address,
-                    comment: additionalInfoController.text,
-                    fullName: usernameController.text,
-                    phoneNumber: phoneController.text,
-                    products: state.cart
-                        .map((e) => OrderModelItem(
-                              productId: e.productInfo!.id.toString(),
-                              productName: e.productInfo!.nameTranslate(context),
-                              productPrice: e.price,
-                              productImage: e.productInfo!.img1!,
-                              quantity: e.quantity,
-                            ))
-                        .toList(),
-                  )));
+              return BlocConsumer<OrderBloc, OrderState>(
+                listener: (context, state) {
+                  if (state.status == OrderStatus.loadingOrderSentSucceeded) {
+                    context.read<OrderBloc>().add(LoadMyOrders());
+                    context.read<CartBloc>().add(ClearCart());
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(const SnackBar(backgroundColor: Colors.green, content: Text("success")));
+                    Navigator.of(context).pop();
+                  }
                 },
-                priceOfGoods: priceOfGoods,
+                buildWhen: (p0, p1) => p0.status != p1.status,
+                builder: (context, orderState) {
+                  return CheckoutButton(
+                    onTap: orderState.status == OrderStatus.loadingOrderSent
+                        ? null
+                        : () {
+                            if (cartState is! CartLoaded) return;
+
+                            bool hasError = false;
+
+                            if (!_formKey.currentState!.validate()) {
+                              hasError = true;
+                            }
+
+                            if (deliveryAddress == null) {
+                              setState(() {
+                                deliveryAddressErrorText = "empty".tr(context);
+                              });
+                              hasError = true;
+                            }
+
+                            if (hasError) return;
+
+                            BlocProvider.of<OrderBloc>(context).add(AddOrder(OrderModel(
+                              address: deliveryAddress!.address,
+                              comment: additionalInfoController.text,
+                              fullName: usernameController.text,
+                              phoneNumber: phoneController.text,
+                              products: cartState.cart
+                                  .map((e) => OrderModelItem(
+                                        productId: e.productInfo!.id.toString(),
+                                        productName: e.productInfo!.nameTranslate(context),
+                                        productPrice: e.price,
+                                        productImage: e.productInfo!.img1!,
+                                        quantity: e.quantity,
+                                      ))
+                                  .toList(),
+                            )));
+                          },
+                    priceOfGoods: priceOfGoods,
+                  );
+                },
               );
             },
           ),
@@ -130,6 +162,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           onSelect: (deliveryAddress) {
             setState(() {
               this.deliveryAddress = deliveryAddress;
+              deliveryAddressErrorText = null;
             });
           },
         );

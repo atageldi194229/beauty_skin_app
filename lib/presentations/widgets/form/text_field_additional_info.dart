@@ -13,6 +13,13 @@ class TextFieldAdditionalInfo extends StatelessWidget {
       keyboardType: TextInputType.multiline,
       maxLines: null,
       minLines: 4,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "empty".tr(context);
+        }
+
+        return null;
+      },
       decoration: InputDecoration(
         labelText: "additional_information".tr(context),
         alignLabelWithHint: true,

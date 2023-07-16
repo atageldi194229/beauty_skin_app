@@ -12,6 +12,13 @@ class TextFieldUsername extends StatelessWidget {
     return TextFormField(
       controller: controller,
       keyboardType: TextInputType.text,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "empty".tr(context);
+        }
+
+        return null;
+      },
       decoration: InputDecoration(
         labelText: "username".tr(context),
         prefixIcon: const Icon(IconlyBold.profile),

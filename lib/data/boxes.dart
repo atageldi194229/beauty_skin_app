@@ -12,6 +12,7 @@ class Boxes {
   static const _FAVORITES = 'favorites';
   static const _DELIVERY_ADDRESS_LIST = 'delivery_address_list';
   static const _SETTINGS = 'settings';
+  static const _ORDERS = 'orders';
 
   // Register all adapters & Initialize all boxes
   static initBoxes() async {
@@ -29,6 +30,7 @@ class Boxes {
     await Hive.openBox<CartItemModel>(_CART);
     await Hive.openBox<ProductModel>(_FAVORITES);
     await Hive.openBox<DeliveryAddressModel>(_DELIVERY_ADDRESS_LIST);
+    await Hive.openBox<int>(_ORDERS);
   }
 
   // static methods to get open hive boxes
@@ -49,6 +51,8 @@ class Boxes {
   static Box<DeliveryAddressModel> getDeliveryAddressList() {
     return Hive.box<DeliveryAddressModel>(_DELIVERY_ADDRESS_LIST);
   }
+
+  static Box<int> getOrders() => Hive.box(_ORDERS);
 
   // Close all open hive boxes
   static close() {

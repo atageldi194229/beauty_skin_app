@@ -79,7 +79,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           // order_history
           TappableFormField(
-            onTap: () {},
+            onTap: () {
+              AppRouter().navigatorKey.currentState?.pushNamed(AppRouter.MY_ORDERS);
+            },
             labelText: "order_history".tr(context),
             prefixIcon: const Icon(Icons.history),
           ),

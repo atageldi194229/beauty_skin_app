@@ -34,5 +34,11 @@
     "message_for_you": "Сообщение для вас",
     "yes": "Да",
     "no": "Нет",
-    "something_went_wrong": "Что-то пошло не так"
+    "something_went_wrong": "Что-то пошло не так",
+    "status": "Статус",
+    "full_name": "Полное имя",
+    "address": "Адрес",
+    "payment": "Оплата",
+    "created_at": "Создан в",
+    "comment": "Комментарий"
 }
