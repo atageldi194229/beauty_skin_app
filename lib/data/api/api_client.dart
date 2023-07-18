@@ -1,27 +1,25 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-final localhostOptions = BaseOptions(
+final dioOptions = BaseOptions(
   baseUrl: kBaseUrl,
   connectTimeout: const Duration(milliseconds: 5000),
   receiveTimeout: const Duration(milliseconds: 5000),
   sendTimeout: const Duration(milliseconds: 5000),
-  // receiveTimeout: 3000,
-  // sendTimeout: 3000,
 );
 
 class ApiClient {
   late final Dio dio;
-  ApiClient._sharedInstance()
-      : dio = Dio(localhostOptions)
-          ..interceptors.add(PrettyDioLogger(
-            requestHeader: true,
-            requestBody: true,
-            responseBody: true,
-            responseHeader: false,
-            compact: false,
-          ));
+  ApiClient._sharedInstance() : dio = Dio(dioOptions);
+  // ..interceptors.add(
+  //   PrettyDioLogger(
+  //     requestHeader: true,
+  //     requestBody: true,
+  //     responseBody: true,
+  //     responseHeader: false,
+  //     compact: false,
+  //   ),
+  // );
   static final ApiClient _shared = ApiClient._sharedInstance();
   factory ApiClient() => _shared;
 }

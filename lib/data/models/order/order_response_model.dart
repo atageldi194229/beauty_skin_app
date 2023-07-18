@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
+import 'package:beauty_skin/data/models/product/product_model.dart';
+
 class OrderResponseModel extends Equatable {
   final int? id;
   final String? bookIds;
@@ -15,6 +17,7 @@ class OrderResponseModel extends Equatable {
   final String? comment;
   final String? createdAt;
   final String? updatedAt;
+  final List<OrderItemModel>? products;
 
   String? get createdAtFormatted {
     if (createdAt == null) return null;
@@ -33,6 +36,7 @@ class OrderResponseModel extends Equatable {
     this.comment,
     this.createdAt,
     this.updatedAt,
+    this.products,
   });
 
   OrderResponseModel copyWith({
@@ -46,6 +50,7 @@ class OrderResponseModel extends Equatable {
     String? comment,
     String? createdAt,
     String? updatedAt,
+    List<OrderItemModel>? products,
   }) {
     return OrderResponseModel(
       id: id ?? this.id,
@@ -58,6 +63,7 @@ class OrderResponseModel extends Equatable {
       comment: comment ?? this.comment,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      products: products ?? this.products,
     );
   }
 
@@ -73,6 +79,7 @@ class OrderResponseModel extends Equatable {
       'comment': comment,
       'created_at': createdAt,
       'updated_at': updatedAt,
+      'products': products?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -88,6 +95,13 @@ class OrderResponseModel extends Equatable {
       comment: map['comment'] != null ? map['comment'] as String : null,
       createdAt: map['created_at'] != null ? map['created_at'] as String : null,
       updatedAt: map['updated_at'] != null ? map['updated_at'] as String : null,
+      products: map['products'] != null
+          ? List<OrderItemModel>.from(
+              (map['products'] as List<dynamic>).map<OrderItemModel>(
+                (x) => OrderItemModel.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
     );
   }
 
@@ -111,6 +125,51 @@ class OrderResponseModel extends Equatable {
       comment,
       createdAt,
       updatedAt,
+      products,
     ];
   }
+}
+
+class OrderItemModel extends Equatable {
+  final int count;
+  final ProductModel product;
+
+  const OrderItemModel({
+    required this.count,
+    required this.product,
+  });
+
+  OrderItemModel copyWith({
+    int? count,
+    ProductModel? product,
+  }) {
+    return OrderItemModel(
+      count: count ?? this.count,
+      product: product ?? this.product,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'count': count,
+      'product': product.toMap(),
+    };
+  }
+
+  factory OrderItemModel.fromMap(Map<String, dynamic> map) {
+    return OrderItemModel(
+      count: map['count'] as int,
+      product: ProductModel.fromMap(map['product'] as Map<String, dynamic>),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory OrderItemModel.fromJson(String source) => OrderItemModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  bool get stringify => true;
+
+  @override
+  List<Object> get props => [count, product];
 }

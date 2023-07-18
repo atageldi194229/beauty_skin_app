@@ -3,10 +3,15 @@ import 'package:beauty_skin/data/boxes.dart';
 import 'package:beauty_skin/data/models/order/order.dart';
 
 class OrderRepository {
-  Future<OrderResponseModel> fetchOrder(int orderId) async {
-    final response = await OrderApi.getOne(orderId);
-
-    return OrderResponseModel.fromMap(response.data);
+  Future<OrderResponseModel?> fetchOrder(int orderId) async {
+    try {
+      final response = await OrderApi.getOne(orderId);
+      response.data["order"]["products"] = response.data["products"];
+      return OrderResponseModel.fromMap(response.data);
+    } catch (e) {
+      await Boxes.getOrders().delete(orderId);
+      return null;
+    }
   }
 
   Future<void> createOrder(OrderModel order) async {
@@ -14,13 +19,15 @@ class OrderRepository {
 
     final orderId = response.data["order_id"] as int;
 
-    await Boxes.getOrders().add(orderId);
+    await Boxes.getOrders().put(orderId, orderId);
   }
 
   Future<List<OrderResponseModel>> fetchAllOrders() async {
     final orderIds = Boxes.getOrders().values.toList().reversed;
 
-    return Future.wait(orderIds.map((orderId) => fetchOrder(orderId)));
+    final result = await Future.wait(orderIds.map((orderId) => fetchOrder(orderId)));
+
+    return result.whereType<OrderResponseModel>().toList();
   }
 
   ///Singleton factory

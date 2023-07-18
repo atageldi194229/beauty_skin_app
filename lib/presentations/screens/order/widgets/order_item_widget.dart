@@ -1,7 +1,10 @@
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/order/order.dart';
+import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/localization/translate.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderItemWidget extends StatelessWidget {
   const OrderItemWidget({
@@ -21,14 +24,15 @@ class OrderItemWidget extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    List<MapEntry<String, String>> entries = [
-      MapEntry("status".tr(context), "${order.status}"),
-      MapEntry("full_name".tr(context), "${order.fullName}"),
-      MapEntry("phone_number".tr(context), "${order.phoneNumber}"),
-      MapEntry("address".tr(context), "${order.address}"),
-      MapEntry("payment".tr(context), "${order.toleg}"),
-      MapEntry("created_at".tr(context), "${order.createdAtFormatted}"),
-      MapEntry("comment".tr(context), "${order.comment}"),
+    List<Widget> items = [
+      _buildKeyValueText(context, "status".tr(context), "${order.status}"),
+      _buildKeyValueText(context, "full_name".tr(context), "${order.fullName}"),
+      _buildKeyValueText(context, "phone_number".tr(context), "${order.phoneNumber}"),
+      _buildKeyValueText(context, "address".tr(context), "${order.address}"),
+      _buildKeyValueText(context, "payment".tr(context), "${order.toleg}"),
+      _buildKeyValueText(context, "created_at".tr(context), "${order.createdAtFormatted}"),
+      _buildKeyValueText(context, "comment".tr(context), "${order.comment}"),
+      _imagesPart(context),
     ];
 
     return InkWell(
@@ -36,8 +40,8 @@ class OrderItemWidget extends StatelessWidget {
       child: ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (_, i) => _buildKeyValueText(context, entries[i].key, entries[i].value),
-        itemCount: entries.length,
+        itemBuilder: (_, i) => items[i],
+        itemCount: items.length,
         separatorBuilder: (_, __) => const Divider(),
       ),
     );
@@ -59,6 +63,47 @@ class OrderItemWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _imagesPart(BuildContext context) {
+    return SizedBox(
+      height: 60.w,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: order.products?.length ?? 0,
+        itemBuilder: (context, index) {
+          final imageUrl = order.products![index].product.images[0];
+
+          return Padding(
+            padding: const EdgeInsets.only(right: kDefaultPadding),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(
+                  width: 2,
+                  color: Colors.grey.shade200,
+                  style: BorderStyle.solid,
+                ),
+                borderRadius: kBorderRadius5,
+              ),
+              child: ClipRRect(
+                borderRadius: kBorderRadius5,
+                child: LayoutBuilder(builder: (context, constraints) {
+                  return CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    fit: BoxFit.contain,
+                    width: constraints.maxHeight,
+                    height: constraints.maxHeight,
+                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                  );
+                }),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

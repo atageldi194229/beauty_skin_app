@@ -97,11 +97,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               return BlocConsumer<OrderBloc, OrderState>(
                 listener: (context, state) {
                   if (state.status == OrderStatus.loadingOrderSentSucceeded) {
-                    context.read<OrderBloc>().add(LoadMyOrders());
-                    context.read<CartBloc>().add(ClearCart());
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(const SnackBar(backgroundColor: Colors.green, content: Text("success")));
                     Navigator.of(context).pop();
                   }
                 },

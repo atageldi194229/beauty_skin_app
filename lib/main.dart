@@ -5,6 +5,7 @@ import 'package:beauty_skin/presentations/common_blocs/common_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
@@ -45,7 +46,12 @@ class _MyAppState extends State<MyApp> {
           return OrientationBuilder(
             builder: (context, orientation) {
               SizeConfig().init(constraints, orientation);
-              return const AppView();
+              return ScreenUtilInit(
+                designSize: Size(constraints.maxWidth, constraints.maxHeight),
+                builder: (context, constraints) {
+                  return const AppView();
+                },
+              );
             },
           );
         },

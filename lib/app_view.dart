@@ -1,9 +1,10 @@
-import 'package:beauty_skin/localization/tm_material_localization.dart';
+import 'package:beauty_skin/localization/tm_material_localization.dart' as tm;
 import 'package:beauty_skin/presentations/common_blocs/application/application_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/common_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/language/language_bloc.dart';
+import 'package:beauty_skin/presentations/common_blocs/order/order_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/profile/profile_bloc.dart';
 import 'package:beauty_skin/presentations/widgets/others/my_bottom_nav_bar.dart';
 import 'package:beauty_skin/localization/translate.dart';
@@ -33,10 +34,7 @@ class AppViewState extends State<AppView> {
   }
 
   void onNavigate(String route) {
-    AppRouter()
-        .navigatorKey
-        .currentState
-        ?.pushNamedAndRemoveUntil(route, (route) => false);
+    AppRouter().navigatorKey.currentState?.pushNamedAndRemoveUntil(route, (route) => false);
   }
 
   void navigateToMainScreen() {
@@ -83,13 +81,24 @@ class AppViewState extends State<AppView> {
               supportedLocales: AppLanguage.supportLanguage,
               localizationsDelegates: const [
                 Translate.delegate,
-                TmMaterialLocalization.delegate,
+                tm.TmMaterialLocalization.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
               builder: (context, child) {
-                return child!;
+                return BlocListener<OrderBloc, OrderState>(
+                  listener: (context, state) {
+                    if (state.status == OrderStatus.loadingOrderSentSucceeded) {
+                      context.read<OrderBloc>().add(LoadMyOrders());
+                      context.read<CartBloc>().add(ClearCart());
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(const SnackBar(backgroundColor: Colors.green, content: Text("success")));
+                    }
+                  },
+                  child: child,
+                );
               },
             );
           },
