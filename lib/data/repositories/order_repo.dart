@@ -7,7 +7,7 @@ class OrderRepository {
     try {
       final response = await OrderApi.getOne(orderId);
       response.data["order"]["products"] = response.data["products"];
-      return OrderResponseModel.fromMap(response.data);
+      return OrderResponseModel.fromMap(response.data["order"]);
     } catch (e) {
       await Boxes.getOrders().delete(orderId);
       return null;

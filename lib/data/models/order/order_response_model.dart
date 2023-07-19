@@ -131,7 +131,7 @@ class OrderResponseModel extends Equatable {
 }
 
 class OrderItemModel extends Equatable {
-  final int count;
+  final dynamic count;
   final ProductModel product;
 
   const OrderItemModel({
@@ -140,7 +140,7 @@ class OrderItemModel extends Equatable {
   });
 
   OrderItemModel copyWith({
-    int? count,
+    dynamic count,
     ProductModel? product,
   }) {
     return OrderItemModel(
@@ -158,7 +158,7 @@ class OrderItemModel extends Equatable {
 
   factory OrderItemModel.fromMap(Map<String, dynamic> map) {
     return OrderItemModel(
-      count: map['count'] as int,
+      count: map['count'],
       product: ProductModel.fromMap(map['product'] as Map<String, dynamic>),
     );
   }

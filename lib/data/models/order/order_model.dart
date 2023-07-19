@@ -40,7 +40,7 @@ class OrderModel extends Equatable {
       'phone_number': phoneNumber,
       'address': address,
       'comment': comment,
-      'products': products.map((x) => "${x.productId},${x.quantity};").join(""),
+      'products': products.map((x) => "${x.productId}:${x.quantity};").join(""),
     };
   }
 

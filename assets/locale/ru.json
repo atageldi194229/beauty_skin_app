@@ -40,5 +40,8 @@
     "address": "Адрес",
     "payment": "Оплата",
     "created_at": "Создан в",
-    "comment": "Комментарий"
+    "comment": "Комментарий",
+    "success": "Успех",
+    "failure": "Неудача",
+    "refresh": "Обновить"
 }

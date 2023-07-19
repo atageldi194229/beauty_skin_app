@@ -1,4 +1,5 @@
 import 'package:beauty_skin/constants/constants.dart';
+import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/common_blocs/order/order_bloc.dart';
 import 'package:beauty_skin/presentations/screens/network_error/network_error.dart';
 import 'package:beauty_skin/presentations/screens/order/widgets/order_item_widget.dart';
@@ -40,6 +41,23 @@ class OrderItemList extends StatelessWidget {
     if ([OrderStatus.initial, OrderStatus.loadingOrders].contains(status)) {
       context.read<OrderBloc>().add(LoadMyOrders());
       return const Loading();
+    }
+
+    if (orders.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("empty".tr(context)),
+            ElevatedButton(
+              onPressed: () {
+                context.read<OrderBloc>().add(LoadMyOrders());
+              },
+              child: Text("refresh".tr(context)),
+            ),
+          ],
+        ),
+      );
     }
 
     return RefreshIndicator(

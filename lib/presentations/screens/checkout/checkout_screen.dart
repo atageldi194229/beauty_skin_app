@@ -106,7 +106,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     onTap: orderState.status == OrderStatus.loadingOrderSent
                         ? null
                         : () {
-                            if (cartState is! CartLoaded) return; //esen muhhamedowic aydogdyyev
+                            if (cartState is! CartLoaded) return;
 
                             bool hasError = false;
 

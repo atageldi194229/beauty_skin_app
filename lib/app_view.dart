@@ -1,3 +1,4 @@
+import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/localization/tm_material_localization.dart' as tm;
 import 'package:beauty_skin/presentations/common_blocs/application/application_bloc.dart';
 import 'package:beauty_skin/presentations/common_blocs/cart/cart_bloc.dart';
@@ -94,7 +95,23 @@ class AppViewState extends State<AppView> {
                       context.read<CartBloc>().add(ClearCart());
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
-                        ..showSnackBar(const SnackBar(backgroundColor: Colors.green, content: Text("success")));
+                        ..showSnackBar(SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          margin: const EdgeInsets.only(bottom: kDefaultPadding),
+                          backgroundColor: Colors.green,
+                          content: Text("success".tr(context)),
+                        ));
+                    }
+
+                    if (state.status == OrderStatus.loadingOrderSentFailure) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          margin: const EdgeInsets.only(bottom: kDefaultPadding),
+                          backgroundColor: Colors.red,
+                          content: Text("failure".tr(context)),
+                        ));
                     }
                   },
                   child: child,

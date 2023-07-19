@@ -104,7 +104,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
     return <String, dynamic>{
       'id': id,
       'cat_id': catId,
-      'subcat_id': subCatId,
+      'sub_cat_id': subCatId,
       'brand_id': brandId,
       'name_tk': nameTk,
       'name_ru': nameRu,
@@ -124,8 +124,8 @@ class ProductModel extends Equatable with HiveObjectMixin {
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
       id: map['id'] as int,
-      catId: map['cat_id'] as int,
-      subCatId: map['subcat_id'] as int,
+      catId: map['cat_id'] != null ? map['cat_id'] as int : 0,
+      subCatId: (map['sub_cat_id'] ?? map['subcat_id']) as int,
       brandId: map['brand_id'] != null ? map['brand_id'] as int : null,
       nameTk: map['name_tk'] as String,
       nameRu: map['name_ru'] as String,
@@ -135,7 +135,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
       img2: map['img2'] != null ? map['img2'] as String : null,
       img3: map['img3'] != null ? map['img3'] as String : null,
       img4: map['img4'] != null ? map['img4'] as String : null,
-      price: double.parse(map['price'].toString()),
+      price: double.tryParse(map['price'].toString()) ?? int.tryParse(map['price'].toString())?.toDouble() ?? -1.0,
       skidka: (map['skidka'] is int) ? (map['skidka'] as int).toDouble() : map['skidka'] as double,
       views: map['views'] as int,
       createdAt: map['created_at'] as String,

@@ -1,9 +1,10 @@
+import 'package:badges/badges.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/order/order.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderItemWidget extends StatelessWidget {
@@ -69,12 +70,15 @@ class OrderItemWidget extends StatelessWidget {
 
   Widget _imagesPart(BuildContext context) {
     return SizedBox(
-      height: 60.w,
+      height: 80.w,
       child: ListView.builder(
+        padding: const EdgeInsets.all(kDefaultPadding).copyWith(top: 0),
         scrollDirection: Axis.horizontal,
         itemCount: order.products?.length ?? 0,
         itemBuilder: (context, index) {
-          final imageUrl = order.products![index].product.images[0];
+          final productItem = order.products![index];
+
+          final imageUrl = productItem.product.images.isNotEmpty ? productItem.product.images[0] : null;
 
           return Padding(
             padding: const EdgeInsets.only(right: kDefaultPadding),
@@ -88,18 +92,36 @@ class OrderItemWidget extends StatelessWidget {
                 ),
                 borderRadius: kBorderRadius5,
               ),
-              child: ClipRRect(
-                borderRadius: kBorderRadius5,
-                child: LayoutBuilder(builder: (context, constraints) {
-                  return CachedNetworkImage(
-                    imageUrl: imageUrl,
-                    fit: BoxFit.contain,
-                    width: constraints.maxHeight,
-                    height: constraints.maxHeight,
-                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-                  );
-                }),
+              child: Badge(
+                badgeStyle: const BadgeStyle(badgeColor: Colors.lightGreen),
+                badgeContent: Text(
+                  "${productItem.count}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    // fontFamily: montserratMedium,
+                  ),
+                ),
+                badgeAnimation: const BadgeAnimation.fade(),
+                child: ClipRRect(
+                  borderRadius: kBorderRadius5,
+                  child: LayoutBuilder(builder: (context, constraints) {
+                    return imageUrl != null
+                        ? CachedNetworkImage(
+                            imageUrl: imageUrl,
+                            fit: BoxFit.contain,
+                            width: constraints.maxHeight,
+                            height: constraints.maxHeight,
+                            placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                          )
+                        : Container(
+                            width: constraints.maxHeight,
+                            height: constraints.maxHeight,
+                            color: Colors.amber,
+                          );
+                  }),
+                ),
               ),
             ),
           );

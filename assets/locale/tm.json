@@ -40,5 +40,8 @@
     "address": "Salgysy",
     "payment": "Töleg",
     "created_at": "Döredildi",
-    "comment": "Teswir"
+    "comment": "Teswir",
+    "success": "Üstünlik",
+    "failure": "Şowsuz",
+    "refresh": "Täzele"
 }
