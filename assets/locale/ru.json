@@ -44,5 +44,6 @@
     "success": "Успех",
     "failure": "Неудача",
     "refresh": "Обновить",
-    "orders": "Заказы"
+    "orders": "Заказы",
+    "ordered_products": "Заказанные товары"
 }

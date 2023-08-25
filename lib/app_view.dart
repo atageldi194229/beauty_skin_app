@@ -71,52 +71,54 @@ class AppViewState extends State<AppView> {
       builder: (context, applicationState) {
         return BlocBuilder<LanguageBloc, LanguageState>(
           builder: (context, state) {
-            return MaterialApp(
-              navigatorKey: AppRouter().navigatorKey,
-              debugShowCheckedModeBanner: Application.debug,
-              title: Application.title,
-              theme: AppTheme.currentTheme,
-              onGenerateRoute: AppRouter.generateRoute,
-              initialRoute: AppRouter.SPLASH,
-              locale: AppLanguage.defaultLanguage,
-              supportedLocales: AppLanguage.supportLanguage,
-              localizationsDelegates: const [
-                Translate.delegate,
-                tm.TmMaterialLocalization.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              builder: (context, child) {
-                return BlocListener<OrderBloc, OrderState>(
-                  listener: (context, state) {
-                    if (state.status == OrderStatus.loadingOrderSentSucceeded) {
-                      context.read<OrderBloc>().add(LoadMyOrders());
-                      context.read<CartBloc>().add(ClearCart());
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          margin: const EdgeInsets.only(bottom: kDefaultPadding),
-                          backgroundColor: Colors.green,
-                          content: Text("success".tr(context)),
-                        ));
-                    }
+            return ScaffoldMessenger(
+              child: MaterialApp(
+                navigatorKey: AppRouter().navigatorKey,
+                debugShowCheckedModeBanner: Application.debug,
+                title: Application.title,
+                theme: AppTheme.currentTheme,
+                onGenerateRoute: AppRouter.generateRoute,
+                initialRoute: AppRouter.SPLASH,
+                locale: AppLanguage.defaultLanguage,
+                supportedLocales: AppLanguage.supportLanguage,
+                localizationsDelegates: const [
+                  Translate.delegate,
+                  tm.TmMaterialLocalization.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                builder: (context, child) {
+                  return BlocListener<OrderBloc, OrderState>(
+                    listener: (context, state) {
+                      if (state.status == OrderStatus.loadingOrderSentSucceeded) {
+                        context.read<OrderBloc>().add(LoadMyOrders());
+                        context.read<CartBloc>().add(ClearCart());
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            margin: const EdgeInsets.only(bottom: kDefaultPadding),
+                            backgroundColor: Colors.green,
+                            content: Text("success".tr(context)),
+                          ));
+                      }
 
-                    if (state.status == OrderStatus.loadingOrderSentFailure) {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          margin: const EdgeInsets.only(bottom: kDefaultPadding),
-                          backgroundColor: Colors.red,
-                          content: Text("failure".tr(context)),
-                        ));
-                    }
-                  },
-                  child: child,
-                );
-              },
+                      if (state.status == OrderStatus.loadingOrderSentFailure) {
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            margin: const EdgeInsets.only(bottom: kDefaultPadding),
+                            backgroundColor: Colors.red,
+                            content: Text("failure".tr(context)),
+                          ));
+                      }
+                    },
+                    child: child,
+                  );
+                },
+              ),
             );
           },
         );

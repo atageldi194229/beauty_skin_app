@@ -73,13 +73,14 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
             "${product.discountPrice} TMT",
             style: FONT_CONST.BOLD_PRIMARY_24,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(
-              "${product.price}",
-              style: const TextStyle(decoration: TextDecoration.lineThrough),
+          if (product.price != product.discountPrice)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                "${product.price}",
+                style: const TextStyle(decoration: TextDecoration.lineThrough),
+              ),
             ),
-          ),
         ],
       ),
     );

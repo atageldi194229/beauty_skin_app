@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static final ThemeData currentTheme = ThemeData(
+    useMaterial3: true,
     scaffoldBackgroundColor: COLOR_CONST.backgroundColor,
     appBarTheme: _appBarTheme,
     floatingActionButtonTheme: _floatingActionButtonTheme,

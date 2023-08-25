@@ -106,12 +106,13 @@ class _AddToCartBarWidgetState extends State<AddToCartBarWidget> {
           style: FONT_CONST.BOLD_DEFAULT_18.copyWith(color: Colors.grey),
         ),
         const SizedBox(height: kDefaultPadding * 2),
-        Text(
-          "${widget.product.price} TMT",
-          style: FONT_CONST.REGULAR_PRIMARY.copyWith(
-            decoration: TextDecoration.lineThrough,
+        if (widget.product.price != widget.product.discountPrice)
+          Text(
+            "${widget.product.price} TMT",
+            style: FONT_CONST.REGULAR_PRIMARY.copyWith(
+              decoration: TextDecoration.lineThrough,
+            ),
           ),
-        ),
         const SizedBox(height: kDefaultPadding),
         Text(
           "${widget.product.discountPrice} TMT",

@@ -44,5 +44,6 @@
     "success": "Üstünlik",
     "failure": "Şowsuz",
     "refresh": "Täzele",
-    "orders": "Sargytlar"
+    "orders": "Sargytlar",
+    "ordered_products": "Sargyt edilen önümler"
 }

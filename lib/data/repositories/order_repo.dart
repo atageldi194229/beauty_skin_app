@@ -14,16 +14,20 @@ class OrderRepository {
     }
   }
 
-  Future<void> createOrder(OrderModel order) async {
+  Future<int> createOrder(OrderModel order) async {
     final response = await OrderApi.create(order.toMap());
 
     final orderId = response.data["order_id"] as int;
 
     await Boxes.getOrders().put(orderId, orderId);
+
+    return orderId;
   }
 
   Future<List<OrderResponseModel>> fetchAllOrders() async {
-    final orderIds = Boxes.getOrders().values.toList().reversed;
+    final orderBox = Boxes.getOrders();
+
+    final orderIds = orderBox.values.toList();
 
     final result = await Future.wait(orderIds.map((orderId) => fetchOrder(orderId)));
 

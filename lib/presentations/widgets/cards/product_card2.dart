@@ -183,13 +183,14 @@ class _ProductCard2State extends State<ProductCard2> with SingleTickerProviderSt
                           ),
                         ),
                         const SizedBox(width: kDefaultPadding),
-                        Text(
-                          "${widget.product.price}",
-                          style: const TextStyle(
-                            fontSize: 12.0,
-                            decoration: TextDecoration.lineThrough,
+                        if (widget.product.price != widget.product.discountPrice)
+                          Text(
+                            "${widget.product.price}",
+                            style: const TextStyle(
+                              fontSize: 12.0,
+                              decoration: TextDecoration.lineThrough,
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ],

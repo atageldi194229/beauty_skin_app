@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:beauty_skin/data/models/order/order.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
 import 'package:beauty_skin/presentations/screens/about_us/about_us_screen.dart';
 import 'package:beauty_skin/presentations/screens/cart/cart_screen.dart';
@@ -9,6 +10,7 @@ import 'package:beauty_skin/presentations/screens/delivery_address/delivery_addr
 import 'package:beauty_skin/presentations/screens/detail_product/detail_product_screen.dart';
 import 'package:beauty_skin/presentations/screens/home/home_screen.dart';
 import 'package:beauty_skin/presentations/screens/order/order_screen.dart';
+import 'package:beauty_skin/presentations/screens/order_detail/order_detail_screen.dart';
 import 'package:beauty_skin/presentations/screens/profile/profile_screen.dart';
 import 'package:beauty_skin/presentations/screens/search/product_filter.dart';
 import 'package:beauty_skin/presentations/screens/search/search_screen.dart';
@@ -104,6 +106,10 @@ class AppRouter {
 
       case MY_ORDERS:
         return MaterialPageRoute(builder: (_) => const OrderScreen());
+
+      case DETAIL_ORDER:
+        OrderResponseModel order = settings.arguments as OrderResponseModel;
+        return MaterialPageRoute(builder: (_) => OrderDetailScreen(order: order));
 
       default:
         return MaterialPageRoute(

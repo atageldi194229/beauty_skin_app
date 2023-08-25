@@ -48,13 +48,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("checkout".tr(context))),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(kDefaultPadding * 4),
-            child: _buildForm(context),
+    return BlocListener<OrderBloc, OrderState>(
+      listenWhen: (p, c) => p.status != c.status && c.status == OrderStatus.loadingOrderSentSucceeded,
+      listener: (context, state) {
+        Navigator.of(context).pop();
+        Navigator.of(context).pushNamed(AppRouter.MY_ORDERS);
+      },
+      child: Scaffold(
+        appBar: AppBar(title: Text("checkout".tr(context))),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(kDefaultPadding * 4),
+              child: _buildForm(context),
+            ),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/order/order.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
@@ -37,7 +38,9 @@ class OrderItemWidget extends StatelessWidget {
     ];
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushNamed(AppRouter.DETAIL_ORDER, arguments: order);
+      },
       child: ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
