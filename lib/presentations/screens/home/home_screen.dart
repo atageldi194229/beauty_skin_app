@@ -28,7 +28,10 @@ class HomeScreen extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                AppRouter().navigatorKey.currentState?.pushNamed(AppRouter.SEARCH);
+                AppRouter()
+                    .navigatorKey
+                    .currentState
+                    ?.pushNamed(AppRouter.SEARCH);
               },
               icon: const Icon(
                 Icons.search_outlined,
@@ -47,6 +50,10 @@ class HomeScreen extends StatelessWidget {
               builder: (_, homeState) {
                 if (homeState is HomeLoaded) {
                   var homeResponse = homeState.homeResponse;
+
+                  final subCategories = homeResponse.subCategories
+                      .where((e) => homeResponse.subCategoryIds.contains(e.id));
+
                   return ListView(
                     children: [
                       ///
@@ -62,13 +69,11 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: kDefaultPadding * 2),
                       // ProductsView(products: 20),
 
-                      ...homeResponse.subCategoryIds.map<Widget>((subCategoryId) {
+                      ...subCategories.map<Widget>((subCategory) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CategoryProductListView(
-                              subCategory: homeResponse.subCategories.firstWhere((e) => e.id == subCategoryId),
-                            ),
+                            CategoryProductListView(subCategory: subCategory),
                             const SizedBox(height: kDefaultPadding * 2),
                           ],
                         );
