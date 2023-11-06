@@ -56,8 +56,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
 
       emit(HomeLoaded(homeResponse: homeResponse));
-    } catch (e) {
-      emit(HomeLoadFailure(e.toString()));
+    } catch (error, stackTrace) {
+      emit(HomeLoadFailure(error.toString()));
+      addError(error, stackTrace);
     }
   }
 }

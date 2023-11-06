@@ -35,7 +35,10 @@ class AppViewState extends State<AppView> {
   }
 
   void onNavigate(String route) {
-    AppRouter().navigatorKey.currentState?.pushNamedAndRemoveUntil(route, (route) => false);
+    AppRouter()
+        .navigatorKey
+        .currentState
+        ?.pushNamedAndRemoveUntil(route, (route) => false);
   }
 
   void navigateToMainScreen() {
@@ -89,33 +92,76 @@ class AppViewState extends State<AppView> {
                   GlobalCupertinoLocalizations.delegate,
                 ],
                 builder: (context, child) {
-                  return BlocListener<OrderBloc, OrderState>(
-                    listener: (context, state) {
-                      if (state.status == OrderStatus.loadingOrderSentSucceeded) {
-                        context.read<OrderBloc>().add(LoadMyOrders());
-                        context.read<CartBloc>().add(ClearCart());
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            margin: const EdgeInsets.only(bottom: kDefaultPadding),
-                            backgroundColor: Colors.green,
-                            content: Text("success".tr(context)),
-                          ));
-                      }
+                  return MultiBlocListener(
+                    listeners: [
+                      BlocListener<OrderBloc, OrderState>(
+                        listener: (context, state) {
+                          if (state.status ==
+                              OrderStatus.loadingOrderSentSucceeded) {
+                            context.read<OrderBloc>().add(LoadMyOrders());
+                            context.read<CartBloc>().add(ClearCart());
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(SnackBar(
+                                behavior: SnackBarBehavior.floating,
+                                margin: const EdgeInsets.only(
+                                  bottom: kDefaultPadding,
+                                ),
+                                backgroundColor: Colors.green,
+                                content: Text("success".tr(context)),
+                              ));
+                          }
 
-                      if (state.status == OrderStatus.loadingOrderSentFailure) {
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(SnackBar(
-                            behavior: SnackBarBehavior.floating,
-                            margin: const EdgeInsets.only(bottom: kDefaultPadding),
-                            backgroundColor: Colors.red,
-                            content: Text("failure".tr(context)),
-                          ));
-                      }
-                    },
-                    child: child,
+                          if (state.status ==
+                              OrderStatus.loadingOrderSentFailure) {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.only(
+                                    bottom: kDefaultPadding,
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  content: Text("failure".tr(context)),
+                                ),
+                              );
+                          }
+                        },
+                      ),
+                      BlocListener<CartBloc, CartState>(
+                        listener: (context, state) {
+                          if (state is CartItemAdded) {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.only(
+                                    bottom: kDefaultPadding,
+                                  ),
+                                  content: Text("cart_item_added".tr(context)),
+                                ),
+                              );
+                          }
+                          if (state is CartItemRemoved) {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.only(
+                                    bottom: kDefaultPadding,
+                                  ),
+                                  content:
+                                      Text("cart_item_removed".tr(context)),
+                                ),
+                              );
+                          }
+                        },
+                      ),
+                    ],
+                    child: child ?? const SizedBox(),
                   );
                 },
               ),

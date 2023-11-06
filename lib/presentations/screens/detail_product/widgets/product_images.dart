@@ -39,7 +39,7 @@ class ProductImagesWidgetState extends State<ProductImagesWidget> {
                   //   arguments: images[index],
                   // );
                 },
-                child: Image.network(images[index], fit: BoxFit.contain),
+                child: Image.network(images[index], fit: BoxFit.fill),
               );
             },
             onPageChanged: onPageChanged,

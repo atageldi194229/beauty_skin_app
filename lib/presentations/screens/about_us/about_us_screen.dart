@@ -27,12 +27,22 @@ class AboutUsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
+              "Beauty Skin",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: kDefaultPadding * 2),
+            Text(
+              "about_us_beuaty_skin".tr(context),
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(height: kDefaultPadding * 2),
+            Text(
               "delivery".tr(context),
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: kDefaultPadding * 2),
             Text(
-              "deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat deliver service in ashgabat",
+              "about_us_delivery".tr(context),
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: kDefaultPadding * 2),
@@ -44,17 +54,22 @@ class AboutUsScreen extends StatelessWidget {
             _buildKeyValueText(
               context,
               "phone_number".tr(context),
-              "+99312345678".tr(context),
+              "+99362048189".tr(context),
             ),
             _buildKeyValueText(
               context,
-              "imo".tr(context),
-              "+99312345678".tr(context),
+              "IMO".tr(context),
+              "+99361446933".tr(context),
             ),
             _buildKeyValueText(
               context,
-              "instagram".tr(context),
-              "beauty_skin_tm".tr(context),
+              "Link".tr(context),
+              "+99361446933".tr(context),
+            ),
+            _buildKeyValueText(
+              context,
+              "Instagram".tr(context),
+              "beauty_skin.Tm".tr(context),
             ),
           ],
         ),

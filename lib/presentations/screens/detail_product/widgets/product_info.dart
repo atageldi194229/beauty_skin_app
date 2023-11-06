@@ -1,7 +1,10 @@
 import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
+import 'package:beauty_skin/presentations/common_blocs/favorite/favorite_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 class ProductInfoWidget extends StatefulWidget {
   const ProductInfoWidget({
@@ -32,10 +35,53 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildProductName(),
-          const SizedBox(height: kDefaultPadding),
-          _buildPrice(),
-          SizedBox(height: SizeConfig.defaultSize * 2),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildProductName(),
+                  const SizedBox(height: kDefaultPadding),
+                  _buildPrice(),
+                  SizedBox(height: SizeConfig.defaultSize * 2),
+                ],
+              ),
+              const Spacer(),
+              BlocBuilder<FavoriteBloc, FavoriteState>(
+                builder: (context, state) {
+                  bool isFavorited = false;
+                  var productToRemove = product;
+
+                  if (state is FavoritesLoaded) {
+                    if (state.products.any((e) => e == product)) {
+                      isFavorited = true;
+                      productToRemove =
+                          state.products.firstWhere((e) => e == product);
+                    }
+                  }
+
+                  return FloatingActionButton(
+                    onPressed: () {
+                      if (isFavorited) {
+                        context
+                            .read<FavoriteBloc>()
+                            .add(RemoveFavoriteItemModel(productToRemove));
+                      } else {
+                        context
+                            .read<FavoriteBloc>()
+                            .add(AddFavoriteItemModel(product));
+                      }
+                    },
+                    child: Icon(
+                      isFavorited ? IconlyBold.heart : IconlyLight.heart,
+                      color: Colors.white,
+                    ),
+                  );
+                },
+              ),
+              SizedBox(width: SizeConfig.defaultSize * 2),
+            ],
+          ),
           // Row(
           //   children: [
           //     SizedBox(width: SizeConfig.defaultPadding),
@@ -135,7 +181,9 @@ class ProductInfoWidgetState extends State<ProductInfoWidget> {
 class GradientButtonFb1 extends StatelessWidget {
   final String text;
   final Function() onPressed;
-  const GradientButtonFb1({required this.text, required this.onPressed, Key? key}) : super(key: key);
+  const GradientButtonFb1(
+      {required this.text, required this.onPressed, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

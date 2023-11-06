@@ -24,6 +24,12 @@ class CartLoaded extends CartState {
   List<Object> get props => [cart, priceOfGoods];
 }
 
+/// When Cart item added successfully
+class CartItemAdded extends CartState {}
+
+/// When Cart item removed successfully
+class CartItemRemoved extends CartState {}
+
 /// Cart wasn't loaded
 class CartLoadFailure extends CartState {
   final String error;

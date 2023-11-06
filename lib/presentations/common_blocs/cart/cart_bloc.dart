@@ -39,6 +39,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     try {
       await _cartRepository.addCartItemModel(event.cartItem);
+      emit(CartItemAdded());
       add(LoadCart());
     } catch (e) {
       debugPrint(e.toString());
@@ -75,6 +76,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   ) async {
     try {
       await _cartRepository.removeCartItemModelByProductId(event.product);
+      emit(CartItemRemoved());
       add(LoadCart());
     } catch (e) {
       debugPrint(e.toString());
