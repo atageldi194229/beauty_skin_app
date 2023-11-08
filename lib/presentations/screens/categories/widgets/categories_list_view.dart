@@ -5,6 +5,7 @@ import 'package:beauty_skin/data/models/category/sub_category_model.dart';
 import 'package:beauty_skin/localization/translate.dart';
 import 'package:beauty_skin/presentations/screens/search/product_filter.dart';
 import 'package:beauty_skin/presentations/widgets/others/loading.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,10 +27,17 @@ class CategoriesListView extends StatelessWidget {
           onTap: () => _navigateToProducts(category, subCategory),
           style: ListTileStyle.drawer,
           title: Text(subCategory.nameTranslate(context)),
-          leading: const VerticalDivider(
-            width: 2,
-            color: COLOR_CONST.primaryColor,
+          leading: SizedBox.square(
+            dimension: 25,
+            child: CachedNetworkImage(
+              imageUrl: subCategory.imagePath,
+              fit: BoxFit.fill,
+            ),
           ),
+          // leading: const VerticalDivider(
+          //   width: 2,
+          //   color: COLOR_CONST.primaryColor,
+          // ),
         ),
       );
     }
