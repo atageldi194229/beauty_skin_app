@@ -20,58 +20,61 @@ class AboutUsScreen extends StatelessWidget {
   }
 
   _buildBody(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(kDefaultPadding * 2),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Beauty Skin",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: kDefaultPadding * 2),
-            Text(
-              "about_us_beuaty_skin".tr(context),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            const SizedBox(height: kDefaultPadding * 2),
-            Text(
-              "delivery".tr(context),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: kDefaultPadding * 2),
-            Text(
-              "about_us_delivery".tr(context),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            const SizedBox(height: kDefaultPadding * 2),
-            Text(
-              "contact_us".tr(context),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: kDefaultPadding * 2),
-            _buildKeyValueText(
-              context,
-              "phone_number".tr(context),
-              "+99362048189".tr(context),
-            ),
-            _buildKeyValueText(
-              context,
-              "IMO".tr(context),
-              "+99361446933".tr(context),
-            ),
-            _buildKeyValueText(
-              context,
-              "Link".tr(context),
-              "+99361446933".tr(context),
-            ),
-            _buildKeyValueText(
-              context,
-              "Instagram".tr(context),
-              "beauty_skin.Tm".tr(context),
-            ),
-          ],
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding * 2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Beauty Skin",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: kDefaultPadding * 2),
+              Text(
+                "about_us_beuaty_skin".tr(context),
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: kDefaultPadding * 2),
+              Text(
+                "delivery".tr(context),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: kDefaultPadding * 2),
+              Text(
+                "about_us_delivery".tr(context),
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: kDefaultPadding * 2),
+              Text(
+                "contact_us".tr(context),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: kDefaultPadding * 2),
+              _buildKeyValueText(
+                context,
+                "phone_number".tr(context),
+                "+99362048189".tr(context),
+              ),
+              _buildKeyValueText(
+                context,
+                "IMO".tr(context),
+                "+99361446933".tr(context),
+              ),
+              _buildKeyValueText(
+                context,
+                "Link".tr(context),
+                "+99361446933".tr(context),
+              ),
+              _buildKeyValueText(
+                context,
+                "Instagram".tr(context),
+                "beauty_skin.Tm".tr(context),
+              ),
+            ],
+          ),
         ),
       ),
     );
