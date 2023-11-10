@@ -30,9 +30,9 @@ class ProductQueryParameters {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'page': page,
-      'search': search,
-      'categoryId': categoryId,
-      'subCategoryId': subCategoryId,
+      if (search?.isNotEmpty == true) 'search': search,
+      if (categoryId != null) 'category': categoryId,
+      if (subCategoryId != null) 'subcategory': subCategoryId,
     };
   }
 
@@ -40,9 +40,9 @@ class ProductQueryParameters {
     return ProductQueryParameters(
       page: map['page'] as int,
       search: map['search'] != null ? map['search'] as String : null,
-      categoryId: map['categoryId'] != null ? map['categoryId'] as int : null,
+      categoryId: map['category'] != null ? map['category'] as int : null,
       subCategoryId:
-          map['subCategoryId'] != null ? map['subCategoryId'] as int : null,
+          map['subcategory'] != null ? map['subcategory'] as int : null,
     );
   }
 
@@ -54,7 +54,7 @@ class ProductQueryParameters {
 
   @override
   String toString() {
-    return 'ProductQueryParameters(page: $page, search: $search, categoryId: $categoryId, subCategoryId: $subCategoryId)';
+    return 'ProductQueryParameters(page: $page, search: $search, category: $categoryId, subcategory: $subCategoryId)';
   }
 
   @override

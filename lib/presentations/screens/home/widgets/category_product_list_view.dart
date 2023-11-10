@@ -19,7 +19,8 @@ class CategoryProductListView extends StatefulWidget {
   final SubCategoryModel subCategory;
 
   @override
-  State<CategoryProductListView> createState() => _CategoryProductListViewState();
+  State<CategoryProductListView> createState() =>
+      _CategoryProductListViewState();
 }
 
 class _CategoryProductListViewState extends State<CategoryProductListView> {
@@ -59,9 +60,11 @@ class _CategoryProductListViewState extends State<CategoryProductListView> {
 
   // A function that sends a GET request to the API and fetches the first batch of products
   void _firstLoad() async {
-    setState(() {
-      _isFirstLoadRunning = true;
-    });
+    if (mounted) {
+      setState(() {
+        _isFirstLoadRunning = true;
+      });
+    }
 
     try {
       final fetchedProducts = await ProductRepository().fetchProducts(
@@ -70,21 +73,28 @@ class _CategoryProductListViewState extends State<CategoryProductListView> {
           subCategoryId: widget.subCategory.id,
         ),
       );
-      setState(() {
-        products = fetchedProducts;
-      });
+      if (mounted) {
+        setState(() {
+          products = fetchedProducts;
+        });
+      }
     } catch (err) {
       debugPrint('Something went wrong: $err');
     }
 
-    setState(() {
-      _isFirstLoadRunning = false;
-    });
+    if (mounted) {
+      setState(() {
+        _isFirstLoadRunning = false;
+      });
+    }
   }
 
   // A function that sends a GET request to the API and fetches more products when scrolling to the end of the list view
   void _loadMore() async {
-    if (_hasNextPage && !_isFirstLoadRunning && !_isLoadMoreRunning && _controller.position.extentAfter < 500) {
+    if (_hasNextPage &&
+        !_isFirstLoadRunning &&
+        !_isLoadMoreRunning &&
+        _controller.position.extentAfter < 500) {
       setState(() {
         _isLoadMoreRunning = true;
       });
@@ -112,9 +122,11 @@ class _CategoryProductListViewState extends State<CategoryProductListView> {
         debugPrint('Something went wrong: $err');
       }
 
-      setState(() {
-        _isLoadMoreRunning = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoadMoreRunning = false;
+        });
+      }
     }
   }
 
@@ -138,7 +150,10 @@ class _CategoryProductListViewState extends State<CategoryProductListView> {
           padding: const EdgeInsets.all(kDefaultPadding * 2),
           child: Text(
             widget.subCategory.nameTranslate(context),
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
         SizedBox(

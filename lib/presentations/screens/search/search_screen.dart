@@ -21,12 +21,20 @@ class SearchScreen extends StatefulWidget {
 }
 
 class SearchScreenState extends State<SearchScreen> {
-  final TextEditingController searchController = TextEditingController();
-  final _productRepo = ProductRepository();
-  Timer? _debounce;
-  List<ProductModel> products = [];
   bool isMore = true;
   int page = 0;
+  List<ProductModel> products = [];
+  final TextEditingController searchController = TextEditingController();
+
+  Timer? _debounce;
+  final _productRepo = ProductRepository();
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -60,43 +68,13 @@ class SearchScreenState extends State<SearchScreen> {
       subCategoryId: widget.filter.subCategory?.id,
     ));
 
-    if (products.isNotEmpty) {
-      setState(() => this.products = [...this.products, ...products]);
-    } else {
-      setState(() => isMore = false);
+    if (mounted) {
+      if (products.isNotEmpty) {
+        setState(() => this.products = [...this.products, ...products]);
+      } else {
+        setState(() => isMore = false);
+      }
     }
-  }
-
-  @override
-  void dispose() {
-    _debounce?.cancel();
-    searchController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(context),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildCategoryTile(),
-            Expanded(
-              child: GridProducts(
-                products: products,
-                isMore: isMore,
-                getMore: () {
-                  fetchProducts();
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
@@ -173,5 +151,30 @@ class SearchScreenState extends State<SearchScreen> {
     //     child: Text(text, style: style),
     //   ),
     // );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _buildAppBar(context),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildCategoryTile(),
+            Expanded(
+              child: GridProducts(
+                products: products,
+                isMore: isMore,
+                getMore: () {
+                  fetchProducts();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
