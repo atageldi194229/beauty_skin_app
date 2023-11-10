@@ -1,5 +1,4 @@
 import 'package:beauty_skin/configs/router.dart';
-import 'package:beauty_skin/constants/color_constant.dart';
 import 'package:beauty_skin/data/models/category/category_model.dart';
 import 'package:beauty_skin/data/models/category/sub_category_model.dart';
 import 'package:beauty_skin/localization/translate.dart';
