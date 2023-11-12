@@ -1,4 +1,5 @@
 import 'package:beauty_skin/configs/router.dart';
+import 'package:beauty_skin/constants/color_constant.dart';
 import 'package:beauty_skin/data/models/category/category_model.dart';
 import 'package:beauty_skin/data/models/category/sub_category_model.dart';
 import 'package:beauty_skin/localization/translate.dart';
@@ -26,12 +27,24 @@ class CategoriesListView extends StatelessWidget {
           onTap: () => _navigateToProducts(category, subCategory),
           style: ListTileStyle.drawer,
           title: Text(subCategory.nameTranslate(context)),
-          leading: SizedBox.square(
-            dimension: 25,
-            child: CachedNetworkImage(
-              imageUrl: subCategory.imagePath,
-              fit: BoxFit.fill,
-            ),
+          leading: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const VerticalDivider(
+                indent: 3,
+                endIndent: 3,
+                width: 2,
+                color: COLOR_CONST.primaryColor,
+              ),
+              const SizedBox(width: 4.0),
+              SizedBox.square(
+                dimension: 50,
+                child: CachedNetworkImage(
+                  imageUrl: subCategory.imagePath,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ],
           ),
           // leading: const VerticalDivider(
           //   width: 2,
@@ -67,6 +80,13 @@ class CategoriesListView extends StatelessWidget {
                     onTap: () => _navigateToProducts(category, null),
                     style: ListTileStyle.drawer,
                     title: Text(category.nameTranslate(context)),
+                    leading: SizedBox.square(
+                      dimension: 50,
+                      child: CachedNetworkImage(
+                        imageUrl: category.imagePath,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
                   );
                 },
                 body: Column(
