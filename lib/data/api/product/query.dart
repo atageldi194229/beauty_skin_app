@@ -5,12 +5,14 @@ class ProductQueryParameters {
   final String? search;
   final int? categoryId;
   final int? subCategoryId;
+  final int? brandId;
 
   ProductQueryParameters({
     required this.page,
     this.search,
     this.categoryId,
     this.subCategoryId,
+    this.brandId,
   });
 
   ProductQueryParameters copyWith({
@@ -18,12 +20,14 @@ class ProductQueryParameters {
     String? search,
     int? categoryId,
     int? subCategoryId,
+    int? brandId,
   }) {
     return ProductQueryParameters(
       page: page ?? this.page,
       search: search ?? this.search,
       categoryId: categoryId ?? this.categoryId,
       subCategoryId: subCategoryId ?? this.subCategoryId,
+      brandId: brandId ?? this.brandId,
     );
   }
 
@@ -33,6 +37,7 @@ class ProductQueryParameters {
       if (search?.isNotEmpty == true) 'search': search,
       if (categoryId != null) 'category': categoryId,
       if (subCategoryId != null) 'subcategory': subCategoryId,
+      if (brandId != null) 'brand': brandId,
     };
   }
 
@@ -43,6 +48,7 @@ class ProductQueryParameters {
       categoryId: map['category'] != null ? map['category'] as int : null,
       subCategoryId:
           map['subcategory'] != null ? map['subcategory'] as int : null,
+      brandId: map['brand'] != null ? map['brand'] as int : null,
     );
   }
 
@@ -54,7 +60,7 @@ class ProductQueryParameters {
 
   @override
   String toString() {
-    return 'ProductQueryParameters(page: $page, search: $search, category: $categoryId, subcategory: $subCategoryId)';
+    return 'ProductQueryParameters(page: $page, search: $search, category: $categoryId, subcategory: $subCategoryId, brand: $brandId)';
   }
 
   @override
@@ -64,7 +70,8 @@ class ProductQueryParameters {
     return other.page == page &&
         other.search == search &&
         other.categoryId == categoryId &&
-        other.subCategoryId == subCategoryId;
+        other.subCategoryId == subCategoryId &&
+        other.brandId == brandId;
   }
 
   @override
@@ -72,6 +79,7 @@ class ProductQueryParameters {
     return page.hashCode ^
         search.hashCode ^
         categoryId.hashCode ^
-        subCategoryId.hashCode;
+        subCategoryId.hashCode ^
+        brandId.hashCode;
   }
 }

@@ -2,8 +2,8 @@ import 'package:beauty_skin/data/api/brand_api.dart';
 import 'package:beauty_skin/data/models/brand/brand_model.dart';
 
 class BrandRepository {
-  // Get all Products
-  Future<List<BrandModel>> fetchProducts() async {
+  // Get all brands
+  Future<List<BrandModel>> fetchBrands() async {
     final response = await BrandApi.getAll();
 
     return (response.data["data"] as Iterable)

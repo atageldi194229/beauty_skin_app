@@ -13,11 +13,15 @@ class CategoriesLoading extends CategoriesState {}
 /// Adready data
 class CategoriesLoaded extends CategoriesState {
   final CategoriesResponse categoriesResponse;
+  final List<BrandModel> brands;
 
-  const CategoriesLoaded({required this.categoriesResponse});
+  const CategoriesLoaded({
+    required this.categoriesResponse,
+    required this.brands,
+  });
 
   @override
-  List<Object> get props => [categoriesResponse];
+  List<Object> get props => [categoriesResponse, brands];
 }
 
 /// Failure

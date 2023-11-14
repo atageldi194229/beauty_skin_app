@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/data/api/product/product_api.dart';
+import 'package:beauty_skin/data/models/brand/brand_model.dart';
 import 'package:beauty_skin/data/models/category/category_model.dart';
 import 'package:beauty_skin/data/models/category/sub_category_model.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
@@ -41,6 +42,8 @@ class SearchScreenState extends State<SearchScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchProducts();
+
       searchController.addListener(() {
         if (_debounce?.isActive ?? false) _debounce?.cancel();
         _debounce = Timer(const Duration(milliseconds: 500), () {
@@ -66,6 +69,7 @@ class SearchScreenState extends State<SearchScreen> {
       search: searchController.text,
       categoryId: widget.filter.category?.id,
       subCategoryId: widget.filter.subCategory?.id,
+      brandId: widget.filter.brand?.id,
     ));
 
     if (mounted) {
@@ -82,7 +86,7 @@ class SearchScreenState extends State<SearchScreen> {
       title: TextField(
         controller: searchController,
         keyboardType: TextInputType.text,
-        autofocus: true,
+        autofocus: false,
         textAlignVertical: TextAlignVertical.center,
         style: FONT_CONST.REGULAR_WHITE_18,
         decoration: InputDecoration(
@@ -103,19 +107,11 @@ class SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildCategoryTile() {
-    CategoryModel? category;
-    SubCategoryModel? subCategory;
+    final category = widget.filter.category;
+    final subCategory = widget.filter.subCategory;
+    final brand = widget.filter.brand;
     String text = "";
-    // TextStyle? style = Theme.of(context).textTheme.headlineSmall;
     TextStyle? style = Theme.of(context).textTheme.titleMedium;
-
-    if (widget.filter.category != null) {
-      category = widget.filter.category;
-    }
-
-    if (widget.filter.subCategory != null) {
-      subCategory = widget.filter.subCategory;
-    }
 
     if (category != null) {
       text += category.nameTranslate(context);
@@ -129,6 +125,10 @@ class SearchScreenState extends State<SearchScreen> {
       text += subCategory.nameTranslate(context);
     }
 
+    if (brand != null) {
+      text = brand.nameTranslate(context) ?? "";
+    }
+
     if (text == "") {
       return Container();
     }
@@ -140,17 +140,6 @@ class SearchScreenState extends State<SearchScreen> {
         title: Text(text, style: style),
       ),
     );
-
-    // return Container(
-    //   padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2)
-    //       .copyWith(top: kDefaultPadding),
-    //   width: double.infinity,
-    //   height: kToolbarHeight,
-    //   child: Align(
-    //     alignment: Alignment.centerLeft,
-    //     child: Text(text, style: style),
-    //   ),
-    // );
   }
 
   @override

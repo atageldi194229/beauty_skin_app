@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:beauty_skin/data/models/brand/brand_model.dart';
 import 'package:beauty_skin/data/models/category/category_model.dart';
 import 'package:beauty_skin/data/models/category/sub_category_model.dart';
+import 'package:beauty_skin/data/repositories/brand_repo.dart';
 import 'package:beauty_skin/data/repositories/category_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -11,6 +13,7 @@ part 'categories_state.dart';
 
 class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   final _categoryRepository = CategoryRepository();
+  final _brandRepository = BrandRepository();
 
   CategoriesBloc() : super(CategoriesLoading()) {
     on<LoadCategories>(_mapLoadCategoriesToState);
@@ -27,20 +30,35 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     Emitter<CategoriesState> emit,
   ) async {
     try {
-      late List<CategoryModel> categories;
-      late List<SubCategoryModel> subCategories;
+      late CategoriesResponse categoriesResponse;
+      late List<BrandModel> brands;
 
-      final r = await _categoryRepository.fetchCategories();
+      await Future.wait([
+        _brandRepository.fetchBrands().then((r) {
+          brands = r;
+        }),
+        _categoryRepository.fetchCategories().then((r) {
+          categoriesResponse = CategoriesResponse(
+            categories: r.categories,
+            subCategories: r.subCategories,
+          );
+        }),
+      ]);
 
-      categories = r.categories;
-      subCategories = r.subCategories;
+      // final r = await _categoryRepository.fetchCategories();
 
-      CategoriesResponse categoriesResponse = CategoriesResponse(
-        categories: categories,
-        subCategories: subCategories,
-      );
+      // categories = r.categories;
+      // subCategories = r.subCategories;
 
-      emit(CategoriesLoaded(categoriesResponse: categoriesResponse));
+      // CategoriesResponse categoriesResponse = CategoriesResponse(
+      //   categories: categories,
+      //   subCategories: subCategories,
+      // );
+
+      emit(CategoriesLoaded(
+        categoriesResponse: categoriesResponse,
+        brands: brands,
+      ));
     } catch (e) {
       emit(CategoriesLoadFailure(e.toString()));
     }

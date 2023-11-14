@@ -46,10 +46,6 @@ class CategoriesListView extends StatelessWidget {
               ),
             ],
           ),
-          // leading: const VerticalDivider(
-          //   width: 2,
-          //   color: COLOR_CONST.primaryColor,
-          // ),
         ),
       );
     }

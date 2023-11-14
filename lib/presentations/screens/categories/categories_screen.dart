@@ -1,4 +1,5 @@
 import 'package:beauty_skin/localization/translate.dart';
+import 'package:beauty_skin/presentations/screens/categories/widgets/brands_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,11 +13,20 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<CategoriesBloc>(
       create: (context) => CategoriesBloc()..add(LoadCategories()),
-      child: Scaffold(
-        appBar: _buildAppBar(context),
-        body: const SafeArea(
-          child: SingleChildScrollView(
-            child: CategoriesListView(),
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: _buildAppBar(context),
+          body: const SafeArea(
+            child: TabBarView(
+              children: [
+                SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: CategoriesListView(),
+                ),
+                BrandsListView(),
+              ],
+            ),
           ),
         ),
       ),
@@ -25,7 +35,18 @@ class CategoriesScreen extends StatelessWidget {
 
   _buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text("categories".tr(context)),
+      flexibleSpace: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          TabBar(
+            labelStyle: const TextStyle(fontSize: 20),
+            tabs: [
+              Tab(text: "categories".tr(context)),
+              Tab(text: "brands".tr(context)),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
