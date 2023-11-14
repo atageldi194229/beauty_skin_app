@@ -34,7 +34,7 @@
     "message_for_you": "Siz üçin habar",
     "yes": "Howa",
     "no": "Ýok",
-    "something_went_wrong": "Bir ýalňyşlyk ýüze çykdy",
+    "something_went_wrong": "Näsazlyk döredi",
     "status": "Status",
     "full_name": "Doly ady",
     "address": "Salgysy",
@@ -52,5 +52,6 @@
     "cart_item_added": "Sebede goşuldy",
     "cart_item_removed": "Sebede aýryldy",
     "contact_us": "Biz bilen habarlaşyň",
-    "brands": "Brendler"
+    "brands": "Brendler",
+    "network_error": "Internediňizi barlaň we täzeden synanyşyň."
 }

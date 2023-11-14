@@ -89,7 +89,41 @@ class HomeScreen extends StatelessWidget {
                 }
 
                 if (homeState is HomeLoadFailure) {
-                  return _buildCenterText(homeState.error);
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.wifi_off_rounded,
+                          size: 50,
+                          color: Colors.grey.shade800,
+                        ),
+                        const SizedBox(height: 8.0),
+                        Text(
+                          "something_went_wrong".tr(context),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        Text(
+                          "network_error".tr(context),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey.shade800,
+                          ),
+                        ),
+                        const SizedBox(height: 8.0),
+                        ElevatedButton.icon(
+                          onPressed: () => homeBloc.add(RefreshHome()),
+                          icon: const Icon(Icons.refresh),
+                          label: Text("refresh".tr(context)),
+                        )
+                      ],
+                    ),
+                  );
                 }
 
                 return _buildCenterText("something_went_wrong".tr(context));
