@@ -2,13 +2,20 @@
 import 'dart:convert';
 
 import 'package:beauty_skin/localization/translate.dart';
+import 'package:hive/hive.dart';
 
 part 'brand_model_extension.dart';
+part 'brand_model.g.dart';
 
+@HiveType(typeId: 5)
 class BrandModel {
+  @HiveField(0)
   final int? id;
+  @HiveField(1)
   final String? nameTk;
+  @HiveField(2)
   final String? nameRu;
+  @HiveField(3)
   final String? imagePath;
 
   BrandModel({

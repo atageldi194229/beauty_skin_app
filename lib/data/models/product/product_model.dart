@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'dart:convert';
 
+import 'package:beauty_skin/data/models/brand/brand_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'package:beauty_skin/localization/translate.dart';
@@ -42,6 +43,8 @@ class ProductModel extends Equatable with HiveObjectMixin {
   final int views;
   @HiveField(15)
   final String createdAt;
+  @HiveField(16)
+  final BrandModel? brand;
 
   ProductModel({
     required this.id,
@@ -60,6 +63,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
     required this.skidka,
     required this.views,
     required this.createdAt,
+    this.brand,
   });
 
   ProductModel copyWith({
@@ -79,6 +83,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
     double? skidka,
     int? views,
     String? createdAt,
+    BrandModel? brand,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -97,6 +102,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
       skidka: skidka ?? this.skidka,
       views: views ?? this.views,
       createdAt: createdAt ?? this.createdAt,
+      brand: brand ?? this.brand,
     );
   }
 
@@ -118,6 +124,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
       'skidka': skidka,
       'views': views,
       'created_at': createdAt,
+      'brand': brand,
     };
   }
 
@@ -135,16 +142,22 @@ class ProductModel extends Equatable with HiveObjectMixin {
       img2: map['img2'] != null ? map['img2'] as String : null,
       img3: map['img3'] != null ? map['img3'] as String : null,
       img4: map['img4'] != null ? map['img4'] as String : null,
-      price: double.tryParse(map['price'].toString()) ?? int.tryParse(map['price'].toString())?.toDouble() ?? -1.0,
-      skidka: (map['skidka'] is int) ? (map['skidka'] as int).toDouble() : map['skidka'] as double,
+      price: double.tryParse(map['price'].toString()) ??
+          int.tryParse(map['price'].toString())?.toDouble() ??
+          -1.0,
+      skidka: (map['skidka'] is int)
+          ? (map['skidka'] as int).toDouble()
+          : map['skidka'] as double,
       views: map['views'] as int,
       createdAt: map['created_at'] as String,
+      brand: map['brand'] != null ? BrandModel.fromMap(map['brand']) : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ProductModel.fromJson(String source) => ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ProductModel.fromJson(String source) =>
+      ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool get stringify => true;
@@ -168,6 +181,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
       skidka,
       views,
       createdAt,
+      brand,
     ];
   }
 }

@@ -1,13 +1,19 @@
 import 'package:beauty_skin/configs/config.dart';
 import 'package:beauty_skin/constants/constants.dart';
+import 'package:beauty_skin/data/models/brand/brand_model.dart';
 import 'package:flutter/material.dart';
 
 typedef ImageList = List<String>;
 
 class ProductImagesWidget extends StatefulWidget {
   final ImageList images;
+  final BrandModel? brand;
 
-  const ProductImagesWidget({Key? key, required this.images}) : super(key: key);
+  const ProductImagesWidget({
+    Key? key,
+    required this.images,
+    this.brand,
+  }) : super(key: key);
 
   @override
   ProductImagesWidgetState createState() => ProductImagesWidgetState();
@@ -39,7 +45,7 @@ class ProductImagesWidgetState extends State<ProductImagesWidget> {
                   //   arguments: images[index],
                   // );
                 },
-                child: Image.network(images[index], fit: BoxFit.fill),
+                child: Image.network(images[index], fit: BoxFit.cover),
               );
             },
             onPageChanged: onPageChanged,
@@ -56,6 +62,23 @@ class ProductImagesWidgetState extends State<ProductImagesWidget> {
                 List.generate(images.length, (index) => _buildIndicator(index)),
           ),
         ),
+
+        /// brand
+        if (widget.brand?.imagePath != null)
+          Positioned(
+            bottom: 8.0,
+            left: 8.0,
+            height: SizeConfig.defaultSize * 7,
+            width: SizeConfig.defaultSize * 7,
+            child: Card(
+              clipBehavior: Clip.hardEdge,
+              elevation: 3,
+              child: Image.network(
+                widget.brand!.imagePath!,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
       ],
     );
   }

@@ -25,7 +25,8 @@ class ProductCard2 extends StatefulWidget {
   State<ProductCard2> createState() => _ProductCard2State();
 }
 
-class _ProductCard2State extends State<ProductCard2> with SingleTickerProviderStateMixin {
+class _ProductCard2State extends State<ProductCard2>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   bool isAdded = false;
   double _angle = 0;
@@ -145,7 +146,7 @@ class _ProductCard2State extends State<ProductCard2> with SingleTickerProviderSt
                     width: double.infinity,
                     child: Image.network(
                       widget.product.images.first,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Positioned(
@@ -183,7 +184,8 @@ class _ProductCard2State extends State<ProductCard2> with SingleTickerProviderSt
                           ),
                         ),
                         const SizedBox(width: kDefaultPadding),
-                        if (widget.product.price != widget.product.discountPrice)
+                        if (widget.product.price !=
+                            widget.product.discountPrice)
                           Text(
                             "${widget.product.price}",
                             style: const TextStyle(

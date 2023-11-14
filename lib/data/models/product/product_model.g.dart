@@ -33,13 +33,14 @@ class ProductModelAdapter extends TypeAdapter<ProductModel> {
       skidka: fields[13] as double,
       views: fields[14] as int,
       createdAt: fields[15] as String,
+      brand: fields[16] as BrandModel?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ProductModel obj) {
     writer
-      ..writeByte(16)
+      ..writeByte(17)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -71,7 +72,9 @@ class ProductModelAdapter extends TypeAdapter<ProductModel> {
       ..writeByte(14)
       ..write(obj.views)
       ..writeByte(15)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+      ..writeByte(16)
+      ..write(obj.brand);
   }
 
   @override

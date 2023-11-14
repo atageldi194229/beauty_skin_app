@@ -16,34 +16,13 @@ class DetailProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      // floatingActionButton: BlocBuilder<FavoriteBloc, FavoriteState>(
-      //   builder: (context, state) {
-      //     bool isFavorited = false;
-      //     var productToRemove = product;
-
-      //     if (state is FavoritesLoaded) {
-      //       if (state.products.any((e) => e == product)) {
-      //         isFavorited = true;
-      //         productToRemove = state.products.firstWhere((e) => e == product);
-      //       }
-      //     }
-
-      //     return FloatingActionButton(
-      //       onPressed: () {
-      //         if (isFavorited) {
-      //           context.read<FavoriteBloc>().add(RemoveFavoriteItemModel(productToRemove));
-      //         } else {
-      //           context.read<FavoriteBloc>().add(AddFavoriteItemModel(product));
-      //         }
-      //       },
-      //       child: Icon(isFavorited ? IconlyBold.heart : IconlyLight.heart),
-      //     );
-      //   },
-      // ),
       body: SafeArea(
         child: ListView(
           children: [
-            ProductImagesWidget(images: product.images),
+            ProductImagesWidget(
+              images: product.images,
+              brand: product.brand,
+            ),
             ProductInfoWidget(product: product),
             const SizedBox(height: kDefaultPadding),
             AddToCartBarWidget(product: product),
