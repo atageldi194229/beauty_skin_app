@@ -1,3 +1,17 @@
+# Google services config file
+android/app/google-services.json
+
+# Keystore
+upload-keystore.jks
+android/key.properties
+
+# Environment variables
+.env
+env.g.dart
+
+# Generated files
+*.g.dart
+
 # Miscellaneous
 *.class
 *.log

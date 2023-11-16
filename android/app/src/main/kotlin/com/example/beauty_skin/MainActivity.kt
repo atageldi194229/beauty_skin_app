@@ -1,4 +1,4 @@
-package com.example.beauty_skin
+package com.zeta.beauty_skin
 
 import io.flutter.embedding.android.FlutterActivity
 
