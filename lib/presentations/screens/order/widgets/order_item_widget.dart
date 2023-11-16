@@ -28,18 +28,22 @@ class OrderItemWidget extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     List<Widget> items = [
       _buildKeyValueText(context, "status".tr(context), "${order.status}"),
-      _buildKeyValueText(context, "full_name".tr(context), "${order.fullName}"),
-      _buildKeyValueText(context, "phone_number".tr(context), "${order.phoneNumber}"),
+      _buildKeyValueText(
+          context, "full_name".tr(context), order.fullName ?? ''),
+      _buildKeyValueText(
+          context, "phone_number".tr(context), "${order.phoneNumber}"),
       _buildKeyValueText(context, "address".tr(context), "${order.address}"),
       _buildKeyValueText(context, "payment".tr(context), "${order.toleg}"),
-      _buildKeyValueText(context, "created_at".tr(context), "${order.createdAtFormatted}"),
-      _buildKeyValueText(context, "comment".tr(context), "${order.comment}"),
+      _buildKeyValueText(
+          context, "created_at".tr(context), "${order.createdAtFormatted}"),
+      _buildKeyValueText(context, "comment".tr(context), order.comment ?? ''),
       _imagesPart(context),
     ];
 
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(AppRouter.DETAIL_ORDER, arguments: order);
+        Navigator.of(context)
+            .pushNamed(AppRouter.DETAIL_ORDER, arguments: order);
       },
       child: ListView.separated(
         shrinkWrap: true,
@@ -53,7 +57,8 @@ class OrderItemWidget extends StatelessWidget {
 
   Widget _buildKeyValueText(BuildContext context, String key, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: kDefaultPadding * .5),
+      padding: const EdgeInsets.symmetric(
+          horizontal: kDefaultPadding, vertical: kDefaultPadding * .5),
       child: Row(
         children: [
           Text(key, style: Theme.of(context).textTheme.titleMedium),
@@ -81,7 +86,9 @@ class OrderItemWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final productItem = order.products![index];
 
-          final imageUrl = productItem.product.images.isNotEmpty ? productItem.product.images[0] : null;
+          final imageUrl = productItem.product.images.isNotEmpty
+              ? productItem.product.images[0]
+              : null;
 
           return Padding(
             padding: const EdgeInsets.only(right: kDefaultPadding),
@@ -115,8 +122,10 @@ class OrderItemWidget extends StatelessWidget {
                             fit: BoxFit.contain,
                             width: constraints.maxHeight,
                             height: constraints.maxHeight,
-                            placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                            placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                const Center(child: Icon(Icons.error)),
                           )
                         : Container(
                             width: constraints.maxHeight,

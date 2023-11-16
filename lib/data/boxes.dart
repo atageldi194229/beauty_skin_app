@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:beauty_skin/data/models/brand/brand_model.dart';
 import 'package:beauty_skin/data/models/cart_item_model.dart';
 import 'package:beauty_skin/data/models/delivery_address_model.dart';
 import 'package:beauty_skin/data/models/product/product_model.dart';
@@ -23,6 +24,7 @@ class Boxes {
     Hive.registerAdapter(ProductModelAdapter());
     Hive.registerAdapter(CartItemModelAdapter());
     Hive.registerAdapter(DeliveryAddressModelAdapter());
+    Hive.registerAdapter(BrandModelAdapter());
 
     // Open hive boxes
     await Hive.openBox(_SETTINGS);

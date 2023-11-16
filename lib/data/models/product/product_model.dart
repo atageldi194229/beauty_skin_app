@@ -124,7 +124,7 @@ class ProductModel extends Equatable with HiveObjectMixin {
       'skidka': skidka,
       'views': views,
       'created_at': createdAt,
-      'brand': brand,
+      'brand': brand?.toMap(),
     };
   }
 
