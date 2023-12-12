@@ -975,29 +975,55 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
 
   @override
   // TODO: implement collapsedHint
-  String get collapsedHint => throw UnimplementedError();
+  String get collapsedHint =>
+      const DefaultMaterialLocalizations().collapsedHint;
 
   @override
   // TODO: implement expandedHint
-  String get expandedHint => throw UnimplementedError();
+  String get expandedHint => const DefaultMaterialLocalizations().expandedHint;
 
   @override
   // TODO: implement expansionTileCollapsedHint
-  String get expansionTileCollapsedHint => throw UnimplementedError();
+  String get expansionTileCollapsedHint =>
+      const DefaultMaterialLocalizations().expansionTileCollapsedHint;
 
   @override
   // TODO: implement expansionTileCollapsedTapHint
-  String get expansionTileCollapsedTapHint => throw UnimplementedError();
+  String get expansionTileCollapsedTapHint =>
+      const DefaultMaterialLocalizations().expansionTileCollapsedTapHint;
 
   @override
   // TODO: implement expansionTileExpandedHint
-  String get expansionTileExpandedHint => throw UnimplementedError();
+  String get expansionTileExpandedHint =>
+      const DefaultMaterialLocalizations().expansionTileExpandedHint;
 
   @override
   // TODO: implement expansionTileExpandedTapHint
-  String get expansionTileExpandedTapHint => throw UnimplementedError();
+  String get expansionTileExpandedTapHint =>
+      const DefaultMaterialLocalizations().expansionTileExpandedTapHint;
 
   @override
   // TODO: implement scanTextButtonLabel
-  String get scanTextButtonLabel => throw UnimplementedError();
+  String get scanTextButtonLabel =>
+      const DefaultMaterialLocalizations().scanTextButtonLabel;
+
+  @override
+  // TODO: implement lookUpButtonLabel
+  String get lookUpButtonLabel =>
+      const DefaultMaterialLocalizations().lookUpButtonLabel;
+
+  @override
+  // TODO: implement menuDismissLabel
+  String get menuDismissLabel =>
+      const DefaultMaterialLocalizations().menuDismissLabel;
+
+  @override
+  // TODO: implement searchWebButtonLabel
+  String get searchWebButtonLabel =>
+      const DefaultMaterialLocalizations().searchWebButtonLabel;
+
+  @override
+  // TODO: implement shareButtonLabel
+  String get shareButtonLabel =>
+      const DefaultMaterialLocalizations().shareButtonLabel;
 }
