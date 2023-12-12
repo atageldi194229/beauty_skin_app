@@ -244,17 +244,13 @@ const tmDateSymbols = {
   ],
 };
 
-class _TkMaterialLocalization
-    extends LocalizationsDelegate<MaterialLocalizations> {
+class _TkMaterialLocalization extends LocalizationsDelegate<MaterialLocalizations> {
   const _TkMaterialLocalization();
 
   @override
-  bool isSupported(Locale locale) =>
-      locale.countryCode == "TM" && locale.languageCode == "tm";
+  bool isSupported(Locale locale) => locale.countryCode == "TM" && locale.languageCode == "tm";
   @override
-  bool shouldReload(
-          covariant LocalizationsDelegate<MaterialLocalizations> old) =>
-      false;
+  bool shouldReload(covariant LocalizationsDelegate<MaterialLocalizations> old) => false;
 
   @override
   Future<MaterialLocalizations> load(Locale locale) async {
@@ -306,8 +302,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
           twoDigitZeroPaddedFormat: twoDigitZeroPaddedFormat,
         );
 
-  static const LocalizationsDelegate<MaterialLocalizations> delegate =
-      _TkMaterialLocalization();
+  static const LocalizationsDelegate<MaterialLocalizations> delegate = _TkMaterialLocalization();
 
   static const List<String> _weekdays = <String>[
     'Ýekşenbe',
@@ -319,15 +314,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
     'Şenbe',
   ];
 
-  static const List<String> _narrowWeekdays = <String>[
-    'Ý',
-    'D',
-    'S',
-    'Ç',
-    'P',
-    'A',
-    'Ş'
-  ];
+  static const List<String> _narrowWeekdays = <String>['Ý', 'D', 'S', 'Ç', 'P', 'A', 'Ş'];
 
   static const List<String> _shortWeekdays = <String>[
     'Ýek',
@@ -427,8 +414,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get dateRangePickerHelpText => r'Çägini saýlaň';
 
   @override
-  String get dateRangeStartDateSemanticLabelRaw =>
-      'Başlanýan senesi \$fullDate';
+  String get dateRangeStartDateSemanticLabelRaw => 'Başlanýan senesi \$fullDate';
 
   @override
   String get dateRangeStartLabel => 'Başlanýan senesi';
@@ -483,8 +469,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   }
 
   @override
-  String get licensesPackageDetailTextOther =>
-      '\$licenseCount sany ygtyýarnama';
+  String get licensesPackageDetailTextOther => '\$licenseCount sany ygtyýarnama';
 
   @override
   String get licensesPageTitle => r'Ygtyýarnama';
@@ -508,8 +493,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get openAppDrawerTooltip => r'Nawigasiýa menýüsyny açyň';
 
   @override
-  String get pageRowsInfoTitleApproximateRaw =>
-      r'$firstRow–$lastRow / takmynan $rowCount';
+  String get pageRowsInfoTitleApproximateRaw => r'$firstRow–$lastRow / takmynan $rowCount';
 
   @override
   String get pageRowsInfoTitleRaw => r'$firstRow–$lastRow / $rowCount';
@@ -533,8 +517,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get refreshIndicatorSemanticLabel => r'Tazelenme';
 
   @override
-  String get remainingTextFieldCharacterCountOther =>
-      r'$remainingCount simwolar galdy';
+  String get remainingTextFieldCharacterCountOther => r'$remainingCount simwolar galdy';
 
   @override
   String get remainingTextFieldCharacterCountZero => r'Simwol galmady';
@@ -576,8 +559,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get selectYearSemanticsLabel => 'Ýyly saýlaň';
 
   @override
-  String get selectedRowCountTitleOther =>
-      r'$selectedRowCount element saýlanan';
+  String get selectedRowCountTitleOther => r'$selectedRowCount element saýlanan';
 
   @override
   String get showAccountsLabel => r'Hasaplary görkezmek';
@@ -715,25 +697,11 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
 
   int _getDaysInMonth(int year, int month) {
     if (month == DateTime.february) {
-      final bool isLeapYear =
-          (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
+      final bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
       if (isLeapYear) return 29;
       return 28;
     }
-    const List<int> daysInMonth = <int>[
-      31,
-      -1,
-      31,
-      30,
-      31,
-      30,
-      31,
-      31,
-      30,
-      31,
-      30,
-      31
-    ];
+    const List<int> daysInMonth = <int>[31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     return daysInMonth[month - 1];
   }
 
@@ -749,8 +717,7 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   }
 
   @override
-  String formatTimeOfDay(TimeOfDay timeOfDay,
-      {bool alwaysUse24HourFormat = false}) {
+  String formatTimeOfDay(TimeOfDay timeOfDay, {bool alwaysUse24HourFormat = false}) {
     final StringBuffer buffer = StringBuffer();
     buffer
       ..write(formatHour(timeOfDay, alwaysUse24HourFormat: true))
@@ -767,263 +734,191 @@ class TmMaterialLocalization extends GlobalMaterialLocalizations {
   String get lastPageTooltip => 'Soňky sahypa';
 
   @override
-  String get keyboardKeyAlt =>
-      const DefaultMaterialLocalizations().keyboardKeyAlt;
+  String get keyboardKeyAlt => const DefaultMaterialLocalizations().keyboardKeyAlt;
 
   @override
-  String get keyboardKeyAltGraph =>
-      const DefaultMaterialLocalizations().keyboardKeyAltGraph;
+  String get keyboardKeyAltGraph => const DefaultMaterialLocalizations().keyboardKeyAltGraph;
 
   @override
-  String get keyboardKeyBackspace =>
-      const DefaultMaterialLocalizations().keyboardKeyBackspace;
+  String get keyboardKeyBackspace => const DefaultMaterialLocalizations().keyboardKeyBackspace;
 
   @override
-  String get keyboardKeyCapsLock =>
-      const DefaultMaterialLocalizations().keyboardKeyCapsLock;
+  String get keyboardKeyCapsLock => const DefaultMaterialLocalizations().keyboardKeyCapsLock;
 
   @override
-  String get keyboardKeyChannelDown =>
-      const DefaultMaterialLocalizations().keyboardKeyChannelDown;
+  String get keyboardKeyChannelDown => const DefaultMaterialLocalizations().keyboardKeyChannelDown;
 
   @override
-  String get keyboardKeyChannelUp =>
-      const DefaultMaterialLocalizations().keyboardKeyChannelUp;
+  String get keyboardKeyChannelUp => const DefaultMaterialLocalizations().keyboardKeyChannelUp;
 
   @override
-  String get keyboardKeyControl =>
-      const DefaultMaterialLocalizations().keyboardKeyControl;
+  String get keyboardKeyControl => const DefaultMaterialLocalizations().keyboardKeyControl;
 
   @override
-  String get keyboardKeyDelete =>
-      const DefaultMaterialLocalizations().keyboardKeyDelete;
+  String get keyboardKeyDelete => const DefaultMaterialLocalizations().keyboardKeyDelete;
 
   @override
-  String get keyboardKeyEject =>
-      const DefaultMaterialLocalizations().keyboardKeyEject;
+  String get keyboardKeyEject => const DefaultMaterialLocalizations().keyboardKeyEject;
 
   @override
-  String get keyboardKeyEnd =>
-      const DefaultMaterialLocalizations().keyboardKeyEnd;
+  String get keyboardKeyEnd => const DefaultMaterialLocalizations().keyboardKeyEnd;
 
   @override
-  String get keyboardKeyEscape =>
-      const DefaultMaterialLocalizations().keyboardKeyEscape;
+  String get keyboardKeyEscape => const DefaultMaterialLocalizations().keyboardKeyEscape;
 
   @override
-  String get keyboardKeyFn =>
-      const DefaultMaterialLocalizations().keyboardKeyFn;
+  String get keyboardKeyFn => const DefaultMaterialLocalizations().keyboardKeyFn;
 
   @override
-  String get keyboardKeyHome =>
-      const DefaultMaterialLocalizations().keyboardKeyHome;
+  String get keyboardKeyHome => const DefaultMaterialLocalizations().keyboardKeyHome;
 
   @override
-  String get keyboardKeyInsert =>
-      const DefaultMaterialLocalizations().keyboardKeyInsert;
+  String get keyboardKeyInsert => const DefaultMaterialLocalizations().keyboardKeyInsert;
 
   @override
-  String get keyboardKeyMeta =>
-      const DefaultMaterialLocalizations().keyboardKeyMeta;
+  String get keyboardKeyMeta => const DefaultMaterialLocalizations().keyboardKeyMeta;
 
   @override
-  String get keyboardKeyMetaMacOs =>
-      const DefaultMaterialLocalizations().keyboardKeyMetaMacOs;
+  String get keyboardKeyMetaMacOs => const DefaultMaterialLocalizations().keyboardKeyMetaMacOs;
 
   @override
-  String get keyboardKeyMetaWindows =>
-      const DefaultMaterialLocalizations().keyboardKeyMetaWindows;
+  String get keyboardKeyMetaWindows => const DefaultMaterialLocalizations().keyboardKeyMetaWindows;
 
   @override
-  String get keyboardKeyNumLock =>
-      const DefaultMaterialLocalizations().keyboardKeyNumLock;
+  String get keyboardKeyNumLock => const DefaultMaterialLocalizations().keyboardKeyNumLock;
 
   @override
-  String get keyboardKeyNumpad0 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad0;
+  String get keyboardKeyNumpad0 => const DefaultMaterialLocalizations().keyboardKeyNumpad0;
 
   @override
-  String get keyboardKeyNumpad1 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad1;
+  String get keyboardKeyNumpad1 => const DefaultMaterialLocalizations().keyboardKeyNumpad1;
 
   @override
-  String get keyboardKeyNumpad2 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad2;
+  String get keyboardKeyNumpad2 => const DefaultMaterialLocalizations().keyboardKeyNumpad2;
 
   @override
-  String get keyboardKeyNumpad3 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad3;
+  String get keyboardKeyNumpad3 => const DefaultMaterialLocalizations().keyboardKeyNumpad3;
 
   @override
-  String get keyboardKeyNumpad4 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad4;
+  String get keyboardKeyNumpad4 => const DefaultMaterialLocalizations().keyboardKeyNumpad4;
 
   @override
-  String get keyboardKeyNumpad5 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad5;
+  String get keyboardKeyNumpad5 => const DefaultMaterialLocalizations().keyboardKeyNumpad5;
 
   @override
-  String get keyboardKeyNumpad6 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad6;
+  String get keyboardKeyNumpad6 => const DefaultMaterialLocalizations().keyboardKeyNumpad6;
 
   @override
-  String get keyboardKeyNumpad7 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad7;
+  String get keyboardKeyNumpad7 => const DefaultMaterialLocalizations().keyboardKeyNumpad7;
 
   @override
-  String get keyboardKeyNumpad8 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad8;
+  String get keyboardKeyNumpad8 => const DefaultMaterialLocalizations().keyboardKeyNumpad8;
 
   @override
-  String get keyboardKeyNumpad9 =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpad9;
+  String get keyboardKeyNumpad9 => const DefaultMaterialLocalizations().keyboardKeyNumpad9;
 
   @override
-  String get keyboardKeyNumpadAdd =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadAdd;
+  String get keyboardKeyNumpadAdd => const DefaultMaterialLocalizations().keyboardKeyNumpadAdd;
 
   @override
-  String get keyboardKeyNumpadComma =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadComma;
+  String get keyboardKeyNumpadComma => const DefaultMaterialLocalizations().keyboardKeyNumpadComma;
 
   @override
-  String get keyboardKeyNumpadDecimal =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadDecimal;
+  String get keyboardKeyNumpadDecimal => const DefaultMaterialLocalizations().keyboardKeyNumpadDecimal;
 
   @override
-  String get keyboardKeyNumpadDivide =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadDivide;
+  String get keyboardKeyNumpadDivide => const DefaultMaterialLocalizations().keyboardKeyNumpadDivide;
 
   @override
-  String get keyboardKeyNumpadEnter =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadEnter;
+  String get keyboardKeyNumpadEnter => const DefaultMaterialLocalizations().keyboardKeyNumpadEnter;
 
   @override
-  String get keyboardKeyNumpadEqual =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadEqual;
+  String get keyboardKeyNumpadEqual => const DefaultMaterialLocalizations().keyboardKeyNumpadEqual;
 
   @override
-  String get keyboardKeyNumpadMultiply =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadMultiply;
+  String get keyboardKeyNumpadMultiply => const DefaultMaterialLocalizations().keyboardKeyNumpadMultiply;
 
   @override
-  String get keyboardKeyNumpadParenLeft =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadParenLeft;
+  String get keyboardKeyNumpadParenLeft => const DefaultMaterialLocalizations().keyboardKeyNumpadParenLeft;
 
   @override
-  String get keyboardKeyNumpadParenRight =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadParenRight;
+  String get keyboardKeyNumpadParenRight => const DefaultMaterialLocalizations().keyboardKeyNumpadParenRight;
 
   @override
-  String get keyboardKeyNumpadSubtract =>
-      const DefaultMaterialLocalizations().keyboardKeyNumpadSubtract;
+  String get keyboardKeyNumpadSubtract => const DefaultMaterialLocalizations().keyboardKeyNumpadSubtract;
 
   @override
-  String get keyboardKeyPageDown =>
-      const DefaultMaterialLocalizations().keyboardKeyPageDown;
+  String get keyboardKeyPageDown => const DefaultMaterialLocalizations().keyboardKeyPageDown;
 
   @override
-  String get keyboardKeyPageUp =>
-      const DefaultMaterialLocalizations().keyboardKeyPageUp;
+  String get keyboardKeyPageUp => const DefaultMaterialLocalizations().keyboardKeyPageUp;
 
   @override
-  String get keyboardKeyPower =>
-      const DefaultMaterialLocalizations().keyboardKeyPower;
+  String get keyboardKeyPower => const DefaultMaterialLocalizations().keyboardKeyPower;
 
   @override
-  String get keyboardKeyPowerOff =>
-      const DefaultMaterialLocalizations().keyboardKeyPowerOff;
+  String get keyboardKeyPowerOff => const DefaultMaterialLocalizations().keyboardKeyPowerOff;
 
   @override
-  String get keyboardKeyPrintScreen =>
-      const DefaultMaterialLocalizations().keyboardKeyPrintScreen;
+  String get keyboardKeyPrintScreen => const DefaultMaterialLocalizations().keyboardKeyPrintScreen;
 
   @override
-  String get keyboardKeyScrollLock =>
-      const DefaultMaterialLocalizations().keyboardKeyScrollLock;
+  String get keyboardKeyScrollLock => const DefaultMaterialLocalizations().keyboardKeyScrollLock;
 
   @override
-  String get keyboardKeySelect =>
-      const DefaultMaterialLocalizations().keyboardKeySelect;
+  String get keyboardKeySelect => const DefaultMaterialLocalizations().keyboardKeySelect;
 
   @override
-  String get keyboardKeySpace =>
-      const DefaultMaterialLocalizations().keyboardKeySpace;
+  String get keyboardKeySpace => const DefaultMaterialLocalizations().keyboardKeySpace;
 
   @override
-  String get menuBarMenuLabel =>
-      const DefaultMaterialLocalizations().menuBarMenuLabel;
+  String get menuBarMenuLabel => const DefaultMaterialLocalizations().menuBarMenuLabel;
 
   @override
-  String get bottomSheetLabel =>
-      const DefaultMaterialLocalizations().bottomSheetLabel;
+  String get bottomSheetLabel => const DefaultMaterialLocalizations().bottomSheetLabel;
 
   @override
-  String get currentDateLabel =>
-      const DefaultMaterialLocalizations().currentDateLabel;
+  String get currentDateLabel => const DefaultMaterialLocalizations().currentDateLabel;
 
   @override
-  String get keyboardKeyShift =>
-      const DefaultMaterialLocalizations().keyboardKeyShift;
+  String get keyboardKeyShift => const DefaultMaterialLocalizations().keyboardKeyShift;
 
   @override
   String get scrimLabel => const DefaultMaterialLocalizations().scrimLabel;
 
   @override
-  String get scrimOnTapHintRaw => const DefaultMaterialLocalizations()
-      .scrimOnTapHint(r'$modalRouteContentName');
+  String get scrimOnTapHintRaw => const DefaultMaterialLocalizations().scrimOnTapHint(r'$modalRouteContentName');
 
   @override
-  // TODO: implement collapsedHint
-  String get collapsedHint =>
-      const DefaultMaterialLocalizations().collapsedHint;
+  String get collapsedHint => const DefaultMaterialLocalizations().collapsedHint;
 
   @override
-  // TODO: implement expandedHint
   String get expandedHint => const DefaultMaterialLocalizations().expandedHint;
 
   @override
-  // TODO: implement expansionTileCollapsedHint
-  String get expansionTileCollapsedHint =>
-      const DefaultMaterialLocalizations().expansionTileCollapsedHint;
+  String get expansionTileCollapsedHint => const DefaultMaterialLocalizations().expansionTileCollapsedHint;
 
   @override
-  // TODO: implement expansionTileCollapsedTapHint
-  String get expansionTileCollapsedTapHint =>
-      const DefaultMaterialLocalizations().expansionTileCollapsedTapHint;
+  String get expansionTileCollapsedTapHint => const DefaultMaterialLocalizations().expansionTileCollapsedTapHint;
 
   @override
-  // TODO: implement expansionTileExpandedHint
-  String get expansionTileExpandedHint =>
-      const DefaultMaterialLocalizations().expansionTileExpandedHint;
+  String get expansionTileExpandedHint => const DefaultMaterialLocalizations().expansionTileExpandedHint;
 
   @override
-  // TODO: implement expansionTileExpandedTapHint
-  String get expansionTileExpandedTapHint =>
-      const DefaultMaterialLocalizations().expansionTileExpandedTapHint;
+  String get expansionTileExpandedTapHint => const DefaultMaterialLocalizations().expansionTileExpandedTapHint;
 
   @override
-  // TODO: implement scanTextButtonLabel
-  String get scanTextButtonLabel =>
-      const DefaultMaterialLocalizations().scanTextButtonLabel;
+  String get scanTextButtonLabel => const DefaultMaterialLocalizations().scanTextButtonLabel;
 
   @override
-  // TODO: implement lookUpButtonLabel
-  String get lookUpButtonLabel =>
-      const DefaultMaterialLocalizations().lookUpButtonLabel;
+  String get lookUpButtonLabel => const DefaultMaterialLocalizations().lookUpButtonLabel;
 
   @override
-  // TODO: implement menuDismissLabel
-  String get menuDismissLabel =>
-      const DefaultMaterialLocalizations().menuDismissLabel;
+  String get menuDismissLabel => const DefaultMaterialLocalizations().menuDismissLabel;
 
   @override
-  // TODO: implement searchWebButtonLabel
-  String get searchWebButtonLabel =>
-      const DefaultMaterialLocalizations().searchWebButtonLabel;
+  String get searchWebButtonLabel => const DefaultMaterialLocalizations().searchWebButtonLabel;
 
   @override
-  // TODO: implement shareButtonLabel
-  String get shareButtonLabel =>
-      const DefaultMaterialLocalizations().shareButtonLabel;
+  String get shareButtonLabel => const DefaultMaterialLocalizations().shareButtonLabel;
 }

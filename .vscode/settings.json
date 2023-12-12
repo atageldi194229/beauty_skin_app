@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "Tappable"
-    ]
+    ],
+    "dart.lineLength": 150
 }
