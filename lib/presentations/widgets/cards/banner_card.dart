@@ -1,6 +1,6 @@
 import 'package:beauty_skin/presentations/widgets/others/loading.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:beauty_skin/constants/constants.dart';
 import 'package:beauty_skin/presentations/widgets/error_states/no_image.dart';
 
@@ -31,7 +31,7 @@ class BannerCard extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: kBorderRadius10,
-          child: OptimizedCacheImage(
+          child: CachedNetworkImage(
             fadeInCurve: Curves.ease,
             imageUrl: image,
             imageBuilder: (context, imageProvider) => Container(
